@@ -1,7 +1,7 @@
 import type {
   ProblemDetails,
   ValidationProblemDetails,
-} from "@/types/api-helpers"
+} from "@/lib/api/types/errors"
 
 export function isValidationProblem(
   error: unknown

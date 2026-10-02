@@ -1,7 +1,7 @@
-import type { paths } from "@/types/api"
+import type { paths } from "@/lib/api/generated/api"
 import createClient from "openapi-fetch"
 import { authStore } from "@/lib/auth/auth-store"
-import { refreshAccessToken } from "@/features/auth/api/auth-api"
+import { refreshAccessToken } from "@/features/auth/api/auth"
 
 export const apiClient = createClient<paths>({
   baseUrl: process.env.NEXT_PUBLIC_API_URL,
