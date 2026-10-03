@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/api/client"
+import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { AddApartmentAmenityRequest, Amenity } from "@/lib/api/types/apartments"
 
 export async function getApartmentAmenities(apartmentId: string) {

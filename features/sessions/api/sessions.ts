@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/api/client"
+import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 
 export async function getUserSessions(id: string) {
   const { data, error } = await apiClient.GET("/api/v1/users/{id}/sessions", {

@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/api/client"
+import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { QueryParameters } from "@/lib/api/type-utils"
 
 type GetNotificationsQuery = QueryParameters<"/api/v1/notifications", "get">

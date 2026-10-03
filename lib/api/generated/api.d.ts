@@ -3642,6 +3642,7 @@ export interface components {
             id?: string;
             name?: string | null;
             city?: string | null;
+            country?: string | null;
             /** Format: double */
             pricePerNight?: number;
             /** Format: double */

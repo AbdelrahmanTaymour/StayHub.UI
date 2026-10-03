@@ -1,86 +1,46 @@
-import { apiClient } from "@/lib/api/client"
+import { apiClientBrowser } from "@/lib/api/client-browser"
 import {
+  AccessTokenResponse,
   ForgotPasswordRequest,
   LogInUserRequest,
-  LogOutUserRequest,
-  RefreshAccessTokenRequest,
-  RegisterUserRequest,
 } from "@/lib/api/types/auth"
 
-export async function register(body: RegisterUserRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/users/register", {
-    body,
-  })
-  if (error) throw error
-  return data
-}
+const baseUrl = process.env.INTERNAL_API_URL
 
 export async function login(body: LogInUserRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/users/login", { body })
-  if (error) throw error
-  return data
+  const res = await fetch(`${baseUrl}/api/v1/users/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error("Login failed")
+  return res.json() as Promise<AccessTokenResponse>
 }
 
-export async function refreshAccessToken(body: RefreshAccessTokenRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/users/refresh-token", {
-    body,
+export async function getLoggedInUser(accessToken: string) {
+  const res = await fetch(`${baseUrl}/api/v1/users/me`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
   })
-  if (error) throw error
-  return data
+  if (!res.ok) throw new Error("Failed to fetch current user")
+  return res.json() as Promise<{ id: string; role: "Guest" | "Admin" }>
 }
 
-export async function logout(body: LogOutUserRequest) {
-  const { error } = await apiClient.POST("/api/v1/users/logout", {
-    body,
+export async function refreshAccessToken(body: { refreshToken: string }) {
+  const res = await fetch(`${baseUrl}/api/v1/users/refresh-token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   })
-
-  if (error) throw error
+  if (!res.ok) throw new Error("Refresh failed")
+  return res.json() as Promise<AccessTokenResponse>
 }
 
 export async function forgotPassword(body: ForgotPasswordRequest) {
-  const { error } = await apiClient.POST("/api/v1/users/forgot-password", {
-    body,
-  })
+  const { error } = await apiClientBrowser.POST(
+    "/api/v1/users/forgot-password",
+    {
+      body,
+    }
+  )
   if (error) throw error
 }
-
-/*
-type RegisterUserRequest = {
-    firstName?: string | null;
-    lastName?: string | null;
-    email?: string | null;
-    password?: string | null;
-}
-
-type LogInUserRequest = {
-    email?: string | null;
-    password?: string | null;
-}
-
-type LogOutUserRequest = {
-  refreshToken?: string | null;
-}
-
-type RefreshAccessTokenRequest = {
-    refreshToken?: string | null;
-}
-
-type ForgotPasswordRequest = {
-    email?: string | null;
-}
-
-// Responses
-
-type RegisterUserResponse = string // new user id (uuid)
-
-type LogInUserResponse = AccessTokenResponse
-type RefreshAccessTokenResponse = AccessTokenResponse
-type AccessTokenResponse = {
-    accessToken?: string | null;
-    refreshToken?: string | null;
-    expiresInSeconds?: number; // int32
-}
-
-type LogoutResponse = void // 204 No Content
-type ForgotPasswordResponse = void // 204 No Content
-*/

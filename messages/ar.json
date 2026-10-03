@@ -1,5 +1,129 @@
 {
   "common": {
     "appName": "StayHub"
+  },
+  "nav": {
+    "brand": "StayHub",
+    "primaryNavLabel": "القائمة الرئيسية",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "myAccount": "حجوزاتي",
+    "switchToLight": "المظهر الفاتح",
+    "switchToDark": "المظهر الداكن",
+    "switchLanguage": "تغيير اللغة إلى {language}",
+    "explore": "استكشف",
+    "myBookings": "حجوزاتي",
+    "myApartments": "عقاراتي",
+    "favorites": "المفضلة",
+    "messages": "الرسائل",
+    "notifications": "الإشعارات",
+    "accountMenu": "قائمة الحساب",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "signOut": "تسجيل الخروج",
+    "signingOut": "جارٍ تسجيل الخروج…"
+  },
+  "footer": {
+    "rights": "© {year} StayHub, Inc. جميع الحقوق محفوظة.",
+    "legalNavLabel": "الشروط والأحكام",
+    "terms": "الشروط والأحكام",
+    "privacy": "سياسة الخصوصية"
+  },
+  "home": {
+    "metaTitle": "StayHub — احجز إقامتك القادمة",
+    "metaDescription": "كتشف شققًا مميزة وإقامات قصيرة مختارة بعناية مع أفضل المضيفين.",
+    "heroLineOne": "وجهتك المفضلـة القادمة",
+    "heroLineTwo": "بانتظارك في أي وقت",
+    "heroSubtitle": "منازل راقية، ومضيفون متميزون، وتجارب إقامة لا تُنسى.",
+    "scrollToExplore": "مرّر لأسفل لاستكشاف أحدث أماكن الإقامة",
+    "resultsHeading": "أماكن إقامة مختارة لك",
+    "resultsLoading": "جارٍ تحميل أماكن الإقامة…",
+    "resultsCount": "{count, plural, =0 {لا توجد أماكن إقامة} one {مكان إقامة واحد} two {مكانان للإقامة} few {# أماكن إقامة} many {# مكان إقامة} other {# مكان إقامة}}",
+    "errorTitle": "تعذّر تحميل أماكن الإقامة",
+    "errorDescription": "حدث خطأ غير متوقع. يرجى إعادة المحاولة.",
+    "retry": "إعادة المحاولة",
+    "emptyTitle": "لم نجد نتائج تطابق بحثك",
+    "emptyDescription": "جرب تغيير التواريخ، أو توسيع نطاق السعر، أو البحث في مدينة أخرى.",
+    "clearFilters": "إعادة ضبط التصفية",
+    "paginationLabel": "التنقل بين الصفحات",
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي",
+      "status": "صفحة {page} من {totalPages}"
+    }
+  },
+  "search": {
+    "formLabel": "البحث عن شقة",
+    "cityLabel": "الوجهة",
+    "cityPlaceholder": "إلى أين تريد الذهاب؟",
+    "checkInLabel": "تاريخ الوصول",
+    "checkOutLabel": "تاريخ المغادرة",
+    "minPriceLabel": "أقل سعر",
+    "minPricePlaceholder": "الحد الأدنى",
+    "maxPriceLabel": "أعلى سعر",
+    "maxPricePlaceholder": "الحد الأقصى",
+    "pricePerNightLabel": "السعر لليلة الواحدة",
+    "submit": "بحث",
+    "errors": {
+      "maxBelowMin": "يجب أن يكون الحد الأقصى للسعر أعلى من الحد الأدنى.",
+      "datesIncomplete": "يرجى تحديد تاريخي الوصول والمغادرة معًا.",
+      "endBeforeStart": "تاريخ المغادرة يجب أن يكون بعد تاريخ الوصول.",
+      "invalidNumber": "يرجى إدخال رقم صحيح.",
+      "mustBePositive": "يرجى إدخال قيمة أكبر من الصفر.",
+      "mustBeNonNegative": "القيمة لا يمكن أن تكون بالسالب."
+    }
+  },
+  "apartmentCard": {
+    "untitled": "إقامة بدون عنوان",
+    "newListing": "مُضاف حديثًا",
+    "perNight": "/ ليلة",
+    "total": "الإجمالي {amount}"
+  },
+  "favorites": {
+    "add": "إضافة إلى المفضلة",
+    "remove": "إزالة من المفضلة",
+    "addedToast": "تمت الإضافة إلى المفضلة",
+    "removedToast": "تمت الإزالة من المفضلة",
+    "updateErrorToast": "تعذر تحديث المفضلة، حاول مرة أخرى.",
+    "loginPrompt": "يرجى <login>تسجيل الدخول</login> لحفظ أماكنك المفضلة."
+  },
+  "auth": {
+    "loginTitle": "مرحبًا بك مجددًا",
+    "loginSubtitle": "أدخل بريدك الإلكتروني لتسجيل الدخول إلى حسابك",
+    "loggingIn": "جارٍ تسجيل الدخول…",
+    "login": "تسجيل الدخول",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "noAccount": "ليس لديك حساب؟",
+    "signUp": "إنشاء حساب جديد",
+    "registerTitle": "إنشاء حساب جديد",
+    "registerSubtitle": "أدخل بياناتك للانضمام إلى StayHub",
+    "registering": "جارٍ إنشاء الحساب…",
+    "createAccount": "إنشاء الحساب",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "logIn": "تسجيل الدخول",
+    "forgotPasswordTitle": "استعادة كلمة المرور",
+    "forgotPasswordSubtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور",
+    "sending": "جارٍ الإرسال…",
+    "sendResetLink": "إرسال رابط الاستعادة",
+    "checkEmailTitle": "تفقد بريدك الإلكتروني",
+    "checkEmailDescription": "إذا كان البريد الإلكتروني مسجلاً لدينا، فستصلك رسالة تحتوي على رابط لإعادة تعيين كلمة المرور.",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "emailLabel": "البريد الإلكتروني",
+    "passwordLabel": "كلمة المرور",
+    "confirmPasswordLabel": "تأكيد كلمة المرور",
+    "firstNameLabel": "الاسم الأول",
+    "lastNameLabel": "اسم العائلة",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "orContinueWith": "أو المتابعة عبر",
+    "continueWithGoogle": "المتابعة باستخدام Google",
+    "googleComingSoon": "تسجيل الدخول عبر Google سيتوفر قريبًا",
+    "errors": {
+      "required": "هذا الحقل مطلوب.",
+      "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح.",
+      "passwordTooShort": "كلمة المرور يجب أن لا تقل عن 8 خانات.",
+      "passwordsDontMatch": "كلمتا المرور غير متطابقتين.",
+      "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+    }
   }
 }

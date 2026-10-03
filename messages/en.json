@@ -1,5 +1,129 @@
 {
   "common": {
     "appName": "StayHub"
+  },
+  "nav": {
+    "brand": "StayHub",
+    "primaryNavLabel": "Primary menu",
+    "login": "Log in",
+    "register": "Sign up",
+    "myAccount": "My bookings",
+    "switchToLight": "Light mode",
+    "switchToDark": "Dark mode",
+    "switchLanguage": "Switch language to {language}",
+    "explore": "Explore",
+    "myBookings": "My bookings",
+    "myApartments": "My properties",
+    "favorites": "Favorites",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "accountMenu": "Account menu",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…"
+  },
+  "footer": {
+    "rights": "© {year} StayHub, Inc. All rights reserved.",
+    "legalNavLabel": "Legal & Terms",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "home": {
+    "metaTitle": "StayHub — Book Your Next Stay",
+    "metaDescription": "Discover handpicked apartments and short-term rentals hosted by top-rated hosts.",
+    "heroLineOne": "Find your next favorite place",
+    "heroLineTwo": "ready whenever you are",
+    "heroSubtitle": "Handpicked homes, exceptional hosts, and stays worth remembering.",
+    "scrollToExplore": "Scroll to explore available stays",
+    "resultsHeading": "Curated stays for you",
+    "resultsLoading": "Loading stays…",
+    "resultsCount": "{count, plural, =0 {No stays found} one {1 stay found} other {# stays found}}",
+    "errorTitle": "Unable to load stays",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "retry": "Try again",
+    "emptyTitle": "No stays match your search",
+    "emptyDescription": "Try adjusting your dates, expanding your price range, or searching in another city.",
+    "clearFilters": "Reset filters",
+    "paginationLabel": "Pagination navigation",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "status": "Page {page} of {totalPages}"
+    }
+  },
+  "search": {
+    "formLabel": "Search apartments",
+    "cityLabel": "Destination",
+    "cityPlaceholder": "Where are you headed?",
+    "checkInLabel": "Check-in",
+    "checkOutLabel": "Check-out",
+    "minPriceLabel": "Min price",
+    "minPricePlaceholder": "Min",
+    "maxPriceLabel": "Max price",
+    "maxPricePlaceholder": "Max",
+    "pricePerNightLabel": "Price per night",
+    "submit": "Search",
+    "errors": {
+      "maxBelowMin": "Max price must be equal to or greater than min price.",
+      "datesIncomplete": "Please select both check-in and check-out dates.",
+      "endBeforeStart": "Check-out date must be after check-in date.",
+      "invalidNumber": "Please enter a valid number.",
+      "mustBePositive": "Please enter a value greater than zero.",
+      "mustBeNonNegative": "Value cannot be negative."
+    }
+  },
+  "apartmentCard": {
+    "untitled": "Untitled stay",
+    "newListing": "New listing",
+    "perNight": "/ night",
+    "total": "{amount} total"
+  },
+  "favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "addedToast": "Added to favorites",
+    "removedToast": "Removed from favorites",
+    "updateErrorToast": "Couldn't update favorites. Please try again.",
+    "loginPrompt": "Please <login>log in</login> to save your favorite stays."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Enter your email below to log in to your account",
+    "loggingIn": "Logging in…",
+    "login": "Log in",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account?",
+    "signUp": "Create an account",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Enter your details below to join StayHub",
+    "registering": "Creating account…",
+    "createAccount": "Create account",
+    "haveAccount": "Already have an account?",
+    "logIn": "Log in",
+    "forgotPasswordTitle": "Reset password",
+    "forgotPasswordSubtitle": "Enter your email address and we'll send you a link to reset your password",
+    "sending": "Sending…",
+    "sendResetLink": "Send reset link",
+    "checkEmailTitle": "Check your email",
+    "checkEmailDescription": "If an account matches that email address, we've sent instructions to reset your password.",
+    "backToLogin": "Back to log in",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm password",
+    "firstNameLabel": "First name",
+    "lastNameLabel": "Last name",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "orContinueWith": "Or continue with",
+    "continueWithGoogle": "Continue with Google",
+    "googleComingSoon": "Google sign-in is coming soon",
+    "errors": {
+      "required": "This field is required.",
+      "invalidEmail": "Please enter a valid email address.",
+      "passwordTooShort": "Password must be at least 8 characters long.",
+      "passwordsDontMatch": "Passwords do not match.",
+      "invalidCredentials": "Invalid email or password."
+    }
   }
 }

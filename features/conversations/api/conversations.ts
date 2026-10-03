@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/api/client"
+import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { StartConversationRequest } from "@/lib/api/types/conversations"
 
 export async function getMyConversations() {

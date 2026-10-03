@@ -1,4 +1,4 @@
-import { Geist_Mono, Inter } from "next/font/google"
+import { Geist_Mono, Inter, Cairo } from "next/font/google"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { notFound } from "next/navigation"
 
@@ -6,9 +6,25 @@ import "../globals.css"
 import { routing } from "@/i18n/routing"
 import { AppProviders } from "@/providers/AppProviders"
 import { cn } from "@/lib/utils"
+import { auth } from "@/lib/auth/auth"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
-const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+})
+
+const cairo = Cairo({
+  subsets: ["arabic"],
+  variable: "--font-cairo",
+  display: "swap",
+})
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+})
 
 export default async function RootLayout({
   children,
@@ -23,7 +39,10 @@ export default async function RootLayout({
     notFound()
   }
 
+  const session = await auth()
+
   const dir = locale === "ar" ? "rtl" : "ltr"
+  const isArabic = locale === "ar"
 
   return (
     <html
@@ -31,16 +50,17 @@ export default async function RootLayout({
       dir={dir}
       suppressHydrationWarning
       className={cn(
-        "antialiased",
+        "h-full antialiased",
+        inter.variable,
+        cairo.variable,
         fontMono.variable,
-        "font-sans",
-        inter.variable
+        isArabic ? cairo.className : inter.className
       )}
     >
-      <body>
-        <NextIntlClientProvider>
-          <AppProviders>{children}</AppProviders>
-        </NextIntlClientProvider>
+      <body className="flex min-h-full flex-col">
+        <AppProviders session={session}>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </AppProviders>
       </body>
     </html>
   )
