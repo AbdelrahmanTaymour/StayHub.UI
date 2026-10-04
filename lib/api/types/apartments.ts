@@ -26,7 +26,7 @@ export type ApartmentAddressResponse =
   Schemas["StayHub.Application.Apartments.GetApartmentForEdit.ApartmentAddressResponse"]
 
 export type ApartmentPricingResponse =
-  Schemas["StayHub.Application.Apartments.GetApartmentForEdit.ApartmentPricingResponse"]
+  Schemas["StayHub.Application.Apartments.GetApartmentPricing.ApartmentPricingResponse"]
 
 export type MyApartmentsResponse =
   Schemas["StayHub.Application.Apartments.GetMyApartments.MyApartmentsResponse"]

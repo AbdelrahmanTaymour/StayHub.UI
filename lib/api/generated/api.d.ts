@@ -358,6 +358,64 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/apartments/{apartmentId}/pricing": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query: {
+                    start: string;
+                    end: string;
+                };
+                header?: never;
+                path: {
+                    apartmentId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StayHub.Application.Apartments.GetApartmentPricing.ApartmentPricingResponse"];
+                    };
+                };
+                /** @description Bad Request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+                /** @description Not Found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/apartments/{apartmentId}/amenities": {
         parameters: {
             query?: never;
@@ -3560,6 +3618,22 @@ export interface components {
         };
         "StayHub.Application.Apartments.GetApartmentImages.ApartmentImagesResponse": {
             photos?: components["schemas"]["StayHub.Application.Apartments.GetApartmentImages.ApartmentImageResponse"][] | null;
+        };
+        "StayHub.Application.Apartments.GetApartmentPricing.ApartmentPricingResponse": {
+            isAvailable?: boolean;
+            /** Format: int32 */
+            nights?: number;
+            /** Format: double */
+            pricePerNight?: number;
+            /** Format: double */
+            subtotalForStay?: number;
+            /** Format: double */
+            cleaningFee?: number;
+            /** Format: double */
+            amenitiesUpcharge?: number;
+            /** Format: double */
+            totalPrice?: number;
+            currency?: string | null;
         };
         "StayHub.Application.Apartments.GetApartmentStaff.ApartmentStaffResponse": {
             /** Format: uuid */

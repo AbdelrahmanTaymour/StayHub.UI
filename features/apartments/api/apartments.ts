@@ -71,6 +71,18 @@ export async function getApartmentsByOwner(
   )
 }
 
+export async function getApartmentPricing(
+  apartmentId: string,
+  start: string,
+  end: string
+) {
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{apartmentId}/pricing", {
+      params: { path: { apartmentId }, query: { start, end } },
+    })
+  )
+}
+
 export async function activateApartment(id: string) {
   return unwrap(
     await apiClient.POST("/api/v1/apartments/{id}/activate", {
@@ -86,3 +98,56 @@ export async function deactivateApartment(id: string) {
     })
   )
 }
+
+/*
+type ApartmentPricingResponse = {
+ isAvailable?: boolean;
+ nights?: number;
+ pricePerNight?: number;
+ subtotalForStay?: number;
+ cleaningFee?: number;
+ amenitiesUpcharge?: number;
+ totalPrice?: number;
+ currency?: string | null;
+}
+
+GetPricingRequest:
+[FromRoute] Guid apartmentId,
+        [FromQuery] DateOnly start,
+        [FromQuery] DateOnly end,
+
+type ApartmentResponse = {
+ id?: string;
+ ownerId?: string;
+ name?: string | null;
+ description?: string | null;
+ address: components["schemas"]["StayHub.Application.Apartments.GetApartment.AddressResponse"];
+ priceAmount?: number;
+ priceCurrency?: string | null;
+ cleaningFeeAmount?: number;
+ cleaningFeeCurrency?: string | null;
+ isActive?: boolean;
+ amenities?: string[] | null;
+(property) "StayHub.Application.Apartments.GetApartment.ApartmentImageResponse": {
+ id?: string;
+ url?: string | null;
+ displayOrder?: number;
+ isPrimary?: boolean;
+} rating?: number | null;
+ reviewCount?: number;
+ isFavorited?: boolean;
+ host: {
+ id?: string;
+ fullName?: string | null;
+ avatarUrl?: string | null;
+}
+ recentReviews?: {
+    id?: string;
+    reviewerName?: string | null;
+    reviewerAvatarUrl?: string | null;
+    rating?: number;
+    comment?: string | null;
+    createdOnUtc?: string;
+}
+}
+*/
