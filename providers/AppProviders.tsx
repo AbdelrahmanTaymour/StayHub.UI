@@ -13,7 +13,7 @@ export function AppProviders({
   session?: Session | null
 }) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={session} refetchOnWindowFocus={false}>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"

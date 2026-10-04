@@ -1,3 +1,5 @@
+import "server-only"
+
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { ZodError } from "zod"
@@ -8,7 +10,7 @@ import {
   login,
   getLoggedInUser,
   refreshAccessToken,
-} from "@/features/auth/api/auth"
+} from "@/features/auth/api/auth.server"
 import type { JWT } from "next-auth/jwt"
 
 export const {
@@ -55,8 +57,6 @@ export const {
             console.error("[authorize] validation failed:", error.issues)
             return null
           }
-          // مؤقتًا: أظهر السبب الحقيقي بدل ما نخفيه
-          console.error("[authorize] unexpected error:", error)
           return null
         }
       },

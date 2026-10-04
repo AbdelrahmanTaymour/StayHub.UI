@@ -7,6 +7,18 @@ import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { routing } from "@/i18n/routing"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu"
+import { cn } from "@/lib/utils"
+
+const localeLabels: Record<string, string> = {
+  en: "English",
+  ar: "العربية",
+}
 
 export function LanguageSwitcher() {
   const t = useTranslations("nav")
@@ -21,7 +33,7 @@ export function LanguageSwitcher() {
     type: "language",
   }).of(nextLocale)
 
-  function handleClick() {
+  function handleClick(nextLocale: string) {
     // Preserve whatever filters/pagination are in the URL — switching
     // language shouldn't reset a search in progress.
     const query = Object.fromEntries(searchParams.entries())
@@ -29,20 +41,35 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <Button
-      type="button"
-      variant="outline"
-      size="sm"
-      className="gap-1.5"
-      onClick={handleClick}
-      aria-label={
-        nextLocaleLabel
-          ? t("switchLanguage", { language: nextLocaleLabel })
-          : undefined
-      }
-    >
-      <Languages className="size-4" aria-hidden="true" />
-      {locale.toUpperCase()}
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            variant="outline"
+            size="icon"
+            type="button"
+            aria-label={
+              nextLocaleLabel
+                ? t("switchLanguage", { language: nextLocaleLabel })
+                : undefined
+            }
+          />
+        }
+      >
+        <Languages className="size-4" aria-hidden="true" />
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent align="end">
+        {routing.locales.map((loc) => (
+          <DropdownMenuItem
+            key={loc}
+            onClick={() => handleClick(loc)}
+            className={cn(loc === locale && "font-medium text-primary")}
+          >
+            {localeLabels[loc]}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

@@ -94,7 +94,7 @@ export function FavoriteButton({
         className={cn(
           buttonVariants({ variant: "secondary", size: "icon-sm" }),
           "relative z-2 rounded-full shadow-sm backdrop-blur-sm",
-          isFavorited && "text-primary",
+          isFavorited && "text-destructive",
           className
         )}
       >

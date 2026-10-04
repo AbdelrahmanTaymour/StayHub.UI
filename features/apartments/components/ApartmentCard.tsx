@@ -50,7 +50,7 @@ export function ApartmentCard({ apartment }: ApartmentCardProps) {
         {id ? (
           <FavoriteButton
             apartmentId={id}
-            initialIsFavorited={isAuthenticated ? isFavorited : false}
+            initialIsFavorited={isFavorited}
             className="absolute inset-e-3 top-3 z-10"
           />
         ) : null}
