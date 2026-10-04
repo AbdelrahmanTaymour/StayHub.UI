@@ -2,7 +2,8 @@ import * as React from "react"
 import { ThemeProvider } from "@/providers/ThemeProvider"
 import { QueryProvider } from "./QueryProvider"
 import { Toaster } from "@/components/ui/toast"
-import { SessionProvider } from "next-auth/react"
+import { AuthProvider } from "@/providers/AuthContext"
+import { SessionWatcher } from "@/components/auth/session-watcher"
 import type { Session } from "next-auth"
 
 export function AppProviders({
@@ -10,10 +11,10 @@ export function AppProviders({
   session,
 }: {
   children: React.ReactNode
-  session?: Session | null
+  session: Session | null
 }) {
   return (
-    <SessionProvider session={session} refetchOnWindowFocus={false}>
+    <AuthProvider session={session}>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -21,10 +22,11 @@ export function AppProviders({
         disableTransitionOnChange
       >
         <QueryProvider>
+          <SessionWatcher />
           {children}
           <Toaster />
         </QueryProvider>
       </ThemeProvider>
-    </SessionProvider>
+    </AuthProvider>
   )
 }

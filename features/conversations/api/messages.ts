@@ -1,22 +1,22 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { SendMessageRequest } from "@/lib/api/types/conversations"
 
 export async function getConversationMessages(id: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/conversations/{id}/messages",
-    { params: { path: { id } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/conversations/{id}/messages", {
+      params: { path: { id } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function sendMessage(id: string, body: SendMessageRequest) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/conversations/{id}/messages",
-    { params: { path: { id } }, body }
+  return unwrap(
+    await apiClient.POST("/api/v1/conversations/{id}/messages", {
+      params: { path: { id } },
+      body,
+    })
   )
-  if (error) throw error
-  return data
 }
 
 /*

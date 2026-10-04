@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import {
   AddApartmentImageRequest,
@@ -5,21 +6,19 @@ import {
 } from "@/lib/api/types/apartments"
 
 export async function getApartmentImages(apartmentId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{apartmentId}/images",
-    { params: { path: { apartmentId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{apartmentId}/images", {
+      params: { path: { apartmentId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function addApartmentImage(
   id: string,
   body: AddApartmentImageRequest
 ) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/apartments/{id}/images",
-    {
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/images", {
       params: { path: { id } },
       body,
       bodySerializer(body) {
@@ -32,42 +31,36 @@ export async function addApartmentImage(
         )
         return fd
       },
-    }
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function deleteApartmentImage(imageId: string) {
-  const { error } = await apiClient.DELETE(
-    "/api/v1/apartments/images/{imageId}",
-    {
+  return unwrap(
+    await apiClient.DELETE("/api/v1/apartments/images/{imageId}", {
       params: { path: { imageId } },
-    }
+    })
   )
-  if (error) throw error
 }
 
 export async function reorderApartmentImages(
   id: string,
   body: ReorderApartmentImagesRequest
 ) {
-  const { error } = await apiClient.PUT(
-    "/api/v1/apartments/{id}/images/order",
-    {
+  return unwrap(
+    await apiClient.PUT("/api/v1/apartments/{id}/images/order", {
       params: { path: { id } },
       body,
-    }
+    })
   )
-  if (error) throw error
 }
 
 export async function setPrimaryApartmentImage(id: string, imageId: string) {
-  const { error } = await apiClient.PUT(
-    "/api/v1/apartments/{id}/images/{imageId}/primary",
-    { params: { path: { id, imageId } } }
+  return unwrap(
+    await apiClient.PUT("/api/v1/apartments/{id}/images/{imageId}/primary", {
+      params: { path: { id, imageId } },
+    })
   )
-  if (error) throw error
 }
 
 /*

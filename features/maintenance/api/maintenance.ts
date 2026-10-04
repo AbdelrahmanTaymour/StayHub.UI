@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { QueryParameters } from "@/lib/api/type-utils"
 import {
@@ -14,77 +15,79 @@ export async function getApartmentMaintenanceRequests(
   id: string,
   query?: ApartmentMaintenanceRequestsQuery
 ) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{id}/maintenance-requests",
-    { params: { path: { id }, query } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{id}/maintenance-requests", {
+      params: { path: { id }, query },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function createMaintenanceRequest(
   id: string,
   body: CreateMaintenanceRequestRequest
 ) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/apartments/{id}/maintenance-requests",
-    { params: { path: { id } }, body }
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/maintenance-requests", {
+      params: { path: { id } },
+      body,
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function getMaintenanceRequest(requestId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/maintenance-requests/{requestId}",
-    { params: { path: { requestId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/maintenance-requests/{requestId}", {
+      params: { path: { requestId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function getMaintenanceRequestForGuest(requestId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/maintenance-requests/{requestId}/guest",
-    { params: { path: { requestId } } }
+  return unwrap(
+    await apiClient.GET(
+      "/api/v1/apartments/maintenance-requests/{requestId}/guest",
+      { params: { path: { requestId } } }
+    )
   )
-  if (error) throw error
-  return data
 }
 
 export async function startMaintenanceRequest(requestId: string) {
-  const { error } = await apiClient.POST(
-    "/api/v1/apartments/maintenance-requests/{requestId}/start",
-    { params: { path: { requestId } } }
+  return unwrap(
+    await apiClient.POST(
+      "/api/v1/apartments/maintenance-requests/{requestId}/start",
+      { params: { path: { requestId } } }
+    )
   )
-  if (error) throw error
 }
 
 export async function resolveMaintenanceRequest(requestId: string) {
-  const { error } = await apiClient.POST(
-    "/api/v1/apartments/maintenance-requests/{requestId}/resolve",
-    { params: { path: { requestId } } }
+  return unwrap(
+    await apiClient.POST(
+      "/api/v1/apartments/maintenance-requests/{requestId}/resolve",
+      { params: { path: { requestId } } }
+    )
   )
-  if (error) throw error
 }
 
 export async function closeMaintenanceRequest(requestId: string) {
-  const { error } = await apiClient.POST(
-    "/api/v1/apartments/maintenance-requests/{requestId}/close",
-    { params: { path: { requestId } } }
+  return unwrap(
+    await apiClient.POST(
+      "/api/v1/apartments/maintenance-requests/{requestId}/close",
+      { params: { path: { requestId } } }
+    )
   )
-  if (error) throw error
 }
 
 export async function assignMaintenanceRequestStaff(
   requestId: string,
   body: AssignMaintenanceRequestStaffRequest
 ) {
-  const { error } = await apiClient.POST(
-    "/api/v1/apartments/maintenance-requests/{requestId}/assign",
-    { params: { path: { requestId } }, body }
+  return unwrap(
+    await apiClient.POST(
+      "/api/v1/apartments/maintenance-requests/{requestId}/assign",
+      { params: { path: { requestId } }, body }
+    )
   )
-  if (error) throw error
 }
 
 /*

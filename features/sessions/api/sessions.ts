@@ -1,21 +1,20 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 
 export async function getUserSessions(id: string) {
-  const { data, error } = await apiClient.GET("/api/v1/users/{id}/sessions", {
-    params: { path: { id } },
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.GET("/api/v1/users/{id}/sessions", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function revokeSession(sessionId: string) {
-  const { error } = await apiClient.DELETE(
-    "/api/v1/users/sessions/{sessionId}",
-    {
+  return unwrap(
+    await apiClient.DELETE("/api/v1/users/sessions/{sessionId}", {
       params: { path: { sessionId } },
-    }
+    })
   )
-  if (error) throw error
 }
 
 /*

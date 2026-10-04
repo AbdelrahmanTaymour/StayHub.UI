@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { QueryParameters } from "@/lib/api/type-utils"
 import { ReserveBookingRequest } from "@/lib/api/types/bookings"
@@ -10,76 +11,74 @@ type ApartmentBookingsQuery = QueryParameters<
 >
 
 export async function reserveBooking(body: ReserveBookingRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/bookings", { body })
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.POST("/api/v1/bookings", { body }))
 }
 
 export async function getBooking(id: string) {
-  const { data, error } = await apiClient.GET("/api/v1/bookings/{id}", {
-    params: { path: { id } },
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.GET("/api/v1/bookings/{id}", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function getMyBookings(query?: MyBookingsQuery) {
-  const { data, error } = await apiClient.GET("/api/v1/bookings/mine", {
-    params: { query },
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.GET("/api/v1/bookings/mine", {
+      params: { query },
+    })
+  )
 }
 
 export async function getBookingsByUser(userId: string, query?: ByUserQuery) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/bookings/by-user/{userId}",
-    { params: { path: { userId }, query } }
+  return unwrap(
+    await apiClient.GET("/api/v1/bookings/by-user/{userId}", {
+      params: { path: { userId }, query },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function getApartmentBookings(
   apartmentId: string,
   query?: ApartmentBookingsQuery
 ) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/bookings/{apartmentId}/bookings",
-    { params: { path: { apartmentId }, query } }
+  return unwrap(
+    await apiClient.GET("/api/v1/bookings/{apartmentId}/bookings", {
+      params: { path: { apartmentId }, query },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function getConversationBookingDetails(conversationId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/bookings/by-conversation/{conversationId}",
-    { params: { path: { conversationId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/bookings/by-conversation/{conversationId}", {
+      params: { path: { conversationId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function confirmBooking(id: string) {
-  const { error } = await apiClient.POST("/api/v1/bookings/{id}/confirm", {
-    params: { path: { id } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.POST("/api/v1/bookings/{id}/confirm", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function rejectBooking(id: string) {
-  const { error } = await apiClient.POST("/api/v1/bookings/{id}/reject", {
-    params: { path: { id } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.POST("/api/v1/bookings/{id}/reject", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function cancelBooking(id: string) {
-  const { error } = await apiClient.POST("/api/v1/bookings/{id}/cancel", {
-    params: { path: { id } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.POST("/api/v1/bookings/{id}/cancel", {
+      params: { path: { id } },
+    })
+  )
 }
 
 /*

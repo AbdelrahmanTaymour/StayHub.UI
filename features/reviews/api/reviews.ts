@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { QueryParameters } from "@/lib/api/type-utils"
 import {
@@ -11,41 +12,38 @@ type ApartmentReviewsQuery = QueryParameters<
 >
 
 export async function getReview(id: string) {
-  const { data, error } = await apiClient.GET("/api/v1/reviews/{id}", {
-    params: { path: { id } },
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.GET("/api/v1/reviews/{id}", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function getApartmentReviews(
   apartmentId: string,
   query?: ApartmentReviewsQuery
 ) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/reviews/by-apartment/{apartmentId}",
-    { params: { path: { apartmentId }, query } }
+  return unwrap(
+    await apiClient.GET("/api/v1/reviews/by-apartment/{apartmentId}", {
+      params: { path: { apartmentId }, query },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function createReview(body: CreateReviewRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/reviews", { body })
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.POST("/api/v1/reviews", { body }))
 }
 
 export async function respondToReview(
   reviewId: string,
   body: CreateReviewResponseRequest
 ) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/reviews/{reviewId}/response",
-    { params: { path: { reviewId } }, body }
+  return unwrap(
+    await apiClient.POST("/api/v1/reviews/{reviewId}/response", {
+      params: { path: { reviewId } },
+      body,
+    })
   )
-  if (error) throw error
-  return data
 }
 
 /*

@@ -1,27 +1,35 @@
+import { ApiError } from "@/lib/errors/api-error"
 import type {
   ProblemDetails,
   ValidationProblemDetails,
 } from "@/lib/api/types/errors"
 
+type Problem = ProblemDetails | ValidationProblemDetails
+
+export function getProblem(error: unknown): Problem | undefined {
+  const value = error instanceof ApiError ? error.problem : error
+  return typeof value === "object" && value !== null
+    ? (value as Problem)
+    : undefined
+}
+
 export function isValidationProblem(
   error: unknown
-): error is ValidationProblemDetails {
-  return typeof error === "object" && error !== null && "errors" in error
+): error is ValidationProblemDetails | ApiError {
+  const problem = getProblem(error)
+  return problem !== undefined && "errors" in problem
 }
 
 export function getErrorMessage(error: unknown): string {
-  if (isValidationProblem(error)) {
-    const firstField = Object.values(error.errors ?? {})[0]
+  const problem = getProblem(error)
+
+  if (problem && "errors" in problem) {
+    const firstField = Object.values(problem.errors ?? {})[0]
     return firstField?.[0] ?? "Validation error"
   }
 
-  if (
-    typeof error === "object" &&
-    error !== null &&
-    "detail" in error &&
-    typeof (error as ProblemDetails).detail === "string"
-  ) {
-    return (error as ProblemDetails).detail as string
+  if (problem && typeof problem.detail === "string") {
+    return problem.detail
   }
 
   return "Something went wrong"

@@ -5,8 +5,8 @@ import { notFound } from "next/navigation"
 import "../globals.css"
 import { routing } from "@/i18n/routing"
 import { AppProviders } from "@/providers/AppProviders"
-import { cn } from "@/lib/utils"
-import { auth } from "@/lib/auth/auth-api"
+import { cn } from "cn"
+import { auth } from "@/lib/auth/server/auth-api"
 
 const inter = Inter({
   subsets: ["latin"],

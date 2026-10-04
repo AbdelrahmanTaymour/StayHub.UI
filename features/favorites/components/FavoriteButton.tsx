@@ -2,10 +2,7 @@
 
 import * as React from "react"
 import { Heart } from "lucide-react"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
-import { useSession } from "next-auth/react"
-import { toast } from "@/components/ui/toast"
 
 import { Link } from "@/i18n/navigation"
 import { buttonVariants } from "@/components/ui/button"
@@ -14,58 +11,31 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { addFavorite, removeFavorite } from "@/features/favorites/api/favorites"
-import { cn } from "@/lib/utils"
+import { useToggleFavorite } from "@/features/favorites/hooks/useToggleFavorite"
+import { cn } from "cn"
+import { useAuth } from "@/providers/AuthContext"
 
 interface FavoriteButtonProps {
   apartmentId: string
-  initialIsFavorited?: boolean
+  isFavorited?: boolean
   className?: string
 }
 
 export function FavoriteButton({
   apartmentId,
-  initialIsFavorited = false,
+  isFavorited = false,
   className,
 }: FavoriteButtonProps) {
   const t = useTranslations("favorites")
-  const queryClient = useQueryClient()
-  const { status } = useSession() // "authenticated" | "unauthenticated" | "loading"
-
-  const [isFavorited, setIsFavorited] = React.useState(initialIsFavorited)
+  const { status } = useAuth()
   const [promptOpen, setPromptOpen] = React.useState(false)
-
-  const [prevInitial, setPrevInitial] = React.useState(initialIsFavorited)
-  if (initialIsFavorited !== prevInitial) {
-    setPrevInitial(initialIsFavorited)
-    setIsFavorited(initialIsFavorited)
-  }
-
-  const mutation = useMutation({
-    mutationFn: (next: boolean) =>
-      next ? addFavorite(apartmentId) : removeFavorite(apartmentId),
-    onMutate: (next) => setIsFavorited(next),
-    onError: (_error, next) => {
-      setIsFavorited(!next)
-      toast.add({ title: t("updateErrorToast"), type: "error" })
-    },
-    onSuccess: (_data, next) => {
-      toast.add({
-        title: next ? t("addedToast") : t("removedToast"),
-        type: "success",
-      })
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["apartments", "search"] })
-      queryClient.invalidateQueries({ queryKey: ["favorites"] })
-    },
-  })
+  const toggle = useToggleFavorite(apartmentId)
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     e.stopPropagation()
 
-    if (status === "loading" || mutation.isPending) return
+    if (toggle.isPending) return
 
     if (status === "unauthenticated") {
       setPromptOpen(true)
@@ -73,23 +43,21 @@ export function FavoriteButton({
     }
 
     setPromptOpen(false)
-    mutation.mutate(!isFavorited)
+    toggle.mutate(!isFavorited)
   }
 
   return (
     <Popover
       open={status === "unauthenticated" && promptOpen}
       onOpenChange={(open) => {
-        if (status === "unauthenticated") {
-          setPromptOpen(open)
-        }
+        if (status === "unauthenticated") setPromptOpen(open)
       }}
     >
       <PopoverTrigger
         type="button"
         aria-pressed={isFavorited}
         aria-label={isFavorited ? t("remove") : t("add")}
-        disabled={mutation.isPending || status === "loading"}
+        disabled={toggle.isPending}
         onClick={handleClick}
         className={cn(
           buttonVariants({ variant: "secondary", size: "icon-sm" }),

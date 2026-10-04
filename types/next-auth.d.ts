@@ -9,7 +9,6 @@ declare module "next-auth" {
   }
 
   interface Session extends DefaultSession {
-    accessToken: string
     error?: "RefreshAccessTokenError"
     user: {
       id: string

@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 const localeLabels: Record<string, string> = {
   en: "English",

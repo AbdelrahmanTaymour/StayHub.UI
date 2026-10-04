@@ -1,33 +1,36 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { CreateApartmentAvailabilityBlockRequest } from "@/lib/api/types/apartments"
 
 export async function getApartmentAvailabilityBlocks(apartmentId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{apartmentId}/availability-blocks",
-    { params: { path: { apartmentId } } }
+  return unwrap(
+    await apiClient.GET(
+      "/api/v1/apartments/{apartmentId}/availability-blocks",
+      {
+        params: { path: { apartmentId } },
+      }
+    )
   )
-  if (error) throw error
-  return data
 }
 
 export async function createApartmentAvailabilityBlock(
   id: string,
   body: CreateApartmentAvailabilityBlockRequest
 ) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/apartments/{id}/availability-blocks",
-    { params: { path: { id } }, body }
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/availability-blocks", {
+      params: { path: { id } },
+      body,
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function deleteApartmentAvailabilityBlock(blockId: string) {
-  const { error } = await apiClient.DELETE(
-    "/api/v1/apartments/availability-blocks/{blockId}",
-    { params: { path: { blockId } } }
+  return unwrap(
+    await apiClient.DELETE("/api/v1/apartments/availability-blocks/{blockId}", {
+      params: { path: { blockId } },
+    })
   )
-  if (error) throw error
 }
 
 /*

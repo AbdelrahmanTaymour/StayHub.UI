@@ -1,12 +1,14 @@
-import { apiClientBrowser } from "@/lib/api/client-browser"
-import { ForgotPasswordRequest } from "@/lib/api/types/auth"
+import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
+import { unwrap } from "@/lib/errors/api-error"
+import type {
+  ForgotPasswordRequest,
+  RegisterUserRequest,
+} from "@/lib/api/types/auth"
 
 export async function forgotPassword(body: ForgotPasswordRequest) {
-  const { error } = await apiClientBrowser.POST(
-    "/api/v1/users/forgot-password",
-    {
-      body,
-    }
-  )
-  if (error) throw error
+  return unwrap(await apiClient.POST("/api/v1/users/forgot-password", { body }))
+}
+
+export async function register(body: RegisterUserRequest) {
+  return unwrap(await apiClient.POST("/api/v1/users/register", { body }))
 }

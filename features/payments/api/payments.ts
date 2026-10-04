@@ -1,29 +1,25 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { InitiatePaymentRequest } from "@/lib/api/types/payments"
 
 export async function getPaymentByBooking(bookingId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/payments/by-booking/{bookingId}",
-    { params: { path: { bookingId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/payments/by-booking/{bookingId}", {
+      params: { path: { bookingId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function initiatePayment(body: InitiatePaymentRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/payments", { body })
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.POST("/api/v1/payments", { body }))
 }
 
 export async function refundPayment(paymentId: string) {
-  const { error } = await apiClient.POST(
-    "/api/v1/payments/{paymentId}/refund",
-    {
+  return unwrap(
+    await apiClient.POST("/api/v1/payments/{paymentId}/refund", {
       params: { path: { paymentId } },
-    }
+    })
   )
-  if (error) throw error
 }
 
 /*

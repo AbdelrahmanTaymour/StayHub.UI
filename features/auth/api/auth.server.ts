@@ -1,45 +1,43 @@
-import {
-  LogInUserRequest,
-  AccessTokenResponse,
-  RegisterUserRequest,
-} from "@/lib/api/types/auth"
+import { LogInUserRequest, AccessTokenResponse } from "@/lib/api/types/auth"
 
 const baseUrl = process.env.INTERNAL_API_URL
 
-export async function login(body: LogInUserRequest) {
-  const res = await fetch(`${baseUrl}/api/v1/users/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) throw new Error("Login failed")
-  return res.json() as Promise<AccessTokenResponse>
+export class AuthRequestError extends Error {
+  constructor(
+    readonly status: number,
+    message: string
+  ) {
+    super(message)
+    this.name = "AuthRequestError"
+  }
 }
 
-export async function register(body: RegisterUserRequest) {
-  const req = await fetch(`${baseUrl}/api/v1/users/register`, {
+export async function postJson<T>(path: string, body: unknown): Promise<T> {
+  const res = await fetch(`${baseUrl}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
+    cache: "no-store",
   })
-  if (!req.ok) throw new Error("Registration failed")
-  return req.json() as Promise<AccessTokenResponse>
+  if (!res.ok) throw new AuthRequestError(res.status, `${path} failed`)
+  return res.json() as Promise<T>
+}
+
+export function login(body: LogInUserRequest) {
+  return postJson<AccessTokenResponse>("/api/v1/users/login", body)
+}
+
+export function refreshAccessToken(body: { refreshToken: string }) {
+  return postJson<AccessTokenResponse>("/api/v1/users/refresh-token", body)
 }
 
 export async function getLoggedInUser(accessToken: string) {
   const res = await fetch(`${baseUrl}/api/v1/users/me`, {
     headers: { Authorization: `Bearer ${accessToken}` },
+    cache: "no-store",
   })
-  if (!res.ok) throw new Error("Failed to fetch current user")
+  if (!res.ok) {
+    throw new AuthRequestError(res.status, "Failed to fetch current user")
+  }
   return res.json() as Promise<{ id: string; role: "Guest" | "Admin" }>
-}
-
-export async function refreshAccessToken(body: { refreshToken: string }) {
-  const res = await fetch(`${baseUrl}/api/v1/users/refresh-token`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) throw new Error("Refresh failed")
-  return res.json() as Promise<AccessTokenResponse>
 }

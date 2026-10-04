@@ -1,57 +1,25 @@
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
-import { QueryParameters } from "@/lib/api/type-utils"
+import { unwrap } from "@/lib/errors/api-error"
+import type { QueryParameters } from "@/lib/api/type-utils"
 
 type GetFavoritesQuery = QueryParameters<"/api/v1/favorites", "get">
 
 export async function getFavorites(query?: GetFavoritesQuery) {
-  const { data, error } = await apiClient.GET("/api/v1/favorites", {
-    params: { query },
-  })
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.GET("/api/v1/favorites", { params: { query } }))
 }
 
 export async function addFavorite(apartmentId: string) {
-  const { error } = await apiClient.PUT("/api/v1/favorites/{apartmentId}", {
-    params: { path: { apartmentId } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.PUT("/api/v1/favorites/{apartmentId}", {
+      params: { path: { apartmentId } },
+    })
+  )
 }
 
 export async function removeFavorite(apartmentId: string) {
-  const { error } = await apiClient.DELETE("/api/v1/favorites/{apartmentId}", {
-    params: { path: { apartmentId } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.DELETE("/api/v1/favorites/{apartmentId}", {
+      params: { path: { apartmentId } },
+    })
+  )
 }
-
-/*
-type GetFavoritesQuery = {
-    page?: number; // 1-based page number
-    pageSize?: number; // items per page
-}
-
-// Responses
-
-type GetFavoritesResponse = PagedResponse<FavoriteApartmentResponse>
-type FavoriteApartmentResponse = {
-    apartmentId?: string; // uuid
-    name?: string | null;
-    city?: string | null;
-    pricePerNight?: number; // double
-    currency?: string | null;
-    primaryImageUrl?: string | null;
-    rating?: number | null; // double
-    reviewCount?: number; // int32
-}
-type PagedResponse<T> = {
-    items: T[] | null;
-    page?: number; // int32
-    pageSize?: number; // int32
-    totalCount?: number; // int32
-    totalPages?: number; // int32
-}
-
-type AddFavoriteResponse = void // 204 No Content
-type RemoveFavoriteResponse = void // 204 No Content
-*/

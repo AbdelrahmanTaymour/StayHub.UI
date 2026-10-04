@@ -9,10 +9,13 @@ export function useLogout() {
   const [isPending, setIsPending] = React.useState(false)
 
   async function logout() {
-    console.log("logout called")
-    setIsPending(true)
-    queryClient.clear()
-    await signOut({ callbackUrl: "/" })
+    try {
+      setIsPending(true)
+      queryClient.clear()
+      await signOut({ callbackUrl: "/" })
+    } finally {
+      setIsPending(false)
+    }
   }
 
   return { logout, isPending }

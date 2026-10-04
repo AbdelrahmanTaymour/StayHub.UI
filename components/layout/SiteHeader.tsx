@@ -15,8 +15,8 @@ import {
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher"
 import { ThemeToggle } from "@/components/common/ThemeToggle"
 import { useLogout } from "@/features/auth/hooks/useLogout"
-import { cn } from "@/lib/utils"
-import { useSession } from "next-auth/react"
+import { cn } from "cn"
+import { useAuth } from "@/providers/AuthContext"
 
 interface NavItem {
   key: string
@@ -27,7 +27,7 @@ interface NavItem {
 export function SiteHeader() {
   const t = useTranslations("nav")
   const pathname = usePathname()
-  const { status } = useSession()
+  const { status } = useAuth()
   const { logout, isPending } = useLogout()
 
   const isAuthenticated = status === "authenticated"

@@ -17,7 +17,7 @@ import {
   filtersFromSearchParams,
   filtersToSearchParams,
 } from "@/features/apartments/utils/search-params"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 export function ApartmentResults() {
   const t = useTranslations("home")

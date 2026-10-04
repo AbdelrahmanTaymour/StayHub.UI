@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import {
   UpdateUserNameRequest,
@@ -5,47 +6,44 @@ import {
 } from "@/lib/api/types/users"
 
 export async function getLoggedInUser() {
-  const { data, error } = await apiClient.GET("/api/v1/users/me")
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.GET("/api/v1/users/me"))
 }
 
 export async function getUser(id: string) {
-  const { data, error } = await apiClient.GET("/api/v1/users/{id}", {
-    params: { path: { id } },
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.GET("/api/v1/users/{id}", {
+      params: { path: { id } },
+    })
+  )
 }
 
 export async function getOwnerProfile(ownerId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/users/{ownerId}/profile",
-    {
+  return unwrap(
+    await apiClient.GET("/api/v1/users/{ownerId}/profile", {
       params: { path: { ownerId } },
-    }
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function updateUserName(id: string, body: UpdateUserNameRequest) {
-  const { error } = await apiClient.PUT("/api/v1/users/{id}/name", {
-    params: { path: { id } },
-    body,
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.PUT("/api/v1/users/{id}/name", {
+      params: { path: { id } },
+      body,
+    })
+  )
 }
 
 export async function updateUserProfile(
   id: string,
   body: UpdateUserProfileRequest
 ) {
-  const { error } = await apiClient.PUT("/api/v1/users/{id}/profile", {
-    params: { path: { id } },
-    body,
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.PUT("/api/v1/users/{id}/profile", {
+      params: { path: { id } },
+      body,
+    })
+  )
 }
 
 /*

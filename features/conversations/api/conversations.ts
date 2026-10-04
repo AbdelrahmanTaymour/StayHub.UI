@@ -1,25 +1,25 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { StartConversationRequest } from "@/lib/api/types/conversations"
 
 export async function getMyConversations() {
-  const { data, error } = await apiClient.GET("/api/v1/conversations")
-  if (error) throw error
-  return data
+  return unwrap(await apiClient.GET("/api/v1/conversations"))
 }
 
 export async function startConversation(body: StartConversationRequest) {
-  const { data, error } = await apiClient.POST("/api/v1/conversations", {
-    body,
-  })
-  if (error) throw error
-  return data
+  return unwrap(
+    await apiClient.POST("/api/v1/conversations", {
+      body,
+    })
+  )
 }
 
 export async function markConversationRead(id: string) {
-  const { error } = await apiClient.POST("/api/v1/conversations/{id}/read", {
-    params: { path: { id } },
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.POST("/api/v1/conversations/{id}/read", {
+      params: { path: { id } },
+    })
+  )
 }
 
 /*

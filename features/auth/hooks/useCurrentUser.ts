@@ -1,10 +1,10 @@
 "use client"
 
-import { useSession } from "next-auth/react"
+import { useAuth } from "@/providers/AuthContext"
 import type { CurrentUser } from "@/lib/permissions/types"
 
 export function useCurrentUser(): CurrentUser | null {
-  const { data: session } = useSession()
+  const { session } = useAuth()
   if (!session?.user) return null
 
   return {

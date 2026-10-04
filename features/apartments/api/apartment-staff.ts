@@ -1,3 +1,4 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import {
   AssignApartmentStaffRequest,
@@ -5,55 +6,48 @@ import {
 } from "@/lib/api/types/apartments"
 
 export async function getApartmentStaff(apartmentId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{apartmentId}/staff",
-    { params: { path: { apartmentId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{apartmentId}/staff", {
+      params: { path: { apartmentId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function assignApartmentStaff(
   id: string,
   body: AssignApartmentStaffRequest
 ) {
-  const { data, error } = await apiClient.POST(
-    "/api/v1/apartments/{id}/staff",
-    {
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/staff", {
       params: { path: { id } },
       body,
-    }
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function removeApartmentStaff(assignmentId: string) {
-  const { error } = await apiClient.DELETE(
-    "/api/v1/apartments/staff/{assignmentId}",
-    { params: { path: { assignmentId } } }
+  return unwrap(
+    await apiClient.DELETE("/api/v1/apartments/staff/{assignmentId}", {
+      params: { path: { assignmentId } },
+    })
   )
-  if (error) throw error
 }
 
 export async function searchStaffCandidate(apartmentId: string, email: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{apartmentId}/staff/search",
-    { params: { path: { apartmentId }, query: { email } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{apartmentId}/staff/search", {
+      params: { path: { apartmentId }, query: { email } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function inviteStaff(id: string, body: InviteStaffRequest) {
-  const { error } = await apiClient.POST(
-    "/api/v1/apartments/{id}/staff/invite",
-    {
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/staff/invite", {
       params: { path: { id } },
       body,
-    }
+    })
   )
-  if (error) throw error
 }
 
 /*

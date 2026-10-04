@@ -1,34 +1,33 @@
+import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import { AddApartmentAmenityRequest, Amenity } from "@/lib/api/types/apartments"
 
 export async function getApartmentAmenities(apartmentId: string) {
-  const { data, error } = await apiClient.GET(
-    "/api/v1/apartments/{apartmentId}/amenities",
-    { params: { path: { apartmentId } } }
+  return unwrap(
+    await apiClient.GET("/api/v1/apartments/{apartmentId}/amenities", {
+      params: { path: { apartmentId } },
+    })
   )
-  if (error) throw error
-  return data
 }
 
 export async function addApartmentAmenity(
   id: string,
   body: AddApartmentAmenityRequest
 ) {
-  const { error } = await apiClient.POST("/api/v1/apartments/{id}/amenities", {
-    params: { path: { id } },
-    body,
-  })
-  if (error) throw error
+  return unwrap(
+    await apiClient.POST("/api/v1/apartments/{id}/amenities", {
+      params: { path: { id } },
+      body,
+    })
+  )
 }
 
 export async function removeApartmentAmenity(id: string, amenity: Amenity) {
-  const { error } = await apiClient.DELETE(
-    "/api/v1/apartments/{id}/amenities",
-    {
+  return unwrap(
+    await apiClient.DELETE("/api/v1/apartments/{id}/amenities", {
       params: { path: { id }, query: { amenity } },
-    }
+    })
   )
-  if (error) throw error
 }
 
 /*

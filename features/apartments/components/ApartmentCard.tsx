@@ -6,7 +6,6 @@ import { Link } from "@/i18n/navigation"
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton"
 import { formatPrice } from "@/features/apartments/utils/formatPrice"
 import type { ApartmentSummary } from "@/features/apartments/types/search"
-import { useSession } from "next-auth/react"
 
 interface ApartmentCardProps {
   apartment: ApartmentSummary
@@ -15,8 +14,6 @@ interface ApartmentCardProps {
 export function ApartmentCard({ apartment }: ApartmentCardProps) {
   const t = useTranslations("apartmentCard")
   const locale = useLocale()
-  const { status } = useSession()
-  const isAuthenticated = status === "authenticated"
 
   const {
     id,
@@ -50,7 +47,7 @@ export function ApartmentCard({ apartment }: ApartmentCardProps) {
         {id ? (
           <FavoriteButton
             apartmentId={id}
-            initialIsFavorited={isFavorited}
+            isFavorited={isFavorited}
             className="absolute inset-e-3 top-3 z-10"
           />
         ) : null}
