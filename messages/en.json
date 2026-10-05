@@ -125,5 +125,90 @@
       "passwordsDontMatch": "Passwords do not match.",
       "invalidCredentials": "Invalid email or password."
     }
+  },
+  "apartmentDetails": {
+    "untitled": "Untitled stay",
+    "loading": "Loading apartment details…",
+    "bookingAside": "Booking",
+    "actions": {
+      "save": "Save",
+      "loginToSave": "Log in to save this stay to your favorites.",
+      "share": "Share",
+      "comingSoon": "Coming soon"
+    },
+    "gallery": {
+      "label": "Apartment photos",
+      "empty": "No photos yet",
+      "emptyDescription": "The host hasn't added photos for this stay yet.",
+      "photoAlt": "{title}, photo {index}",
+      "morePhotos": "+{count}",
+      "morePhotosLabel": "{count, plural, one {# more photo} other {# more photos}}"
+    },
+    "host": {
+      "title": "Hosted by {name}",
+      "fallbackName": "Your host",
+      "readyToHelp": "Ready to answer your questions",
+      "messageHost": "Message host",
+      "loginToMessage": "Log in to message the host."
+    },
+    "description": {
+      "title": "About this stay"
+    },
+    "amenities": {
+      "title": "Amenities and features",
+      "empty": "No amenities listed yet",
+      "items": {
+        "wifi": "Wi-Fi",
+        "airconditioning": "Air conditioning",
+        "parking": "Parking",
+        "petfriendly": "Pet friendly",
+        "pool": "Swimming pool",
+        "gym": "Gym",
+        "spa": "Spa",
+        "terrace": "Terrace",
+        "mountainview": "Mountain view",
+        "gardenview": "Garden view"
+      }
+    },
+    "reviews": {
+      "title": "Guest reviews",
+      "anonymousGuest": "Guest",
+      "viewAll": "View all reviews",
+      "empty": "No reviews yet"
+    },
+    "location": {
+      "title": "Where you'll be",
+      "mapLabel": "Map of {address}",
+      "mapPlaceholder": "The map is coming soon"
+    },
+    "booking": {
+      "perNight": "/ night",
+      "checkIn": "Check-in",
+      "checkOut": "Checkout",
+      "selectDates": "Select your dates to see the total price",
+      "calculating": "Calculating price…",
+      "priceError": "We couldn't calculate the price. Please try again.",
+      "unavailable": "This stay isn't available for the selected dates.",
+      "reserve": "Reserve",
+      "reserving": "Reserving…",
+      "reserveNote": "You won't be charged yet",
+      "reservedToast": "Your reservation request has been sent",
+      "loginToReserve": "Log in to reserve this stay.",
+      "breakdown": {
+        "nights": "{price} × {count, plural, one {# night} other {# nights}}",
+        "cleaningFee": "Cleaning fee",
+        "amenitiesFee": "Amenities fee",
+        "total": "Total before taxes"
+      },
+      "errors": {
+        "required": "Select both check-in and checkout dates.",
+        "pastDate": "Check-in can't be in the past.",
+        "invalidRange": "Checkout must be after check-in."
+      }
+    }
+  },
+  "ratings": {
+    "ratedOutOf": "Rated {rating} out of 5",
+    "reviewsCount": "{count, plural, =0 {No reviews yet} one {# review} other {# reviews}}"
   }
 }

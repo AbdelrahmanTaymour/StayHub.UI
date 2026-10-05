@@ -14,9 +14,14 @@ export const queryKeys = {
     searchList: (query?: SearchApartmentsQuery) =>
       ["apartments", "search", query] as const,
     detail: (id: string) => ["apartments", "detail", id] as const,
+    pricing: (id: string, startDate: string, endDate: string) =>
+      ["apartments", "detail", "pricing", id, startDate, endDate] as const,
   },
   favorites: {
     all: ["favorites"] as const,
     list: (query?: GetFavoritesQuery) => ["favorites", "list", query] as const,
+  },
+  bookings: {
+    all: ["bookings"] as const,
   },
 } as const

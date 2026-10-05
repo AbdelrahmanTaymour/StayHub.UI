@@ -125,5 +125,90 @@
       "passwordsDontMatch": "كلمتا المرور غير متطابقتين.",
       "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة."
     }
+  },
+  "apartmentDetails": {
+    "untitled": "إقامة بدون اسم",
+    "loading": "جارٍ تحميل تفاصيل الشقة…",
+    "bookingAside": "الحجز",
+    "actions": {
+      "save": "حفظ",
+      "loginToSave": "سجّل الدخول لحفظ هذه الإقامة في المفضلة.",
+      "share": "مشاركة",
+      "comingSoon": "قريبًا"
+    },
+    "gallery": {
+      "label": "صور الشقة",
+      "empty": "لا توجد صور بعد",
+      "emptyDescription": "لم يضف المضيف صورًا لهذه الإقامة بعد.",
+      "photoAlt": "{title}، صورة {index}",
+      "morePhotos": "+{count}",
+      "morePhotosLabel": "{count, plural, one {صورة أخرى واحدة} two {صورتان أخريان} few {# صور أخرى} many {# صورة أخرى} other {# صورة أخرى}}"
+    },
+    "host": {
+      "title": "يستضيفك {name}",
+      "fallbackName": "مضيفك",
+      "readyToHelp": "مستعد للإجابة عن استفساراتك",
+      "messageHost": "مراسلة المضيف",
+      "loginToMessage": "سجّل الدخول لمراسلة المضيف."
+    },
+    "description": {
+      "title": "عن هذه الإقامة"
+    },
+    "amenities": {
+      "title": "المرافق والخدمات",
+      "empty": "لم تُضف أي مرافق بعد",
+      "items": {
+        "wifi": "واي فاي",
+        "airconditioning": "تكييف الهواء",
+        "parking": "موقف سيارات",
+        "petfriendly": "مناسب للحيوانات الأليفة",
+        "pool": "مسبح",
+        "gym": "صالة رياضية",
+        "spa": "سبا ومرافق العافية",
+        "terrace": "شرفة خارجية",
+        "mountainview": "إطلالة على الجبال",
+        "gardenview": "إطلالة على الحديقة"
+      }
+    },
+    "reviews": {
+      "title": "تقييمات الضيوف",
+      "anonymousGuest": "ضيف",
+      "viewAll": "عرض جميع التقييمات",
+      "empty": "لا توجد تقييمات بعد"
+    },
+    "location": {
+      "title": "موقع الإقامة",
+      "mapLabel": "خريطة لـ {address}",
+      "mapPlaceholder": "الخريطة قادمة قريبًا"
+    },
+    "booking": {
+      "perNight": "/ الليلة",
+      "checkIn": "تاريخ الوصول",
+      "checkOut": "تاريخ المغادرة",
+      "selectDates": "اختر التواريخ لمعرفة السعر الإجمالي",
+      "calculating": "جارٍ حساب السعر…",
+      "priceError": "تعذّر حساب السعر. حاول مرة أخرى.",
+      "unavailable": "هذه الإقامة غير متاحة في التواريخ المختارة.",
+      "reserve": "احجز",
+      "reserving": "جارٍ الحجز…",
+      "reserveNote": "لن يتم خصم أي مبلغ الآن",
+      "reservedToast": "تم إرسال طلب الحجز",
+      "loginToReserve": "سجّل الدخول لحجز هذه الإقامة.",
+      "breakdown": {
+        "nights": "{price} × {count, plural, one {ليلة واحدة} two {ليلتان} few {# ليالٍ} many {# ليلة} other {# ليلة}}",
+        "cleaningFee": "رسوم التنظيف",
+        "amenitiesFee": "رسوم المرافق",
+        "total": "الإجمالي قبل الضرائب"
+      },
+      "errors": {
+        "required": "اختر تاريخ الوصول وتاريخ المغادرة معًا.",
+        "pastDate": "لا يمكن أن يكون تاريخ الوصول في الماضي.",
+        "invalidRange": "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول."
+      }
+    }
+  },
+  "ratings": {
+    "ratedOutOf": "التقييم {rating} من 5",
+    "reviewsCount": "{count, plural, =0 {لا توجد تقييمات بعد} one {تقييم واحد} two {تقييمان} few {# تقييمات} many {# تقييمًا} other {# تقييم}}"
   }
 }
