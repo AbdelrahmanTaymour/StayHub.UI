@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl"
 
+import { Card } from "@/components/ui/card"
 import type { ApartmentAddress } from "@/features/apartments/types/apartment-details"
 import { formatAddress } from "@/features/apartments/utils/format-address"
 import { ApartmentMap } from "./ApartmentMap"
@@ -12,24 +13,18 @@ export function ApartmentLocation({ address }: ApartmentLocationProps) {
   const t = useTranslations("apartmentDetails.location")
   const formattedAddress = formatAddress(address)
 
+  if (!formattedAddress) return null
+
   return (
-    <section
-      aria-labelledby="apartment-location-heading"
-      className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6"
-    >
+    <Card as="section" aria-labelledby="apartment-location-heading">
       <h2
         id="apartment-location-heading"
-        className="text-xl font-semibold text-foreground"
+        className="text-lg font-semibold text-foreground"
       >
         {t("title")}
       </h2>
-
-      {formattedAddress ? (
-        <>
-          <p className="text-sm text-muted-foreground">{formattedAddress}</p>
-          <ApartmentMap address={formattedAddress} />
-        </>
-      ) : null}
-    </section>
+      <p className="text-sm text-foreground">{formattedAddress}</p>
+      <ApartmentMap address={formattedAddress} />
+    </Card>
   )
 }

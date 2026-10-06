@@ -26,7 +26,7 @@ export function ApartmentPriceBreakdown({
     quote.subtotalForStay != null
 
   return (
-    <dl className="flex flex-col gap-3 text-sm text-muted-foreground">
+    <dl className="flex flex-col gap-3 text-sm text-foreground">
       {hasNights ? (
         <Row
           label={t("nights", {

@@ -10,7 +10,6 @@ interface StarRatingProps {
   className?: string
 }
 
-/** Stars are decorative. Screen readers get the numeric value as text. */
 export function StarRating({ value, className }: StarRatingProps) {
   const t = useTranslations("ratings")
   const locale = useLocale()
@@ -20,20 +19,19 @@ export function StarRating({ value, className }: StarRatingProps) {
   }).format(value)
 
   return (
-    <span
-      className={cn("inline-flex items-center gap-0.5 text-primary", className)}
-    >
+    <span className={cn("inline-flex items-center gap-0.5", className)}>
       <span className="sr-only">{t("ratedOutOf", { rating: formatted })}</span>
-      {Array.from({ length: MAX_STARS }, (_, index) => (
-        <Star
-          key={index}
-          aria-hidden="true"
-          className={cn(
-            "size-3.5",
-            index < filledStars ? "fill-current" : "text-muted-foreground/40"
-          )}
-        />
-      ))}
+      <span aria-hidden="true" className="inline-flex items-center gap-0.5">
+        {Array.from({ length: MAX_STARS }, (_, index) => (
+          <Star
+            key={index}
+            className={cn(
+              "size-3.5",
+              index < filledStars ? "fill-rating text-rating" : "text-border"
+            )}
+          />
+        ))}
+      </span>
     </span>
   )
 }

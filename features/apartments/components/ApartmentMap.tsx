@@ -16,7 +16,7 @@ export function ApartmentMap({ address }: ApartmentMapProps) {
     <div
       role="img"
       aria-label={t("mapLabel", { address })}
-      className="flex h-72 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted text-sm text-muted-foreground"
+      className="flex h-72 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted text-sm text-foreground"
     >
       <MapPin aria-hidden="true" className="size-6" />
       <span>{t("mapPlaceholder")}</span>

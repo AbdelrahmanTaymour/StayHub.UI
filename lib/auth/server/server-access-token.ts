@@ -1,39 +1,40 @@
 import "server-only"
 
-import { cookies } from "next/headers"
+import { cache } from "react"
+import { cookies, headers } from "next/headers"
 import { getToken } from "next-auth/jwt"
 
-import { refreshTokenRotation } from "@/lib/auth/server/auth-api"
+import {
+  ACCESS_TOKEN_HEADER,
+  TOKEN_EXPIRY_SKEW_MS,
+} from "@/lib/auth/shared/access-token"
 import { SECURE_COOKIES } from "@/lib/auth/shared/auth.config"
 
-const TOKEN_EXPIRY_SKEW_MS = 10_000
-
 /**
- * Returns a usable access token for Server Components and Server Actions.
- *
- * Server Components can't write cookies, so an expired token is refreshed in memory only.
- * The proxy writes the new cookie on the page response.
+ * Returns the access token for this request, or undefined when the user is anonymous
+ * or the session needs refreshing. The proxy owns refresh, so this never rotates tokens.
+ * `cache` dedupes calls within one render.
  */
-export async function getServerAccessToken(): Promise<string | undefined> {
-  const cookieStore = await cookies()
+export const getServerAccessToken = cache(
+  async (): Promise<string | undefined> => {
+    const forwarded = (await headers()).get(ACCESS_TOKEN_HEADER)
+    if (forwarded) return forwarded
 
-  const token = await getToken({
-    req: {
-      cookies: Object.fromEntries(
-        cookieStore.getAll().map((cookie) => [cookie.name, cookie.value])
-      ),
-      headers: {},
-    } as unknown as Parameters<typeof getToken>[0]["req"],
-    secret: process.env.AUTH_SECRET,
-    secureCookie: SECURE_COOKIES,
-  })
+    const cookieHeader = (await cookies())
+      .getAll()
+      .map(({ name, value }) => `${name}=${value}`)
+      .join("; ")
 
-  if (!token || token.error) return undefined
+    const token = await getToken({
+      req: { headers: { cookie: cookieHeader } },
+      secret: process.env.AUTH_SECRET,
+      secureCookie: SECURE_COOKIES,
+    })
 
-  if (Date.now() < token.accessTokenExpires - TOKEN_EXPIRY_SKEW_MS) {
+    if (!token || token.error) return undefined
+    if (Date.now() >= token.accessTokenExpires - TOKEN_EXPIRY_SKEW_MS)
+      return undefined
+
     return token.accessToken
   }
-
-  const refreshed = await refreshTokenRotation(token)
-  return refreshed.error ? undefined : refreshed.accessToken
-}
+)

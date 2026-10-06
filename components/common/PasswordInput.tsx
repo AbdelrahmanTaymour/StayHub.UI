@@ -34,7 +34,7 @@ export const PasswordInput = React.forwardRef<
         size="icon-sm"
         tabIndex={-1}
         onClick={() => setVisible((current) => !current)}
-        className="absolute inset-y-0 inset-e-1 my-auto text-muted-foreground"
+        className="absolute inset-y-0 inset-e-1 my-auto text-foreground"
         aria-label={
           visible
             ? (toggleLabel?.hide ?? "Hide password")

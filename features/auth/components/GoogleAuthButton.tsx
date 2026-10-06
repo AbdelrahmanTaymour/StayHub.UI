@@ -40,7 +40,7 @@ export function GoogleAuthButton() {
         <GoogleIcon className="size-4" />
         {t("continueWithGoogle")}
       </Button>
-      <p className="text-xs text-muted-foreground">{t("googleComingSoon")}</p>
+      <p className="text-xs text-foreground">{t("googleComingSoon")}</p>
     </div>
   )
 }

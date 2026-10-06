@@ -86,7 +86,7 @@ export function RegisterForm() {
         <h1 className="text-xl font-semibold tracking-tight">
           {t("registerTitle")}
         </h1>
-        <p className="text-sm text-balance text-muted-foreground">
+        <p className="text-sm text-balance text-foreground">
           {t("registerSubtitle")}
         </p>
       </div>
@@ -181,14 +181,14 @@ export function RegisterForm() {
       </div>
 
       <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-        <span className="relative z-10 bg-background px-2 text-muted-foreground">
+        <span className="relative z-10 bg-background px-2 text-foreground">
           {t("orContinueWith")}
         </span>
       </div>
 
       <GoogleAuthButton />
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="text-center text-sm text-foreground">
         {t("haveAccount")}{" "}
         <Link
           href="/login"

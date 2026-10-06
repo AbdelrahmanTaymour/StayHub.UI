@@ -52,7 +52,7 @@ export function SiteHeader() {
     {
       key: "myApartments",
       label: t("myApartments"),
-      href: "/apartments",
+      href: "/owner/apartments",
     },
   ]
 
@@ -84,7 +84,7 @@ export function SiteHeader() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "inline-flex h-full items-center border-b-2 border-transparent px-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+                    "inline-flex h-full items-center border-b-2 border-transparent px-1 text-sm font-medium text-foreground transition-colors hover:text-primary",
                     active && "border-primary text-tertiary"
                   )}
                 >
@@ -127,7 +127,7 @@ export function SiteHeader() {
                     </AvatarFallback>
                   </Avatar>
                   <ChevronDown
-                    className="h-4 w-4 text-muted-foreground"
+                    className="h-4 w-4 text-foreground"
                     aria-hidden="true"
                   />
                 </DropdownMenuTrigger>

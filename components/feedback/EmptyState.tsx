@@ -31,13 +31,13 @@ export function EmptyState({
       )}
     >
       {icon ? (
-        <div className="text-muted-foreground" aria-hidden="true">
+        <div className="text-foreground" aria-hidden="true">
           {icon}
         </div>
       ) : null}
       <p className="text-base font-medium text-foreground">{title}</p>
       {description ? (
-        <p className="max-w-sm text-sm text-muted-foreground">{description}</p>
+        <p className="max-w-sm text-sm text-foreground">{description}</p>
       ) : null}
       {action ? <div className="mt-2">{action}</div> : null}
     </div>

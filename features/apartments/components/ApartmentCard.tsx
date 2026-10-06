@@ -58,8 +58,8 @@ export function ApartmentCard({ apartment }: ApartmentCardProps) {
           <div className="flex items-center justify-between gap-2">
             {city && country ? (
               <div className="flex min-w-0 items-center gap-2">
-                <MapPin className="size-3 shrink-0 text-muted-foreground" />
-                <span className="truncate text-xs text-muted-foreground">
+                <MapPin className="size-3 shrink-0 text-foreground" />
+                <span className="truncate text-xs text-foreground">
                   {city}, {country}
                 </span>
               </div>
@@ -69,11 +69,11 @@ export function ApartmentCard({ apartment }: ApartmentCardProps) {
             {rating != null && (
               <span className="flex shrink-0 items-center gap-1 text-sm">
                 <Star
-                  className="size-3.5 fill-amber-500 text-amber-500"
+                  className="size-3.5 fill-rating text-rating"
                   aria-hidden="true"
                 />
                 <span className="font-medium">{rating.toFixed(2)}</span>
-                <span className="text-muted-foreground">
+                <span className="text-foreground">
                   ({reviewCount ?? 0})
                 </span>
               </span>
@@ -99,14 +99,14 @@ export function ApartmentCard({ apartment }: ApartmentCardProps) {
               <span className="text-base font-semibold text-foreground">
                 {formatPrice(pricePerNight, currency, locale)}
               </span>
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm text-foreground">
                 {" "}
                 {t("perNight")}
               </span>
             </p>
           ) : null}
           {totalPrice != null && currency ? (
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs text-foreground">
               {t("total", {
                 amount: formatPrice(totalPrice, currency, locale),
               })}

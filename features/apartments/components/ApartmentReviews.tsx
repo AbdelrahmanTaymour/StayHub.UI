@@ -1,10 +1,11 @@
 import { User } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import { RatingSummary } from "@/components/common/RatingSummary"
 import { StarRating } from "@/components/common/StarRating"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import type { ApartmentReview } from "@/features/apartments/types/apartment-details"
 import { formatDate } from "@/features/apartments/utils/format-date"
 
@@ -23,14 +24,11 @@ export function ApartmentReviews({
   const locale = useLocale()
 
   return (
-    <section
-      aria-labelledby="apartment-reviews-heading"
-      className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6"
-    >
+    <Card as="section" aria-labelledby="apartment-reviews-heading">
       <div className="flex flex-col gap-2">
         <h2
           id="apartment-reviews-heading"
-          className="text-xl font-semibold text-foreground"
+          className="text-lg font-semibold text-foreground"
         >
           {t("title")}
         </h2>
@@ -38,7 +36,7 @@ export function ApartmentReviews({
       </div>
 
       {reviews.length === 0 ? (
-        <p className="text-muted-foreground">{t("empty")}</p>
+        <p className="text-sm text-foreground">{t("empty")}</p>
       ) : (
         <ul className="flex flex-col gap-6">
           {reviews.map((review) => (
@@ -60,7 +58,7 @@ export function ApartmentReviews({
                   {review.createdOnUtc ? (
                     <time
                       dateTime={review.createdOnUtc}
-                      className="text-sm text-muted-foreground"
+                      className="text-sm text-foreground"
                     >
                       {formatDate(review.createdOnUtc, locale)}
                     </time>
@@ -71,7 +69,7 @@ export function ApartmentReviews({
               <StarRating value={review.rating ?? 0} />
 
               {review.comment ? (
-                <p className="leading-relaxed text-foreground">
+                <p className="text-sm leading-relaxed text-foreground">
                   {review.comment}
                 </p>
               ) : null}
@@ -80,9 +78,10 @@ export function ApartmentReviews({
         </ul>
       )}
 
+      {/**  @todo: Disabled until the full reviews list endpoint is wired up. **/}
       <Button type="button" variant="outline" disabled className="self-start">
         {t("viewAll")}
       </Button>
-    </section>
+    </Card>
   )
 }

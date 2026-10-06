@@ -1,6 +1,9 @@
 {
   "common": {
-    "appName": "StayHub"
+    "appName": "StayHub",
+    "dateRange": {
+      "placeholder": "اختر نطاق التواريخ"
+    }
   },
   "nav": {
     "brand": "StayHub",
@@ -53,24 +56,23 @@
     }
   },
   "search": {
-    "formLabel": "البحث عن شقة",
+    "formLabel": "البحث عن الشقق",
     "cityLabel": "الوجهة",
-    "cityPlaceholder": "إلى أين تريد الذهاب؟",
-    "checkInLabel": "تاريخ الوصول",
-    "checkOutLabel": "تاريخ المغادرة",
-    "minPriceLabel": "أقل سعر",
+    "cityPlaceholder": "إلى أين تتجه؟",
+    "stayLabel": "التواريخ",
+    "stayPlaceholder": "أضف تاريخ الوصول والمغادرة",
+    "pricePerNightLabel": "السعر لليلة",
+    "minPriceLabel": "أدنى سعر",
     "minPricePlaceholder": "الحد الأدنى",
     "maxPriceLabel": "أعلى سعر",
     "maxPricePlaceholder": "الحد الأقصى",
-    "pricePerNightLabel": "السعر لليلة الواحدة",
     "submit": "بحث",
     "errors": {
+      "datesIncomplete": "اختر تاريخ الوصول وتاريخ المغادرة معًا.",
+      "pastDate": "لا يمكن أن يكون تاريخ الوصول في الماضي.",
+      "endBeforeStart": "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.",
       "maxBelowMin": "يجب أن يكون الحد الأقصى للسعر أعلى من الحد الأدنى.",
-      "datesIncomplete": "يرجى تحديد تاريخي الوصول والمغادرة معًا.",
-      "endBeforeStart": "تاريخ المغادرة يجب أن يكون بعد تاريخ الوصول.",
-      "invalidNumber": "يرجى إدخال رقم صحيح.",
-      "mustBePositive": "يرجى إدخال قيمة أكبر من الصفر.",
-      "mustBeNonNegative": "القيمة لا يمكن أن تكون بالسالب."
+      "invalidNumber": "أدخل رقمًا صحيحًا."
     }
   },
   "apartmentCard": {
@@ -130,51 +132,97 @@
     "untitled": "إقامة بدون اسم",
     "loading": "جارٍ تحميل تفاصيل الشقة…",
     "bookingAside": "الحجز",
+    "meta": {
+      "fallbackTitle": "تفاصيل الشقة",
+      "withLocation": "احجز {name} في {location} على StayHub.",
+      "withoutLocation": "احجز {name} على StayHub."
+    },
     "actions": {
       "save": "حفظ",
       "loginToSave": "سجّل الدخول لحفظ هذه الإقامة في المفضلة.",
       "share": "مشاركة",
-      "comingSoon": "قريبًا"
+      "copied": "تم النسخ",
+      "copyFailed": "تعذّر النسخ"
     },
     "gallery": {
       "label": "صور الشقة",
       "empty": "لا توجد صور بعد",
       "emptyDescription": "لم يضف المضيف صورًا لهذه الإقامة بعد.",
-      "photoAlt": "{title}، صورة {index}",
+      "openPhoto": "فتح {title}، صورة {index}",
       "morePhotos": "+{count}",
-      "morePhotosLabel": "{count, plural, one {صورة أخرى واحدة} two {صورتان أخريان} few {# صور أخرى} many {# صورة أخرى} other {# صورة أخرى}}"
+      "morePhotosLabel": "{count, plural, one {صورة أخرى واحدة} two {صورتان أخريان} few {# صور أخرى} many {# صورة أخرى} other {# صورة أخرى}}",
+      "preview": {
+        "title": "صور {title}",
+        "description": "تصفح صور هذه الإقامة. استخدم مفاتيح الأسهم أو الأزرار للتنقل بينها.",
+        "imageAlt": "{title}، صورة {index}",
+        "previous": "الصورة السابقة",
+        "next": "الصورة التالية",
+        "counter": "{current} من {total}",
+        "loading": "جارٍ تحميل الصورة…",
+        "loadError": "تعذّر تحميل هذه الصورة."
+      }
     },
     "host": {
-      "title": "يستضيفك {name}",
+      "title": "يستضيفك <owner>{name}</owner>",
       "fallbackName": "مضيفك",
       "readyToHelp": "مستعد للإجابة عن استفساراتك",
       "messageHost": "مراسلة المضيف",
       "loginToMessage": "سجّل الدخول لمراسلة المضيف."
     },
     "description": {
-      "title": "عن هذه الإقامة"
+      "title": "عن هذه الإقامة",
+      "showMore": "عرض المزيد",
+      "showLess": "عرض أقل"
     },
     "amenities": {
       "title": "المرافق والخدمات",
       "empty": "لم تُضف أي مرافق بعد",
       "items": {
-        "wifi": "واي فاي",
-        "airconditioning": "تكييف الهواء",
-        "parking": "موقف سيارات",
-        "petfriendly": "مناسب للحيوانات الأليفة",
-        "pool": "مسبح",
-        "gym": "صالة رياضية",
-        "spa": "سبا ومرافق العافية",
-        "terrace": "شرفة خارجية",
-        "mountainview": "إطلالة على الجبال",
-        "gardenview": "إطلالة على الحديقة"
+        "wifi": { "title": "واي فاي", "description": "إنترنت بلا حدود" },
+        "airconditioning": {
+          "title": "تكييف الهواء",
+          "description": "التحكم في درجة الحرارة"
+        },
+        "parking": {
+          "title": "موقف سيارات",
+          "description": "توفر مواقف السيارات"
+        },
+        "petfriendly": {
+          "title": "مناسب للحيوانات الأليفة",
+          "description": "الحيوانات الأليفة مسموحة"
+        },
+        "swimmingpool": {
+          "title": "مسبح",
+          "description": "إمكانية الوصول إلى المسبح"
+        },
+        "gym": {
+          "title": "صالة رياضية",
+          "description": "مرافق اللياقة البدنية"
+        },
+        "spa": { "title": "سبا", "description": "مرافق السبا والعافية" },
+        "terrace": {
+          "title": "شرفة خارجية",
+          "description": "مساحة شرفة خارجية"
+        },
+        "mountainview": {
+          "title": "إطلالة على الجبال",
+          "description": "إطلالة على الجبال المحيطة"
+        },
+        "gardenview": {
+          "title": "إطلالة على الحديقة",
+          "description": "إطلالة على الحديقة المحيطة"
+        }
       }
     },
     "reviews": {
       "title": "تقييمات الضيوف",
       "anonymousGuest": "ضيف",
       "viewAll": "عرض جميع التقييمات",
-      "empty": "لا توجد تقييمات بعد"
+      "empty": "لا توجد تقييمات بعد",
+      "ownerResponse": {
+        "fromHost": "رد {name}",
+        "fromHostFallback": "رد المضيف"
+      }
     },
     "location": {
       "title": "موقع الإقامة",
@@ -183,8 +231,10 @@
     },
     "booking": {
       "perNight": "/ الليلة",
-      "checkIn": "تاريخ الوصول",
-      "checkOut": "تاريخ المغادرة",
+      "dates": {
+        "label": "التواريخ",
+        "placeholder": "أضف تاريخ الوصول والمغادرة"
+      },
       "selectDates": "اختر التواريخ لمعرفة السعر الإجمالي",
       "calculating": "جارٍ حساب السعر…",
       "priceError": "تعذّر حساب السعر. حاول مرة أخرى.",
@@ -201,7 +251,7 @@
         "total": "الإجمالي قبل الضرائب"
       },
       "errors": {
-        "required": "اختر تاريخ الوصول وتاريخ المغادرة معًا.",
+        "datesIncomplete": "اختر تاريخ الوصول وتاريخ المغادرة معًا.",
         "pastDate": "لا يمكن أن يكون تاريخ الوصول في الماضي.",
         "invalidRange": "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول."
       }

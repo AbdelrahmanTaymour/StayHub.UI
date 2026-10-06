@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl"
 
+import { Card } from "@/components/ui/card"
 import {
   getAmenityIcon,
   getAmenityKey,
@@ -14,38 +15,45 @@ export function ApartmentAmenities({ amenities }: ApartmentAmenitiesProps) {
   const items = amenities ?? []
 
   return (
-    <section
-      aria-labelledby="apartment-amenities-heading"
-      className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6"
-    >
+    <Card as="section" aria-labelledby="apartment-amenities-heading">
       <h2
         id="apartment-amenities-heading"
-        className="text-xl font-semibold text-foreground"
+        className="text-lg font-semibold text-foreground"
       >
         {t("title")}
       </h2>
 
       {items.length === 0 ? (
-        <p className="text-muted-foreground">{t("empty")}</p>
+        <p className="text-sm text-foreground">{t("empty")}</p>
       ) : (
-        <ul className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
+        <ul className="grid gap-5 sm:grid-cols-2">
           {items.map((raw) => {
-            const key = getAmenityKey(raw)
-            const Icon = getAmenityIcon(key)
-            const label = key && t.has(`items.${key}`) ? t(`items.${key}`) : raw
+            const amenityKey = getAmenityKey(raw)
+            const Icon = getAmenityIcon(amenityKey)
+            const isKnown =
+              amenityKey !== "" && t.has(`items.${amenityKey}.title`)
 
             return (
-              <li key={raw} className="flex items-center gap-3 text-foreground">
+              <li key={raw} className="flex items-start gap-4">
                 <Icon
                   aria-hidden="true"
-                  className="size-5 shrink-0 text-primary"
+                  className="mt-0.5 size-6 shrink-0 text-tertiary"
                 />
-                <span>{label}</span>
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-medium text-foreground">
+                    {isKnown ? t(`items.${amenityKey}.title`) : raw}
+                  </span>
+                  {isKnown ? (
+                    <span className="text-sm text-foreground">
+                      {t(`items.${amenityKey}.description`)}
+                    </span>
+                  ) : null}
+                </div>
               </li>
             )
           })}
         </ul>
       )}
-    </section>
+    </Card>
   )
 }

@@ -32,7 +32,7 @@ export function RatingSummary({
     >
       <StarRating value={rating} />
       <span className="font-medium text-foreground">{formattedRating}</span>
-      <span className="text-muted-foreground">
+      <span className="text-foreground">
         · {t("reviewsCount", { count: reviewCount ?? 0 })}
       </span>
     </span>

@@ -1,9 +1,11 @@
+import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 
 import { ApartmentResults } from "@/features/apartments/components/ApartmentResults"
+import { ScrollToResultsButton } from "@/features/apartments/components/ScrollToResultsButton"
 import { HeroSearchBar } from "@/features/apartments/components/HeroSearchBar"
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("home")
 
   return {
@@ -19,70 +21,48 @@ export default async function HomePage() {
     <>
       <section
         aria-labelledby="hero-title"
-        className="relative isolate flex min-h-dvh w-full flex-col justify-between overflow-hidden"
+        className="relative isolate flex min-h-[calc(100dvh-4rem)] w-full flex-col justify-between overflow-hidden"
       >
-        {/* Hero background */}
         <div
-          className="absolute inset-0 z-0 bg-linear-to-b from-primary/20 via-background/80 to-background"
           aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-linear-to-b from-primary/20 via-background/80 to-background"
         />
 
-        {/* Hero content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 pt-16 text-center sm:px-6 lg:px-8">
-          <div className="flex w-full max-w-5xl flex-col items-center gap-4">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center gap-10 px-6 py-12 text-center">
+          <div className="flex w-full max-w-3xl flex-col items-center gap-4">
             <h1
               id="hero-title"
-              className="flex flex-col gap-2 text-2xl font-semibold tracking-tight text-balance text-foreground sm:text-3xl md:text-4xl lg:text-5xl"
+              className="flex flex-col gap-2 text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl lg:text-5xl"
             >
               <span>{t("heroLineOne")}</span>
-
-              <span className="inline-block bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text pb-1 text-transparent">
+              <span className="bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text pb-1 text-transparent">
                 {t("heroLineTwo")}
               </span>
             </h1>
 
-            {/* 
-            <h1
-              id="hero-title"
-              className="flex flex-col gap-2 text-2xl font-semibold tracking-tight text-balance text-foreground sm:text-3xl md:text-4xl lg:text-5xl"
-            >
-              <span>Find your next favorite place</span>
-              <span className="inline-block bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text pb-1 text-transparent">
-                ready whenever you are
-              </span>
-            </h1>
-            */}
-
-            <p className="sm:text-md max-w-2xl text-base leading-relaxed text-pretty text-muted-foreground">
+            <p className="max-w-2xl text-base leading-relaxed text-pretty text-foreground sm:text-lg">
               {t("heroSubtitle")}
             </p>
           </div>
 
-          <div className="mt-8 w-full max-w-7xl px-2 sm:px-4">
+          <div className="w-full max-w-6xl">
             <HeroSearchBar />
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <a
-          href="#curated-stays"
-          className="group relative z-10 flex w-full flex-col items-center gap-1.5 pb-8 text-sm font-medium tracking-wide text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
-        >
-          <span>{t("scrollToExplore")}</span>
-
-          <span
-            aria-hidden="true"
-            className="text-lg transition-transform group-hover:translate-y-0.5"
-          >
-            ↓
-          </span>
-        </a>
+        <div className="flex justify-center pb-6">
+          <ScrollToResultsButton
+            targetId="curated-stays"
+            label={t("scrollToExplore")}
+          />
+        </div>
       </section>
 
       <section
         id="curated-stays"
+        tabIndex={-1}
         aria-labelledby="results-heading"
-        className="mx-auto w-full max-w-7xl px-6 py-12"
+        className="mx-auto w-full max-w-7xl scroll-mt-20 px-6 py-12 focus:outline-none"
       >
         <ApartmentResults />
       </section>

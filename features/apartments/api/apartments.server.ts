@@ -12,11 +12,13 @@ import { ApiError, unwrap } from "@/lib/errors/api-error"
  */
 export const getApartmentDetailsServer = cache(async (apartmentId: string) => {
   try {
-    return await unwrap(
+    const apartment = await unwrap(
       await apiClient.GET("/api/v1/apartments/{id}", {
         params: { path: { id: apartmentId } },
       })
     )
+
+    return apartment
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) return null
     throw error

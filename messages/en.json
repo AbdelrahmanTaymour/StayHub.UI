@@ -1,6 +1,9 @@
 {
   "common": {
-    "appName": "StayHub"
+    "appName": "StayHub",
+    "dateRange": {
+      "placeholder": "Pick a date range"
+    }
   },
   "nav": {
     "brand": "StayHub",
@@ -55,22 +58,21 @@
   "search": {
     "formLabel": "Search apartments",
     "cityLabel": "Destination",
-    "cityPlaceholder": "Where are you headed?",
-    "checkInLabel": "Check-in",
-    "checkOutLabel": "Check-out",
-    "minPriceLabel": "Min price",
-    "minPricePlaceholder": "Min",
-    "maxPriceLabel": "Max price",
-    "maxPricePlaceholder": "Max",
+    "cityPlaceholder": "Where are you going?",
+    "stayLabel": "Dates",
+    "stayPlaceholder": "Add check-in and checkout",
     "pricePerNightLabel": "Price per night",
+    "minPriceLabel": "Minimum price",
+    "minPricePlaceholder": "Min",
+    "maxPriceLabel": "Maximum price",
+    "maxPricePlaceholder": "Max",
     "submit": "Search",
     "errors": {
-      "maxBelowMin": "Max price must be equal to or greater than min price.",
-      "datesIncomplete": "Please select both check-in and check-out dates.",
-      "endBeforeStart": "Check-out date must be after check-in date.",
-      "invalidNumber": "Please enter a valid number.",
-      "mustBePositive": "Please enter a value greater than zero.",
-      "mustBeNonNegative": "Value cannot be negative."
+      "datesIncomplete": "Select both check-in and checkout dates.",
+      "pastDate": "Check-in can't be in the past.",
+      "endBeforeStart": "Checkout must be after check-in.",
+      "maxBelowMin": "Maximum price must be higher than the minimum.",
+      "invalidNumber": "Enter a valid number."
     }
   },
   "apartmentCard": {
@@ -130,51 +132,94 @@
     "untitled": "Untitled stay",
     "loading": "Loading apartment details…",
     "bookingAside": "Booking",
+    "meta": {
+      "fallbackTitle": "Apartment details",
+      "withLocation": "Book {name} in {location} on StayHub.",
+      "withoutLocation": "Book {name} on StayHub."
+    },
     "actions": {
       "save": "Save",
       "loginToSave": "Log in to save this stay to your favorites.",
       "share": "Share",
-      "comingSoon": "Coming soon"
+      "copied": "copied!",
+      "copyFailed": "Couldn't copy the link"
     },
     "gallery": {
       "label": "Apartment photos",
       "empty": "No photos yet",
       "emptyDescription": "The host hasn't added photos for this stay yet.",
-      "photoAlt": "{title}, photo {index}",
+      "openPhoto": "Open {title}, photo {index}",
       "morePhotos": "+{count}",
-      "morePhotosLabel": "{count, plural, one {# more photo} other {# more photos}}"
+      "morePhotosLabel": "{count, plural, one {# more photo} other {# more photos}}",
+      "preview": {
+        "title": "{title} photos",
+        "description": "Browse the photos of this stay. Use the arrow keys or the buttons to move between them.",
+        "imageAlt": "{title}, photo {index}",
+        "previous": "Previous photo",
+        "next": "Next photo",
+        "counter": "{current} of {total}",
+        "loading": "Loading photo…",
+        "loadError": "This photo couldn't be loaded."
+      }
     },
     "host": {
-      "title": "Hosted by {name}",
+      "title": "Hosted by <owner>{name}</owner>",
       "fallbackName": "Your host",
       "readyToHelp": "Ready to answer your questions",
       "messageHost": "Message host",
       "loginToMessage": "Log in to message the host."
     },
     "description": {
-      "title": "About this stay"
+      "title": "About this stay",
+      "showMore": "See more",
+      "showLess": "See less"
     },
     "amenities": {
       "title": "Amenities and features",
       "empty": "No amenities listed yet",
       "items": {
-        "wifi": "Wi-Fi",
-        "airconditioning": "Air conditioning",
-        "parking": "Parking",
-        "petfriendly": "Pet friendly",
-        "pool": "Swimming pool",
-        "gym": "Gym",
-        "spa": "Spa",
-        "terrace": "Terrace",
-        "mountainview": "Mountain view",
-        "gardenview": "Garden view"
+        "wifi": { "title": "Wi-Fi", "description": "Wireless internet access" },
+        "airconditioning": {
+          "title": "Air conditioning",
+          "description": "Climate control"
+        },
+        "parking": {
+          "title": "Parking",
+          "description": "Parking availability"
+        },
+        "petfriendly": {
+          "title": "Pet friendly",
+          "description": "Pets are allowed"
+        },
+        "swimmingpool": {
+          "title": "Swimming pool",
+          "description": "Pool access"
+        },
+        "gym": { "title": "Gym", "description": "Fitness facilities" },
+        "spa": { "title": "Spa", "description": "Spa and wellness facilities" },
+        "terrace": {
+          "title": "Terrace",
+          "description": "Outdoor terrace space"
+        },
+        "mountainview": {
+          "title": "Mountain view",
+          "description": "Views of the surrounding mountains"
+        },
+        "gardenview": {
+          "title": "Garden view",
+          "description": "Views of the surrounding garden"
+        }
       }
     },
     "reviews": {
       "title": "Guest reviews",
       "anonymousGuest": "Guest",
       "viewAll": "View all reviews",
-      "empty": "No reviews yet"
+      "empty": "No reviews yet",
+      "ownerResponse": {
+        "fromHost": "Response from {name}",
+        "fromHostFallback": "Response from the host"
+      }
     },
     "location": {
       "title": "Where you'll be",
@@ -183,8 +228,10 @@
     },
     "booking": {
       "perNight": "/ night",
-      "checkIn": "Check-in",
-      "checkOut": "Checkout",
+      "dates": {
+        "label": "Dates",
+        "placeholder": "Add check-in and checkout"
+      },
       "selectDates": "Select your dates to see the total price",
       "calculating": "Calculating price…",
       "priceError": "We couldn't calculate the price. Please try again.",
@@ -201,7 +248,7 @@
         "total": "Total before taxes"
       },
       "errors": {
-        "required": "Select both check-in and checkout dates.",
+        "datesIncomplete": "Select both check-in and checkout dates.",
         "pastDate": "Check-in can't be in the past.",
         "invalidRange": "Checkout must be after check-in."
       }

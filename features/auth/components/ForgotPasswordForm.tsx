@@ -61,7 +61,7 @@ export function ForgotPasswordForm() {
         <h1 className="text-xl font-semibold tracking-tight">
           {t("checkEmailTitle")}
         </h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-foreground">
           {t("checkEmailDescription")}
         </p>
         <Link
@@ -84,7 +84,7 @@ export function ForgotPasswordForm() {
         <h1 className="text-xl font-semibold tracking-tight">
           {t("forgotPasswordTitle")}
         </h1>
-        <p className="text-sm text-balance text-muted-foreground">
+        <p className="text-sm text-balance text-foreground">
           {t("forgotPasswordSubtitle")}
         </p>
       </div>
@@ -113,7 +113,7 @@ export function ForgotPasswordForm() {
         </Button>
       </div>
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="text-center text-sm text-foreground">
         <Link
           href="/login"
           className="font-medium text-primary underline-offset-4 hover:underline"

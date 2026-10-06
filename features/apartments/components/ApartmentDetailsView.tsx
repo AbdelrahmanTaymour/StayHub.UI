@@ -1,20 +1,21 @@
-import { MapPin, Share2 } from "lucide-react"
+import { MapPin } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/common/PageHeader"
 import { RatingSummary } from "@/components/common/RatingSummary"
+import { Card } from "@/components/ui/card"
 import type { ApartmentDetails } from "@/features/apartments/types/apartment-details"
 import { formatCityCountry } from "@/features/apartments/utils/format-address"
 import { getGalleryImages } from "@/features/apartments/utils/gallery"
-import { SaveApartmentButton } from "./SaveApartmentButton"
+import { ApartmentAmenities } from "./ApartmentAmenities"
+import { ApartmentBookingCard } from "./ApartmentBookingCard"
+import { ApartmentDescription } from "./ApartmentDescription"
 import { ApartmentGallery } from "./ApartmentGallery"
 import { ApartmentHostCard } from "./ApartmentHostCard"
-import { ApartmentDescription } from "./ApartmentDescription"
-import { ApartmentAmenities } from "./ApartmentAmenities"
-import { ApartmentReviews } from "./ApartmentReviews"
 import { ApartmentLocation } from "./ApartmentLocation"
-import { ApartmentBookingCard } from "./ApartmentBookingCard"
+import { ApartmentReviews } from "./ApartmentReviews"
+import { SaveApartmentButton } from "./SaveApartmentButton"
+import { ShareApartmentButton } from "./ShareApartmentButton"
 
 interface ApartmentDetailsViewProps {
   apartmentId: string
@@ -26,13 +27,12 @@ export function ApartmentDetailsView({
   apartment,
 }: ApartmentDetailsViewProps) {
   const t = useTranslations("apartmentDetails")
-
   const title = apartment.name ?? t("untitled")
   const location = formatCityCountry(apartment.address)
   const images = getGalleryImages(apartment.images)
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 md:py-8">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-6 md:py-8">
       <PageHeader
         title={title}
         meta={
@@ -56,26 +56,20 @@ export function ApartmentDetailsView({
           <>
             <SaveApartmentButton
               apartmentId={apartmentId}
-              initialIsFavorited={apartment.isFavorited ?? false}
+              isFavorited={apartment.isFavorited}
             />
-            <Button
-              type="button"
-              variant="outline"
-              disabled
-              title={t("actions.comingSoon")}
-              className="gap-2"
-            >
-              <Share2 aria-hidden="true" className="size-4" />
-              {t("actions.share")}
-            </Button>
+            <ShareApartmentButton />
           </>
         }
       />
 
-      <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-        <div className="flex min-w-0 flex-col gap-8 lg:col-span-8">
-          <ApartmentGallery images={images} title={title} />
-          <ApartmentHostCard host={apartment.host} />
+      <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
+        <div className="flex min-w-0 flex-col gap-6 lg:col-span-8">
+          <Card className="gap-0 overflow-hidden p-0">
+            <ApartmentGallery images={images} title={title} />
+            <ApartmentHostCard host={apartment.host} />
+          </Card>
+
           <ApartmentDescription description={apartment.description} />
           <ApartmentAmenities amenities={apartment.amenities} />
           <ApartmentReviews

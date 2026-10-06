@@ -1,19 +1,22 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
-import { useId, useState, type ChangeEvent } from "react"
 import { useLocale, useTranslations } from "next-intl"
+import { useMemo, useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Skeleton } from "@/components/ui/skeleton"
 import { LoginPromptPopover } from "@/components/common/LoginPromptPopover"
+import {
+  DateRangePicker,
+  DateRangeValue,
+} from "@/components/common/DateRangePicker"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
 import { useApartmentPricing } from "@/features/apartments/hooks/useApartmentPricing"
 import { formatPrice } from "@/features/apartments/utils/formatPrice"
 import {
   getStayRangeError,
-  getTodayDateOnly,
+  toDateOnly,
   type StayRange,
 } from "@/features/apartments/utils/stay-range"
 import { useReserveBooking } from "@/features/bookings/hooks/useReserveBooking"
@@ -26,8 +29,6 @@ interface ApartmentBookingCardProps {
   currency?: string | null
 }
 
-const EMPTY_RANGE: StayRange = { startDate: "", endDate: "" }
-
 export function ApartmentBookingCard({
   apartmentId,
   pricePerNight,
@@ -35,16 +36,26 @@ export function ApartmentBookingCard({
 }: ApartmentBookingCardProps) {
   const t = useTranslations("apartmentDetails.booking")
   const locale = useLocale()
-  const id = useId()
   const { status } = useAuth()
   const isAuthenticated = status === "authenticated"
 
-  const [range, setRange] = useState<StayRange>(EMPTY_RANGE)
-  const [today] = useState(getTodayDateOnly)
+  const [dates, setDates] = useState<DateRangeValue | undefined>(undefined)
 
-  const rangeError = getStayRangeError(range, today)
-  const isStaySelected = range.startDate !== "" && range.endDate !== ""
-  const quoteStay = isStaySelected && rangeError === null ? range : null
+  // Derived once from the picker value. The API and the validator both use YYYY-MM-DD.
+  const stay = useMemo<StayRange | null>(() => {
+    if (!dates?.from || !dates?.to) return null
+    return {
+      startDate: toDateOnly(dates.from),
+      endDate: toDateOnly(dates.to),
+    }
+  }, [dates])
+
+  const rangeError = useMemo(() => {
+    if (!stay) return dates?.from ? ("required" as const) : null
+    return getStayRangeError(stay, toDateOnly(new Date()))
+  }, [stay, dates])
+
+  const quoteStay = stay && rangeError === null ? stay : null
 
   const pricing = useApartmentPricing(apartmentId, quoteStay)
   const quote = pricing.data
@@ -61,16 +72,6 @@ export function ApartmentBookingCard({
   const displayPrice = quote?.pricePerNight ?? pricePerNight ?? null
   const displayCurrency = quote?.currency ?? currency ?? null
 
-  const checkInId = `${id}-check-in`
-  const checkOutId = `${id}-check-out`
-  const errorId = `${id}-date-error`
-
-  function handleDateChange(field: keyof StayRange) {
-    return (event: ChangeEvent<HTMLInputElement>) => {
-      setRange((previous) => ({ ...previous, [field]: event.target.value }))
-    }
-  }
-
   function handleReserve() {
     if (!quoteStay || !canReserve) return
     reserve({
@@ -82,7 +83,7 @@ export function ApartmentBookingCard({
 
   function renderPricing() {
     if (!quoteStay) {
-      return <p className="text-sm text-muted-foreground">{t("selectDates")}</p>
+      return <p className="text-sm text-foreground">{t("selectDates")}</p>
     }
 
     if (pricing.isPending) {
@@ -136,49 +137,32 @@ export function ApartmentBookingCard({
   )
 
   return (
-    <div
-      aria-live="polite"
-      className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 shadow-sm"
-    >
+    <Card className="gap-6">
       {displayPrice !== null && displayCurrency ? (
         <p className="flex items-baseline gap-1">
           <span className="text-2xl font-semibold text-foreground tabular-nums">
             {formatPrice(displayPrice, displayCurrency, locale)}
           </span>
-          <span className="text-sm text-muted-foreground">{t("perNight")}</span>
+          <span className="text-sm text-foreground">{t("perNight")}</span>
         </p>
       ) : null}
 
-      <div className="flex flex-col gap-3">
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor={checkInId}>{t("checkIn")}</Label>
-            <Input
-              id={checkInId}
-              type="date"
-              min={today}
-              value={range.startDate}
-              onChange={handleDateChange("startDate")}
-              aria-invalid={rangeError !== null}
-              aria-describedby={rangeError ? errorId : undefined}
-            />
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor={checkOutId}>{t("checkOut")}</Label>
-            <Input
-              id={checkOutId}
-              type="date"
-              min={range.startDate || today}
-              value={range.endDate}
-              onChange={handleDateChange("endDate")}
-              aria-invalid={rangeError !== null}
-              aria-describedby={rangeError ? errorId : undefined}
-            />
-          </div>
-        </div>
-
+      <div className="flex flex-col gap-2">
+        <DateRangePicker
+          id="booking-stay"
+          label={t("dates.label")}
+          value={dates}
+          onChange={setDates}
+          placeholder={t("dates.placeholder")}
+          aria-invalid={Boolean(rangeError)}
+          aria-describedby={rangeError ? "booking-stay-error" : undefined}
+        />
         {rangeError ? (
-          <p id={errorId} className="text-sm text-destructive">
+          <p
+            id="booking-stay-error"
+            role="alert"
+            className="text-sm text-destructive"
+          >
             {t(`errors.${rangeError}`)}
           </p>
         ) : null}
@@ -192,12 +176,12 @@ export function ApartmentBookingCard({
             {reserveButton}
           </LoginPromptPopover>
         )}
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-foreground">
           {t("reserveNote")}
         </p>
       </div>
 
       {renderPricing()}
-    </div>
+    </Card>
   )
 }
