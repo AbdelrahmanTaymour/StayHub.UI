@@ -2,15 +2,19 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { EmptyState } from "@/components/feedback/EmptyState"
-import { ApartmentGrid } from "@/features/apartments/components/ApartmentGrid"
 import { Pagination } from "@/components/common/Pagination"
+import { EmptyState } from "@/components/feedback/EmptyState"
+import { getOwnerApartmentsServer } from "@/features/apartments/api/apartments.server"
+import { ApartmentGrid } from "@/features/apartments/components/ApartmentGrid"
+import { getOwnerApiSort } from "@/features/apartments/utils/owner-sort"
 import { getOwnerProfileServer } from "@/features/users/api/users.server"
 import { OwnerProfileView } from "@/features/users/components/OwnerProfileView"
 
+const OWNER_PAGE_SIZE = 12
+
 interface OwnerPageProps {
   params: Promise<{ locale: string; ownerId: string }>
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string; sort?: string }>
 }
 
 function parsePage(value: string | undefined) {
@@ -40,31 +44,44 @@ export default async function OwnerPage({
   searchParams,
 }: OwnerPageProps) {
   const { ownerId } = await params
-  const { page: pageParam } = await searchParams
+  const { page: pageParam, sort: sortParam } = await searchParams
 
   const page = parsePage(pageParam)
 
-  const owner = await getOwnerProfileServer(ownerId)
+  const [owner, listings] = await Promise.all([
+    getOwnerProfileServer(ownerId),
+    getOwnerApartmentsServer(ownerId, {
+      page,
+      pageSize: OWNER_PAGE_SIZE,
+      sort: getOwnerApiSort(sortParam),
+    }),
+  ])
 
   if (!owner) notFound()
 
   const t = await getTranslations("owner")
-  //  const items = listings.items ?? []
-  const items = []
+  const items = listings?.items ?? []
 
   return (
     <OwnerProfileView
       owner={owner}
-      // listingsCount={listings.totalCount ?? 0}
-      listingsCount={0}
+      listingsCount={listings?.totalCount ?? 0}
       listings={
         items.length === 0 ? (
           <EmptyState title={t("listingsEmpty")} />
         ) : (
-          <ApartmentGrid apartments={[]} />
+          <ApartmentGrid
+            apartments={items}
+            className="lg:grid-cols-3 xl:grid-cols-3"
+          />
         )
       }
-      pagination={<Pagination page={page} totalPages={1} />}
+      pagination={
+        <Pagination
+          page={listings?.page ?? page}
+          totalPages={listings?.totalPages ?? 1}
+        />
+      }
     />
   )
 }

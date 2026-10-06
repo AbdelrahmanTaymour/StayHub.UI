@@ -270,10 +270,18 @@
     },
     "fallbackName": "المضيف",
     "activeListings": "{count, plural, =0 {لا توجد إعلانات نشطة} one {إعلان نشط واحد} two {إعلانان نشطان} few {# إعلانات نشطة} many {# إعلانًا نشطًا} other {# إعلان نشط}}",
-    "aboutTitle": "نبذة",
     "noBio": "لم يُضف هذا المضيف نبذة بعد.",
-    "listingsTitle": "الإعلانات",
     "listingsCount": "{count, plural, =0 {لا توجد إعلانات} one {إعلان واحد} two {إعلانان} few {# إعلانات} many {# إعلانًا} other {# إعلان}}",
-    "listingsEmpty": "لا توجد إعلانات لهذا المضيف بعد."
+    "listingsEmpty": "لا توجد إعلانات لهذا المضيف بعد.",
+    "propertiesHeading": "عقارات {name}",
+    "contactHost": "تواصل مع المضيف",
+    "contactLoginMessage": "سجّل الدخول للتواصل مع هذا المضيف.",
+    "sortLabel": "ترتيب حسب",
+    "sort": {
+      "price-asc": "السعر: من الأقل إلى الأعلى",
+      "price-desc": "السعر: من الأعلى إلى الأقل",
+      "rating": "الأعلى تقييمًا",
+      "reviews": "الأكثر تقييمات"
+    }
   }
 }

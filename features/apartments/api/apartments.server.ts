@@ -33,11 +33,32 @@ type OwnerApartmentsQuery = QueryParameters<
 >
 
 /** Owner listings for the server render. Returns an empty list when the owner has none or isn't found. */
+
 export const getOwnerApartmentsServer = cache(
-  async (ownerId: string, query?: OwnerApartmentsQuery) =>
-    unwrap(
-      await apiClient.GET("/api/v1/apartments/by-owner/{ownerId}", {
-        params: { path: { ownerId }, query },
-      })
-    )
+  async (ownerId: string, query?: OwnerApartmentsQuery) => {
+    try {
+      const owner = await unwrap(
+        await apiClient.GET("/api/v1/apartments/by-owner/{ownerId}", {
+          params: { path: { ownerId: ownerId }, query },
+        })
+      )
+
+      return owner
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 404) return null
+      throw error
+    }
+  }
 )
+
+// export const getOwnerApartmentsServer = cache(
+//   async (ownerId: string, query?: OwnerApartmentsQuery) => {
+//     try{
+//       const owner = await unwrap(
+//       await apiClient.GET("/api/v1/apartments/by-owner/{ownerId}", {
+//         params: { path: { ownerId }, query },
+//       })
+//     )
+//     }
+//   }
+// )

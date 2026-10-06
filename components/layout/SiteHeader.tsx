@@ -4,7 +4,7 @@ import { Bell, Building2, ChevronDown, User } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { Link, usePathname } from "@/i18n/navigation"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { buttonVariants, Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -27,10 +27,13 @@ interface NavItem {
 export function SiteHeader() {
   const t = useTranslations("nav")
   const pathname = usePathname()
-  const { status } = useAuth()
+  const { session, status } = useAuth()
+
   const { logout, isPending } = useLogout()
 
   const isAuthenticated = status === "authenticated"
+
+  console.log(session?.user)
 
   const navItems: NavItem[] = [
     { key: "explore", label: t("explore"), href: "/" },
@@ -122,6 +125,10 @@ export function SiteHeader() {
                   className="flex items-center gap-1 rounded-lg p-1 transition-colors select-none hover:bg-muted"
                 >
                   <Avatar className="h-8 w-8">
+                    <AvatarImage
+                      src={session?.user?.avatarUrl ?? undefined}
+                      alt={session?.user?.email ?? ""}
+                    />
                     <AvatarFallback>
                       <User className="h-4 w-4" aria-hidden="true" />
                     </AvatarFallback>

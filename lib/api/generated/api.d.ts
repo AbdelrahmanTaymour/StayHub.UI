@@ -221,7 +221,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["StayHub.Application.Apartments.GetApartmentsByOwner.OwnerApartmentsResponse"][];
+                        "application/json": components["schemas"]["PagedResponseOfStayHub.Application.Apartments.GetApartmentsByOwner.OwnerApartmentsResponse"];
                     };
                 };
             };
@@ -3289,6 +3289,17 @@ export interface components {
             instance?: string | null;
         } & {
             [key: string]: unknown;
+        };
+        "PagedResponseOfStayHub.Application.Apartments.GetApartmentsByOwner.OwnerApartmentsResponse": {
+            items: components["schemas"]["StayHub.Application.Apartments.GetApartmentsByOwner.OwnerApartmentsResponse"][] | null;
+            /** Format: int32 */
+            page?: number;
+            /** Format: int32 */
+            pageSize?: number;
+            /** Format: int32 */
+            totalCount?: number;
+            /** Format: int32 */
+            totalPages?: number;
         };
         "PagedResponseOfStayHub.Application.Apartments.GetMyApartments.MyApartmentsResponse": {
             items: components["schemas"]["StayHub.Application.Apartments.GetMyApartments.MyApartmentsResponse"][] | null;

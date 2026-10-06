@@ -1,28 +1,32 @@
-import { ApartmentCard } from "@/components/common/ApartmentCard"
+import {
+  ApartmentCard,
+  ApartmentCardData,
+} from "@/components/common/ApartmentCard"
 import { ApartmentCardSkeleton } from "@/features/apartments/components/ApartmentCardSkeleton"
-import type { ApartmentSummary } from "@/features/apartments/types/search"
 import { FavoriteButton } from "@/features/favorites/components/FavoriteButton"
+import { cn } from "cn"
 
 const SKELETON_COUNT = 8
 
-export function ApartmentGrid({
-  apartments,
-}: {
-  apartments: ApartmentSummary[]
-}) {
+interface ApartmentGridProps {
+  apartments: ApartmentCardData[]
+  className?: string
+}
+
+export function ApartmentGrid({ apartments, className }: ApartmentGridProps) {
   return (
-    <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {apartments.map((apartment, index) => (
-        <li key={apartment.id ?? index}>
+    <ul className={cn("grid gap-6 sm:grid-cols-2 xl:grid-cols-4", className)}>
+      {apartments.map((apartment) => (
+        <li key={apartment.id}>
           <ApartmentCard
             apartment={apartment}
             favoriteButton={
-              apartment.id && (
+              apartment.id ? (
                 <FavoriteButton
                   apartmentId={apartment.id}
                   isFavorited={apartment.isFavorited}
                 />
-              )
+              ) : null
             }
           />
         </li>

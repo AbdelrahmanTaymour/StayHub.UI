@@ -267,10 +267,19 @@
     },
     "fallbackName": "Host",
     "activeListings": "{count, plural, =0 {No active listings} one {# active listing} other {# active listings}}",
-    "aboutTitle": "About",
     "noBio": "This host hasn't added a bio yet.",
-    "listingsTitle": "Listings",
     "listingsCount": "{count, plural, =0 {No listings} one {# listing} other {# listings}}",
-    "listingsEmpty": "This host has no listings yet."
+    "listingsEmpty": "This host has no listings yet.",
+
+    "propertiesHeading": "Properties by {name}",
+    "contactHost": "Contact host",
+    "contactLoginMessage": "Log in to contact this host.",
+    "sortLabel": "Sort by",
+    "sort": {
+      "price-asc": "Price: low to high",
+      "price-desc": "Price: high to low",
+      "rating": "Highest rated",
+      "reviews": "Most reviewed"
+    }
   }
 }

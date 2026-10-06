@@ -85,6 +85,7 @@ export const {
         return {
           ...token,
           role: user.role,
+          avatarUrl: user.avatarUrl,
           accessToken: user.accessToken,
           refreshToken: user.refreshToken,
           accessTokenExpires: user.accessTokenExpires,
@@ -105,6 +106,7 @@ export const {
       if (session.user) {
         session.user.id = token.sub as string
         session.user.role = token.role
+        session.user.avatarUrl = token.avatarUrl
       }
       return session
     },

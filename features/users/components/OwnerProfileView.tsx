@@ -1,14 +1,13 @@
-import { User } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
-import { ExpandableText } from "@/components/common/ExpandableText"
-import { PageHeader } from "@/components/common/PageHeader"
-import { RatingSummary } from "@/components/common/RatingSummary"
-import { ShareButton } from "@/components/common/ShareButton"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card } from "@/components/ui/card"
+import { SortSelect } from "@/components/common/SortSelect"
+import {
+  DEFAULT_OWNER_SORT,
+  OWNER_SORT_OPTIONS,
+} from "@/features/apartments/utils/owner-sort"
 import type { OwnerProfile } from "@/features/users/types/owner-profile"
+import { OwnerProfileHero } from "./OwnerProfileHero"
 
 interface OwnerProfileViewProps {
   owner: OwnerProfile
@@ -25,68 +24,38 @@ export function OwnerProfileView({
 }: OwnerProfileViewProps) {
   const t = useTranslations("owner")
   const name = owner.fullName ?? t("fallbackName")
-  const bio = owner.bio?.trim()
+
+  const sortOptions = OWNER_SORT_OPTIONS.map(({ value }) => ({
+    value,
+    label: t(`sort.${value}`),
+  }))
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 md:py-8 lg:px-8">
-      <PageHeader
-        title={name}
-        meta={
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <RatingSummary
-              rating={owner.rating}
-              reviewCount={owner.reviewCount}
-            />
-            <span aria-hidden="true">·</span>
-            <span>
-              {t("activeListings", { count: owner.activeListingsCount ?? 0 })}
-            </span>
-          </div>
-        }
-        actions={<ShareButton />}
-      />
-
-      <Card
-        as="section"
-        aria-labelledby="owner-about-heading"
-        className="sm:flex-row sm:items-start"
-      >
-        <Avatar className="size-20 shrink-0">
-          <AvatarImage src={owner.avatarUrl ?? undefined} alt="" />
-          <AvatarFallback>
-            <User aria-hidden="true" className="size-8" />
-          </AvatarFallback>
-        </Avatar>
-
-        <div className="flex min-w-0 flex-1 flex-col gap-3">
-          <h2
-            id="owner-about-heading"
-            className="text-lg font-semibold text-foreground"
-          >
-            {t("aboutTitle")}
-          </h2>
-          {bio ? (
-            <ExpandableText text={bio} />
-          ) : (
-            <p className="text-sm text-foreground">{t("noBio")}</p>
-          )}
-        </div>
-      </Card>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-6 md:py-8">
+      <OwnerProfileHero owner={owner} />
 
       <section
         aria-labelledby="owner-listings-heading"
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-6"
       >
-        <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-4">
-          <h2
-            id="owner-listings-heading"
-            className="text-xl font-semibold text-foreground"
-          >
-            {t("listingsTitle")}
-          </h2>
-          <p className="text-sm text-foreground">
-            {t("listingsCount", { count: listingsCount })}
-          </p>
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-1">
+            <h2
+              id="owner-listings-heading"
+              className="text-lg font-semibold text-foreground"
+            >
+              {t("propertiesHeading", { name })}
+            </h2>
+            <p className="text-sm text-foreground">
+              {t("listingsCount", { count: listingsCount })}
+            </p>
+          </div>
+
+          <SortSelect
+            label={t("sortLabel")}
+            options={sortOptions}
+            defaultValue={DEFAULT_OWNER_SORT}
+          />
         </div>
 
         {listings}
