@@ -4,6 +4,8 @@ import { cache } from "react"
 
 import { apiClient } from "@/lib/api/client"
 import { ApiError, unwrap } from "@/lib/errors/api-error"
+import { OwnerApartmentsResponse } from "@/lib/api/types/apartments"
+import { QueryParameters } from "@/lib/api/type-utils"
 
 /**
  * Server-side fetch for the details page. Wrapped in React `cache` so
@@ -24,3 +26,18 @@ export const getApartmentDetailsServer = cache(async (apartmentId: string) => {
     throw error
   }
 })
+
+type OwnerApartmentsQuery = QueryParameters<
+  "/api/v1/apartments/by-owner/{ownerId}",
+  "get"
+>
+
+/** Owner listings for the server render. Returns an empty list when the owner has none or isn't found. */
+export const getOwnerApartmentsServer = cache(
+  async (ownerId: string, query?: OwnerApartmentsQuery) =>
+    unwrap(
+      await apiClient.GET("/api/v1/apartments/by-owner/{ownerId}", {
+        params: { path: { ownerId }, query },
+      })
+    )
+)

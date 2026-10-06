@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl"
 
 import { Card } from "@/components/ui/card"
 import type { ApartmentAddress } from "@/features/apartments/types/apartment-details"
-import { formatAddress } from "@/features/apartments/utils/format-address"
+import { formatAddress } from "@/lib/utils/format-address"
 import { ApartmentMap } from "./ApartmentMap"
 
 interface ApartmentLocationProps {

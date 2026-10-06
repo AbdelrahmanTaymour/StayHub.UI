@@ -21,7 +21,7 @@ export function SaveApartmentButton({
   isFavorited: serverIsFavorited,
   className,
 }: SaveApartmentButtonProps) {
-  const t = useTranslations("apartmentDetails.actions")
+  const t = useTranslations("favorites")
   const { status } = useAuth()
   const isAuthenticated = status === "authenticated"
 
@@ -68,6 +68,8 @@ export function SaveApartmentButton({
   if (isAuthenticated) return button
 
   return (
-    <LoginPromptPopover message={t("loginToSave")}>{button}</LoginPromptPopover>
+    <LoginPromptPopover message={t("loginMessage")}>
+      {button}
+    </LoginPromptPopover>
   )
 }

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useApartmentPricing } from "@/features/apartments/hooks/useApartmentPricing"
-import { formatPrice } from "@/features/apartments/utils/formatPrice"
+import { formatPrice } from "@/lib/utils/formatPrice"
 import {
   getStayRangeError,
   toDateOnly,

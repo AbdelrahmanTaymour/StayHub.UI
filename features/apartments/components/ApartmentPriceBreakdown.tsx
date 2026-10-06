@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 
-import { formatPrice } from "@/features/apartments/utils/formatPrice"
+import { formatPrice } from "@/lib/utils/formatPrice"
 import type { ApartmentPricing } from "@/features/apartments/types/apartment-details"
 import { cn } from "cn"
 

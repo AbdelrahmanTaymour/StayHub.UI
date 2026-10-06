@@ -3,6 +3,21 @@
     "appName": "StayHub",
     "dateRange": {
       "placeholder": "Pick a date range"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "status": "Page {page} of {totalPages}"
+    },
+    "share": {
+      "label": "Share",
+      "copied": "copied!",
+      "failed": "Couldn't copy the link"
+    },
+    "readMore": {
+      "more": "See more",
+      "less": "See less"
     }
   },
   "nav": {
@@ -47,13 +62,7 @@
     "retry": "Try again",
     "emptyTitle": "No stays match your search",
     "emptyDescription": "Try adjusting your dates, expanding your price range, or searching in another city.",
-    "clearFilters": "Reset filters",
-    "paginationLabel": "Pagination navigation",
-    "pagination": {
-      "previous": "Previous",
-      "next": "Next",
-      "status": "Page {page} of {totalPages}"
-    }
+    "clearFilters": "Reset filters"
   },
   "search": {
     "formLabel": "Search apartments",
@@ -82,12 +91,14 @@
     "total": "{amount} total"
   },
   "favorites": {
+    "label": "Favorite",
+    "loginMessage": "Log in to save your favorite stays.",
+    "save": "Save",
     "add": "Add to favorites",
     "remove": "Remove from favorites",
     "addedToast": "Added to favorites",
     "removedToast": "Removed from favorites",
-    "updateErrorToast": "Couldn't update favorites. Please try again.",
-    "loginPrompt": "Please <login>log in</login> to save your favorite stays."
+    "updateErrorToast": "Couldn't update favorites. Please try again."
   },
   "auth": {
     "loginTitle": "Welcome back",
@@ -137,13 +148,6 @@
       "withLocation": "Book {name} in {location} on StayHub.",
       "withoutLocation": "Book {name} on StayHub."
     },
-    "actions": {
-      "save": "Save",
-      "loginToSave": "Log in to save this stay to your favorites.",
-      "share": "Share",
-      "copied": "copied!",
-      "copyFailed": "Couldn't copy the link"
-    },
     "gallery": {
       "label": "Apartment photos",
       "empty": "No photos yet",
@@ -170,9 +174,7 @@
       "loginToMessage": "Log in to message the host."
     },
     "description": {
-      "title": "About this stay",
-      "showMore": "See more",
-      "showLess": "See less"
+      "title": "About this stay"
     },
     "amenities": {
       "title": "Amenities and features",
@@ -257,5 +259,18 @@
   "ratings": {
     "ratedOutOf": "Rated {rating} out of 5",
     "reviewsCount": "{count, plural, =0 {No reviews yet} one {# review} other {# reviews}}"
+  },
+  "owner": {
+    "meta": {
+      "fallbackTitle": "Host profile",
+      "withoutBio": "Learn more about {name} and their properties on StayHub."
+    },
+    "fallbackName": "Host",
+    "activeListings": "{count, plural, =0 {No active listings} one {# active listing} other {# active listings}}",
+    "aboutTitle": "About",
+    "noBio": "This host hasn't added a bio yet.",
+    "listingsTitle": "Listings",
+    "listingsCount": "{count, plural, =0 {No listings} one {# listing} other {# listings}}",
+    "listingsEmpty": "This host has no listings yet."
   }
 }

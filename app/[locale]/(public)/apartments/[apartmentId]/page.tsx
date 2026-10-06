@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { ApartmentDetailsView } from "@/features/apartments/components/ApartmentDetailsView"
-import { formatCityCountry } from "@/features/apartments/utils/format-address"
+import { formatCityCountry } from "@/lib/utils/format-address"
 import { getApartmentDetailsServer } from "@/features/apartments/api/apartments.server"
 
 interface ApartmentDetailsPageProps {

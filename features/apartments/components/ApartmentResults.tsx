@@ -13,12 +13,10 @@ import {
   ApartmentGridSkeleton,
 } from "@/features/apartments/components/ApartmentGrid"
 import { useSearchApartments } from "@/features/apartments/hooks/useSearchApartments"
-import {
-  filtersFromSearchParams,
-  filtersToSearchParams,
-} from "@/features/apartments/utils/search-params"
+import { filtersFromSearchParams } from "@/features/apartments/utils/search-params"
 import { cn } from "cn"
 import { useEffect, useRef } from "react"
+import { Pagination } from "@/components/common/Pagination"
 
 export function ApartmentResults() {
   const t = useTranslations("home")
@@ -26,7 +24,7 @@ export function ApartmentResults() {
   const searchParams = useSearchParams()
   const filters = filtersFromSearchParams(searchParams)
 
-  const { data, isPending, isPlaceholderData, isError, refetch, isFetching } =
+  const { data, isPending, isPlaceholderData, isError, refetch } =
     useSearchApartments(filters)
 
   const isSearching = isPlaceholderData
@@ -53,12 +51,6 @@ export function ApartmentResults() {
       block: "start",
     })
   }, [page, isPlaceholderData, isPending])
-
-  function hrefForPage(targetPage: number) {
-    const params = filtersToSearchParams({ ...filters, page: targetPage })
-    const query = params.toString()
-    return query ? `${pathname}?${query}` : pathname
-  }
 
   return (
     <div ref={sectionRef} className="flex flex-col gap-6">
@@ -110,40 +102,7 @@ export function ApartmentResults() {
           <ApartmentGrid apartments={items} />
 
           {totalPages > 1 ? (
-            <nav
-              aria-label={t("paginationLabel")}
-              className="flex items-center justify-center gap-4 pt-2"
-            >
-              <Link
-                href={hrefForPage(page - 1)}
-                scroll={false}
-                aria-disabled={page <= 1}
-                tabIndex={page <= 1 ? -1 : undefined}
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" }),
-                  page <= 1 && "pointer-events-none opacity-50"
-                )}
-              >
-                {t("pagination.previous")}
-              </Link>
-
-              <span className="text-sm text-foreground" aria-live="polite">
-                {t("pagination.status", { page, totalPages })}
-              </span>
-              <Link
-                href={hrefForPage(page + 1)}
-                scroll={false}
-                aria-disabled={page >= totalPages}
-                tabIndex={page >= totalPages ? -1 : undefined}
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" }),
-                  (page >= totalPages || isFetching) &&
-                    "pointer-events-none opacity-50"
-                )}
-              >
-                {t("pagination.next")}
-              </Link>
-            </nav>
+            <Pagination page={page} totalPages={totalPages} />
           ) : null}
         </>
       )}

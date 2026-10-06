@@ -3546,7 +3546,7 @@ export interface components {
             rating?: number | null;
             /** Format: int32 */
             reviewCount?: number;
-            isFavorited?: boolean;
+            isFavorited: boolean;
             host: components["schemas"]["StayHub.Application.Apartments.GetApartment.ApartmentHostResponse"];
             recentReviews?: components["schemas"]["StayHub.Application.Apartments.GetApartment.ApartmentReviewPreviewResponse"][] | null;
         };

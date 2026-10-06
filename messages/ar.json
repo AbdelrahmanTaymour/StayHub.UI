@@ -3,6 +3,21 @@
     "appName": "StayHub",
     "dateRange": {
       "placeholder": "اختر نطاق التواريخ"
+    },
+    "share": {
+      "label": "مشاركة",
+      "copied": "تم النسخ",
+      "failed": "تعذّر النسخ"
+    },
+    "readMore": {
+      "more": "عرض المزيد",
+      "less": "عرض أقل"
+    },
+    "pagination": {
+      "label": "التنقل بين الصفحات",
+      "previous": "السابق",
+      "next": "التالي",
+      "status": "الصفحة {page} من {totalPages}"
     }
   },
   "nav": {
@@ -47,13 +62,7 @@
     "retry": "إعادة المحاولة",
     "emptyTitle": "لم نجد نتائج تطابق بحثك",
     "emptyDescription": "جرب تغيير التواريخ، أو توسيع نطاق السعر، أو البحث في مدينة أخرى.",
-    "clearFilters": "إعادة ضبط التصفية",
-    "paginationLabel": "التنقل بين الصفحات",
-    "pagination": {
-      "previous": "السابق",
-      "next": "التالي",
-      "status": "صفحة {page} من {totalPages}"
-    }
+    "clearFilters": "إعادة ضبط التصفية"
   },
   "search": {
     "formLabel": "البحث عن الشقق",
@@ -82,12 +91,14 @@
     "total": "الإجمالي {amount}"
   },
   "favorites": {
+    "label": "المفضلة",
+    "loginMessage": "سجّل الدخول لحفظ الإقامات المفضلة لديك.",
+    "save": "حفظ",
     "add": "إضافة إلى المفضلة",
     "remove": "إزالة من المفضلة",
     "addedToast": "تمت الإضافة إلى المفضلة",
     "removedToast": "تمت الإزالة من المفضلة",
-    "updateErrorToast": "تعذر تحديث المفضلة، حاول مرة أخرى.",
-    "loginPrompt": "يرجى <login>تسجيل الدخول</login> لحفظ أماكنك المفضلة."
+    "updateErrorToast": "تعذر تحديث المفضلة، حاول مرة أخرى."
   },
   "auth": {
     "loginTitle": "مرحبًا بك مجددًا",
@@ -137,13 +148,6 @@
       "withLocation": "احجز {name} في {location} على StayHub.",
       "withoutLocation": "احجز {name} على StayHub."
     },
-    "actions": {
-      "save": "حفظ",
-      "loginToSave": "سجّل الدخول لحفظ هذه الإقامة في المفضلة.",
-      "share": "مشاركة",
-      "copied": "تم النسخ",
-      "copyFailed": "تعذّر النسخ"
-    },
     "gallery": {
       "label": "صور الشقة",
       "empty": "لا توجد صور بعد",
@@ -170,9 +174,7 @@
       "loginToMessage": "سجّل الدخول لمراسلة المضيف."
     },
     "description": {
-      "title": "عن هذه الإقامة",
-      "showMore": "عرض المزيد",
-      "showLess": "عرض أقل"
+      "title": "عن هذه الإقامة"
     },
     "amenities": {
       "title": "المرافق والخدمات",
@@ -260,5 +262,18 @@
   "ratings": {
     "ratedOutOf": "التقييم {rating} من 5",
     "reviewsCount": "{count, plural, =0 {لا توجد تقييمات بعد} one {تقييم واحد} two {تقييمان} few {# تقييمات} many {# تقييمًا} other {# تقييم}}"
+  },
+  "owner": {
+    "meta": {
+      "fallbackTitle": "حساب المضيف",
+      "withoutBio": "تعرّف على {name} وعقاراته على StayHub."
+    },
+    "fallbackName": "المضيف",
+    "activeListings": "{count, plural, =0 {لا توجد إعلانات نشطة} one {إعلان نشط واحد} two {إعلانان نشطان} few {# إعلانات نشطة} many {# إعلانًا نشطًا} other {# إعلان نشط}}",
+    "aboutTitle": "نبذة",
+    "noBio": "لم يُضف هذا المضيف نبذة بعد.",
+    "listingsTitle": "الإعلانات",
+    "listingsCount": "{count, plural, =0 {لا توجد إعلانات} one {إعلان واحد} two {إعلانان} few {# إعلانات} many {# إعلانًا} other {# إعلان}}",
+    "listingsEmpty": "لا توجد إعلانات لهذا المضيف بعد."
   }
 }

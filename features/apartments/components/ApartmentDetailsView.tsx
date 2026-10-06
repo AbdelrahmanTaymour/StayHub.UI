@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/common/PageHeader"
 import { RatingSummary } from "@/components/common/RatingSummary"
 import { Card } from "@/components/ui/card"
 import type { ApartmentDetails } from "@/features/apartments/types/apartment-details"
-import { formatCityCountry } from "@/features/apartments/utils/format-address"
+import { formatCityCountry } from "@/lib/utils/format-address"
 import { getGalleryImages } from "@/features/apartments/utils/gallery"
 import { ApartmentAmenities } from "./ApartmentAmenities"
 import { ApartmentBookingCard } from "./ApartmentBookingCard"
@@ -15,7 +15,7 @@ import { ApartmentHostCard } from "./ApartmentHostCard"
 import { ApartmentLocation } from "./ApartmentLocation"
 import { ApartmentReviews } from "./ApartmentReviews"
 import { SaveApartmentButton } from "./SaveApartmentButton"
-import { ShareApartmentButton } from "./ShareApartmentButton"
+import { ShareButton } from "../../../components/common/ShareButton"
 
 interface ApartmentDetailsViewProps {
   apartmentId: string
@@ -58,7 +58,7 @@ export function ApartmentDetailsView({
               apartmentId={apartmentId}
               isFavorited={apartment.isFavorited}
             />
-            <ShareApartmentButton />
+            <ShareButton />
           </>
         }
       />
