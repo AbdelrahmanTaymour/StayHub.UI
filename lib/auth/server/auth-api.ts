@@ -48,11 +48,15 @@ export const {
 
           const payload = decodeAccessToken(res.accessToken)
           const me = await getLoggedInUser(res.accessToken)
+          const role =
+            me.role === "Admin" || me.role === "Guest" ? me.role : "Guest"
 
           return {
             id: payload.sub,
             email: payload.email,
-            role: me.role,
+            role,
+            fullName: `${me.firstName} ${me.lastName}`,
+            avatarUrl: me.avatarUrl,
             accessToken: res.accessToken,
             refreshToken: res.refreshToken,
             accessTokenExpires: Date.now() + res.expiresInSeconds * 1000,

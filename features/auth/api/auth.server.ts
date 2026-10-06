@@ -1,4 +1,5 @@
 import { LogInUserRequest, AccessTokenResponse } from "@/lib/api/types/auth"
+import { LoggedInUserResponse } from "@/lib/api/types/users"
 
 const baseUrl = process.env.INTERNAL_API_URL
 
@@ -39,5 +40,5 @@ export async function getLoggedInUser(accessToken: string) {
   if (!res.ok) {
     throw new AuthRequestError(res.status, "Failed to fetch current user")
   }
-  return res.json() as Promise<{ id: string; role: "Guest" | "Admin" }>
+  return res.json() as LoggedInUserResponse
 }
