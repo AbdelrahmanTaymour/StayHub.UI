@@ -38,22 +38,22 @@ export function SiteHeader() {
     {
       key: "myBookings",
       label: t("myBookings"),
-      href: "/bookings",
+      href: "/me/bookings",
     },
     {
       key: "favorites",
       label: t("favorites"),
-      href: "/favorites",
+      href: "/me/favorites",
     },
     {
       key: "messages",
       label: t("messages"),
-      href: "/messages",
+      href: "/me/messages",
     },
     {
       key: "myApartments",
       label: t("myApartments"),
-      href: "/owner/apartments",
+      href: "/me/apartments",
     },
   ]
 
