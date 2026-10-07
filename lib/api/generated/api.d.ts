@@ -3068,7 +3068,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/users/{id}/name": {
+    "/api/v1/users/profile": {
         parameters: {
             query?: never;
             header?: never;
@@ -3080,9 +3080,53 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    id: string;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["StayHub.Api.Endpoints.Users.UpdateUserProfileRequest"];
                 };
+            };
+            responses: {
+                /** @description No Content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/profile/name": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
                 cookie?: never;
             };
             requestBody: {
@@ -3125,7 +3169,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/users/{id}/profile": {
+    "/api/v1/users/profile/avatar": {
         parameters: {
             query?: never;
             header?: never;
@@ -3137,23 +3181,35 @@ export interface paths {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    id: string;
-                };
+                path?: never;
                 cookie?: never;
             };
-            requestBody: {
+            requestBody?: {
                 content: {
-                    "application/json": components["schemas"]["StayHub.Api.Endpoints.Users.UpdateUserProfileRequest"];
+                    "multipart/form-data": {
+                        /** Format: binary */
+                        file: string;
+                    };
                 };
             };
             responses: {
-                /** @description No Content */
-                204: {
+                /** @description Created */
+                201: {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": string;
+                    };
+                };
+                /** @description Bad Request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
                 };
                 /** @description Not Found */
                 404: {
@@ -3505,7 +3561,6 @@ export interface components {
             lastName?: string | null;
         };
         "StayHub.Api.Endpoints.Users.UpdateUserProfileRequest": {
-            avatarUrl?: string | null;
             bio?: string | null;
             phoneNumber?: string | null;
         };

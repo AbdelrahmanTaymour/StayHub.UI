@@ -33,8 +33,6 @@ export function SiteHeader() {
 
   const isAuthenticated = status === "authenticated"
 
-  console.log(session?.user)
-
   const navItems: NavItem[] = [
     { key: "explore", label: t("explore"), href: "/" },
     {

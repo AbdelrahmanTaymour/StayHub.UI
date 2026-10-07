@@ -25,23 +25,42 @@ export async function getOwnerProfile(ownerId: string) {
   )
 }
 
-export async function updateUserName(id: string, body: UpdateUserNameRequest) {
+export async function updateUserName(body: UpdateUserNameRequest) {
   return unwrap(
-    await apiClient.PUT("/api/v1/users/{id}/name", {
-      params: { path: { id } },
+    await apiClient.PUT("/api/v1/users/profile/name", {
       body,
     })
   )
 }
 
-export async function updateUserProfile(
-  id: string,
-  body: UpdateUserProfileRequest
-) {
+export async function updateUserProfile(body: UpdateUserProfileRequest) {
   return unwrap(
-    await apiClient.PUT("/api/v1/users/{id}/profile", {
-      params: { path: { id } },
+    await apiClient.PUT("/api/v1/users/profile", {
       body,
+    })
+  )
+}
+
+export async function updateProfileAvatar(file: File) {
+  return unwrap(
+    await apiClient.PUT("/api/v1/users/profile/avatar", {
+      body: {
+        file: file as unknown as string,
+      },
+
+      bodySerializer(body) {
+        const fd = new FormData()
+
+        Object.entries(body as Record<string, unknown>).forEach(
+          ([key, value]) => {
+            if (value !== undefined && value !== null) {
+              fd.append(key, value as never)
+            }
+          }
+        )
+
+        return fd
+      },
     })
   )
 }
@@ -53,7 +72,6 @@ type UpdateUserNameRequest = {
 }
 
 type UpdateUserProfileRequest = {
-    avatarUrl?: string | null;
     bio?: string | null;
     phoneNumber?: string | null;
 }
