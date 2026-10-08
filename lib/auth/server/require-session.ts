@@ -2,8 +2,8 @@ import "server-only"
 
 import { redirect } from "next/navigation"
 
-import type { Locale } from "@/i18n/routing"
 import { auth } from "@/lib/auth/server/auth-api"
+import { Locale } from "@/i18n/routing"
 
 /**
  * Proxy checks are optimistic. This layout-level guard is the real security boundary, so call it from each protected route group's layout

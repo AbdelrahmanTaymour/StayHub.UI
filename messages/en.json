@@ -281,5 +281,59 @@
       "rating": "Highest rated",
       "reviews": "Most reviewed"
     }
+  },
+  "bookings": {
+    "pageTitle": "My Bookings",
+    "pageDescription": "Manage your upcoming reservations and past stays.",
+    "cancelledToast": "Booking cancelled",
+    "untitledApartment": "Untitled stay",
+    "nights": "({count, plural, one {# night} other {# nights}})",
+    "perNight": "{amount} / night",
+    "total": "Total: {amount}",
+    "viewDetails": "View details",
+    "cancelBooking": "Cancel booking",
+    "browseSimilar": "Browse similar stays",
+    "browseStays": "Browse stays",
+    "emptyTitle": "You haven't booked anything yet",
+    "emptyDescription": "When you reserve a stay, it will show up here.",
+    "errorTitle": "Unable to load your bookings",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "retry": "Try again",
+    "status": {
+      "reserved": "Pending approval",
+      "confirmed": "Confirmed",
+      "rejected": "Declined",
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    },
+    "tabs": {
+      "label": "Filter bookings",
+      "All": "All bookings",
+      "Upcoming": "Upcoming",
+      "Completed": "Completed",
+      "Cancelled": "Cancelled"
+    },
+    "sort": {
+      "label": "Sort by",
+      "stayNewest": "Stay date (newest first)",
+      "stayOldest": "Stay date (oldest first)",
+      "priceDesc": "Price (high to low)",
+      "priceAsc": "Price (low to high)"
+    },
+    "cancelDialog": {
+      "title": "Cancel this booking?",
+      "description": "Are you sure you want to cancel your stay at {name}?",
+      "refundNoticeTitle": "Refunds are automatic",
+      "refundNoticeBody": "If you've already paid, your refund will be processed automatically. If it doesn't appear within a few business days, you can request it manually from the booking's details.",
+      "confirm": "Yes, cancel booking",
+      "confirming": "Cancelling…",
+      "dismiss": "Keep booking"
+    },
+    "detail": {
+      "fallbackTitle": "Booking",
+      "metaDescription": "View your booking details, dates, and status.",
+      "notFoundTitle": "Booking not found",
+      "notFoundDescription": "This booking doesn't exist or isn't available to you."
+    }
   }
 }

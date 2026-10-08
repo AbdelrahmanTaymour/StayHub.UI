@@ -5,7 +5,6 @@ import { PageHeader } from "@/components/common/PageHeader"
 import { RatingSummary } from "@/components/common/RatingSummary"
 import { Card } from "@/components/ui/card"
 import type { ApartmentDetails } from "@/features/apartments/types/apartment-details"
-import { formatCityCountry } from "@/lib/utils/format-address"
 import { getGalleryImages } from "@/features/apartments/utils/gallery"
 import { ApartmentAmenities } from "./ApartmentAmenities"
 import { ApartmentBookingCard } from "./ApartmentBookingCard"
@@ -16,6 +15,7 @@ import { ApartmentLocation } from "./ApartmentLocation"
 import { ApartmentReviews } from "./ApartmentReviews"
 import { SaveApartmentButton } from "./SaveApartmentButton"
 import { ShareButton } from "../../../components/common/ShareButton"
+import { formatCityCountry } from "@/lib/utils/format-address"
 
 interface ApartmentDetailsViewProps {
   apartmentId: string

@@ -24,7 +24,7 @@ export const queryKeys = {
   bookings: {
     all: ["bookings"] as const,
     mine: (filter?: string, page?: number) =>
-      ["bookings", "mine", { filter, page }] as const,
-    detail: (id: string) => ["bookings", "detail", id] as const,
+      [...queryKeys.bookings.all, "mine", { filter, page }] as const,
+    detail: (id: string) => [...queryKeys.bookings.all, "detail", id] as const,
   },
 } as const

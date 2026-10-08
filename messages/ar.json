@@ -283,5 +283,59 @@
       "rating": "الأعلى تقييمًا",
       "reviews": "الأكثر تقييمات"
     }
+  },
+  "bookings": {
+    "pageTitle": "حجوزاتي",
+    "pageDescription": "تابع حجوزاتك القادمة وإقاماتك السابقة.",
+    "cancelledToast": "تم إلغاء الحجز",
+    "untitledApartment": "إقامة بدون اسم",
+    "nights": "({count, plural, one {ليلة واحدة} two {ليلتان} few {# ليالٍ} many {# ليلة} other {# ليلة}})",
+    "perNight": "{amount} / الليلة",
+    "total": "الإجمالي: {amount}",
+    "viewDetails": "عرض التفاصيل",
+    "cancelBooking": "إلغاء الحجز",
+    "browseSimilar": "تصفح إقامات مشابهة",
+    "browseStays": "تصفح الإقامات",
+    "emptyTitle": "لم تحجز أي إقامة بعد",
+    "emptyDescription": "عندما تحجز إقامة، ستظهر هنا.",
+    "errorTitle": "تعذّر تحميل حجوزاتك",
+    "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+    "retry": "إعادة المحاولة",
+    "status": {
+      "reserved": "بانتظار الموافقة",
+      "confirmed": "مؤكد",
+      "rejected": "مرفوض",
+      "cancelled": "ملغى",
+      "completed": "مكتمل"
+    },
+    "tabs": {
+      "label": "تصفية الحجوزات",
+      "All": "كل الحجوزات",
+      "Upcoming": "القادمة",
+      "Completed": "المكتملة",
+      "Cancelled": "الملغاة"
+    },
+    "sort": {
+      "label": "ترتيب حسب",
+      "stayNewest": "تاريخ الإقامة (الأحدث أولاً)",
+      "stayOldest": "تاريخ الإقامة (الأقدم أولاً)",
+      "priceDesc": "السعر (من الأعلى إلى الأقل)",
+      "priceAsc": "السعر (من الأقل إلى الأعلى)"
+    },
+    "cancelDialog": {
+      "title": "هل تريد إلغاء هذا الحجز؟",
+      "description": "هل أنت متأكد أنك تريد إلغاء إقامتك في {name}؟",
+      "refundNoticeTitle": "عملية الاسترداد تلقائية",
+      "refundNoticeBody": "إذا كنت قد دفعت بالفعل، سيتم استرداد المبلغ تلقائيًا. إذا لم يظهر خلال بضعة أيام عمل، يمكنك طلب الاسترداد يدويًا من تفاصيل الحجز.",
+      "confirm": "نعم، ألغِ الحجز",
+      "confirming": "جارٍ الإلغاء…",
+      "dismiss": "الإبقاء على الحجز"
+    },
+    "detail": {
+      "fallbackTitle": "الحجز",
+      "metaDescription": "عرض تفاصيل حجزك وتواريخه وحالته.",
+      "notFoundTitle": "الحجز غير موجود",
+      "notFoundDescription": "هذا الحجز غير موجود أو غير متاح لك."
+    }
   }
 }

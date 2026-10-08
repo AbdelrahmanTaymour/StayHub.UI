@@ -16,7 +16,7 @@ export function useReserveBooking() {
     successMessage: t("reservedToast"),
     invalidate: [queryKeys.bookings.all],
     onSuccess: (bookingId) => {
-      router.push(`/bookings/${bookingId}`)
+      router.push(`/me/bookings/${bookingId}`)
     },
   })
 }

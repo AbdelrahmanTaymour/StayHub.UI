@@ -1,5 +1,6 @@
 "use client"
 
+import { AlertTriangle } from "lucide-react"
 import type { ReactElement, ReactNode } from "react"
 
 import {
@@ -20,7 +21,6 @@ interface ConfirmDialogProps {
   trigger: ReactElement
   title: string
   description?: string
-  /** For a shadcn Alert between the description and the actions (e.g. a refund notice). */
   notice?: ReactNode
   confirmLabel: string
   pendingLabel: string
@@ -30,11 +30,6 @@ interface ConfirmDialogProps {
   isDestructive?: boolean
 }
 
-/**
- * Generic confirm/cancel dialog for consequential actions (cancel booking,
- * reject booking, deactivate apartment, revoke staff, refund). The caller
- * owns the mutation; this component only owns the prompt.
- */
 export function ConfirmDialog({
   trigger,
   title,
@@ -50,15 +45,30 @@ export function ConfirmDialog({
   return (
     <AlertDialog>
       <AlertDialogTrigger render={trigger} />
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          {description ? (
-            <AlertDialogDescription>{description}</AlertDialogDescription>
-          ) : null}
+      <AlertDialogContent className="gap-5">
+        <AlertDialogHeader className="flex-row items-start gap-3 space-y-0">
+          <span
+            aria-hidden="true"
+            className={cn(
+              "flex size-10 shrink-0 items-center justify-center rounded-full",
+              isDestructive
+                ? "bg-destructive/10 text-destructive"
+                : "bg-muted text-tertiary"
+            )}
+          >
+            <AlertTriangle className="size-5" />
+          </span>
+          <div className="flex flex-col gap-1 pt-1">
+            <AlertDialogTitle>{title}</AlertDialogTitle>
+            {description ? (
+              <AlertDialogDescription className="text-sm font-normal text-foreground/70">
+                {description}
+              </AlertDialogDescription>
+            ) : null}
+          </div>
         </AlertDialogHeader>
 
-        {notice ? <div className="px-6">{notice}</div> : null}
+        {notice}
 
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isConfirming}>
@@ -67,7 +77,6 @@ export function ConfirmDialog({
           <AlertDialogAction
             disabled={isConfirming}
             onClick={(event) => {
-              // Keep the dialog open until the mutation settles, so a failure stays visible.
               event.preventDefault()
               onConfirm()
             }}

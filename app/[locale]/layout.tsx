@@ -24,6 +24,7 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 })
 
 export default async function RootLayout({
@@ -41,8 +42,11 @@ export default async function RootLayout({
 
   const session = await auth()
 
-  const dir = locale === "ar" ? "rtl" : "ltr"
   const isArabic = locale === "ar"
+  const dir = isArabic ? "rtl" : "ltr"
+
+  // Select primary active font based on locale
+  const activeFont = isArabic ? cairo : inter
 
   return (
     <html
@@ -51,10 +55,9 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={cn(
         "h-full antialiased",
-        inter.variable,
-        cairo.variable,
+        activeFont.variable,
         fontMono.variable,
-        isArabic ? cairo.className : inter.className
+        activeFont.className
       )}
     >
       <body className="flex min-h-full flex-col">

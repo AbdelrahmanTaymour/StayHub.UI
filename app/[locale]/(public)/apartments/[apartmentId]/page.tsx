@@ -3,8 +3,8 @@ import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { ApartmentDetailsView } from "@/features/apartments/components/ApartmentDetailsView"
-import { formatCityCountry } from "@/lib/utils/format-address"
 import { getApartmentDetailsServer } from "@/features/apartments/api/apartments.server"
+import { formatCityCountry } from "@/lib/utils/format-address"
 
 interface ApartmentDetailsPageProps {
   params: Promise<{ locale: string; apartmentId: string }>

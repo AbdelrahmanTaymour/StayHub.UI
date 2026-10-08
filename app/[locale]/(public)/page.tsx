@@ -35,7 +35,7 @@ export default async function HomePage() {
               className="flex flex-col gap-2 text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-4xl lg:text-5xl"
             >
               <span>{t("heroLineOne")}</span>
-              <span className="bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text pb-1 text-transparent">
+              <span className="bg-clip-text pb-4 text-tertiary">
                 {t("heroLineTwo")}
               </span>
             </h1>
