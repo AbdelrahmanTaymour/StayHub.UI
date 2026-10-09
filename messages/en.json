@@ -18,6 +18,12 @@
     "readMore": {
       "more": "See more",
       "less": "See less"
+    },
+    "staySummary": {
+      "fallbackHostName": "Your host",
+      "hostedBy": "Hosted by",
+      "readyToHelp": "Ready to answer your questions",
+      "messageHost": "Message host"
     }
   },
   "nav": {
@@ -299,6 +305,9 @@
     "errorTitle": "Unable to load your bookings",
     "errorDescription": "An unexpected error occurred. Please try again.",
     "retry": "Try again",
+    "payNow": "Pay Now",
+    "writeReview": "Write a Review",
+    "imageAlt": "{title} in {city}",
     "status": {
       "reserved": "Pending approval",
       "confirmed": "Confirmed",
@@ -330,10 +339,94 @@
       "dismiss": "Keep booking"
     },
     "detail": {
+      "pageTitle": "Booking Details",
+      "meta": "Booked {date}",
       "fallbackTitle": "Booking",
-      "metaDescription": "View your booking details, dates, and status.",
+      "metaDescription": "View your booking details, dates, address, and payment status.",
+      "breadcrumbBookings": "My Bookings",
+      "yourStay": "Your Stay",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "propertyAddress": "Property Address",
+      "copyAddress": "Copy address",
+      "addressCopied": "Address copied",
+      "openDirections": "Open directions",
+      "totalAmountDue": "Total Amount Due",
+      "nightsRow": "{price} × {count, plural, one {# night} other {# nights}}",
+      "cleaningFee": "Cleaning & preparation fee",
+      "amenitiesFee": "Amenities & service upcharge",
+      "totalBalance": "Total Balance",
+      "payNow": "Pay Now — {amount}",
+      "cancelBooking": "Cancel Booking",
+      "guarantee": "StayHub Buyer Protection Guarantee included.",
       "notFoundTitle": "Booking not found",
-      "notFoundDescription": "This booking doesn't exist or isn't available to you."
+      "notFoundDescription": "This booking doesn't exist or isn't available to you.",
+      "writeReview": "Write a Review"
+    }
+  },
+  "payment": {
+    "pageTitle": "Payment",
+    "pageDescription": "Complete your payment to confirm this booking.",
+    "metaDescription": "Securely pay for your StayHub booking with Stripe.",
+    "fallbackTitle": "Booking",
+    "breadcrumbBookings": "My Bookings",
+    "breadcrumbPayment": "Payment",
+    "totalDue": "Total due",
+    "initiateErrorToast": "We couldn't start the payment. Please try again.",
+    "initiateErrorTitle": "Unable to start payment",
+    "initiateErrorDescription": "Something went wrong setting up this payment. Please try again, or contact support if the problem continues.",
+    "form": {
+      "pay": "Pay {amount}",
+      "processing": "Processing…",
+      "genericError": "We couldn't process your card. Please check your details and try again.",
+      "disclosure": "By confirming payment, you authorize StayHub to charge your card according to the terms.",
+      "loadErrorTitle": "Payment form couldn't load",
+      "loadErrorDescription": "Something went wrong loading the secure payment form. Please refresh the page or try again shortly."
+    },
+    "pending": {
+      "srStatus": "Confirming payment with your bank",
+      "title": "Processing your payment…",
+      "description": "This usually takes just a few seconds. Please stay on this page — don't refresh or go back."
+    },
+    "success": {
+      "title": "You're all set — your stay is booked!",
+      "description": "A receipt and your check-in details have been sent to your email.",
+      "amountPaid": "Amount paid",
+      "viewBooking": "View Booking Details"
+    },
+    "failed": {
+      "title": "We couldn't charge your card",
+      "description": "Your bank declined this payment. Your booking is still reserved — no charge was made, and you can try again right away.",
+      "retry": "Try a Different Card"
+    }
+  },
+  "paymentDisplayStatus": {
+    "unpaid": "Unpaid",
+    "succeeded": "Paid",
+    "failed": "Failed",
+    "refunded": "Refunded"
+  },
+  "reviews": {
+    "dialogTitle": "Write a review",
+    "dialogDescription": "Share your experience staying at {name}.",
+    "commentLabel": "Your review",
+    "commentPlaceholder": "What stood out about your stay?",
+    "commentCount": "{count} / {max}",
+    "submittedToast": "Thanks for your review!",
+    "submitError": "We couldn't submit your review. Please try again.",
+    "cancel": "Cancel",
+    "submit": "Submit review",
+    "submitting": "Submitting…",
+    "rating": {
+      "label": "Rating",
+      "starLabel": "{count, plural, one {# star} other {# stars}}",
+      "selectedLabel": "{count, plural, one {# star selected} other {# stars selected}}",
+      "noneSelected": "No rating selected"
+    },
+    "errors": {
+      "ratingRequired": "Please select a rating.",
+      "commentRequired": "Please write a few words about your stay.",
+      "commentTooLong": "Reviews can be up to 2000 characters."
     }
   }
 }

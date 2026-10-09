@@ -5,10 +5,17 @@ import { useLocale, useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { StatusBadge } from "@/components/common/StatusBadge"
-import { bookingStatusConfig } from "@/lib/status/status-config"
+import {
+  bookingStatusConfig,
+  paymentDisplayStatusConfig,
+} from "@/lib/status/status-config"
+import { getBookingActions } from "@/features/bookings/utils/booking-actions"
+import { getPaymentDisplayStatus } from "@/features/bookings/utils/payment-display-status"
 import { CancelBookingDialog } from "./CancelBookingDialog"
 import { MyBookingsResponse } from "@/lib/api/types/bookings"
+import { formatDate } from "@/features/apartments/utils/format-date"
 import { formatPrice } from "@/lib/utils/formatPrice"
+import { WriteReviewDialog } from "@/features/reviews/components/WriteReviewDialog"
 
 interface BookingCardProps {
   booking: MyBookingsResponse
@@ -33,11 +40,19 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
     durationEnd,
     nights,
     canCancel,
+    paymentStatus,
+    hasReview,
   } = booking
 
   const title = apartmentName ?? t("untitledApartment")
   const detailHref = id ? `/me/bookings/${id}` : undefined
-  const imageAlt = `Booking - ${apartmentName} - ${apartmentCity}`
+  const paymentDisplay = getPaymentDisplayStatus(paymentStatus)
+  const { canPay, canCancelBooking, canReview } = getBookingActions({
+    status,
+    canCancel,
+    paymentStatus,
+    hasReview,
+  })
 
   const dateRange =
     durationStart && durationEnd
@@ -45,21 +60,19 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
       : null
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md lg:grid lg:grid-cols-12">
+    <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md lg:grid lg:grid-cols-12">
       <div className="relative aspect-video overflow-hidden bg-muted lg:col-span-4 lg:aspect-auto">
         {primaryImageUrl ? (
           <Image
             src={primaryImageUrl}
-            alt={imageAlt}
+            alt={t("imageAlt", { title, city: apartmentCity ?? "" })}
             fill
             priority={isPriority}
             sizes="(min-width: 1280px) 420px, (min-width: 1024px) 33vw, 100vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            className="object-cover"
           />
         ) : null}
-        <div className="absolute inset-s-3 top-3 flex items-center gap-2 lg:hidden">
-          {/* TODO: once the backend adds payment status to MyBookingsResponse, pass
-      booking.paymentStatus here instead of leaving this slot empty. */}
+        <div className="absolute inset-s-3 top-3 flex flex-wrap items-center gap-2 lg:hidden">
           {status ? (
             <StatusBadge
               status={status}
@@ -67,6 +80,11 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
               namespace="bookings.status"
             />
           ) : null}
+          <StatusBadge
+            status={paymentDisplay}
+            config={paymentDisplayStatusConfig}
+            namespace="paymentDisplayStatus"
+          />
         </div>
       </div>
 
@@ -80,7 +98,7 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
                   {apartmentCity}
                 </p>
               ) : null}
-              <h2 className="text-lg font-semibold text-foreground transition-colors group-hover:text-tertiary">
+              <h2 className="text-lg font-semibold text-foreground">
                 {apartmentId ? (
                   <Link
                     href={`/apartments/${apartmentId}`}
@@ -94,9 +112,7 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
               </h2>
             </div>
 
-            <div className="hidden items-center gap-2 lg:flex">
-              {/* TODO: once the backend adds payment status to MyBookingsResponse, pass
-      booking.paymentStatus here instead of leaving this slot empty. */}
+            <div className="hidden flex-wrap items-center gap-2 lg:flex">
               {status ? (
                 <StatusBadge
                   status={status}
@@ -104,6 +120,11 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
                   namespace="bookings.status"
                 />
               ) : null}
+              <StatusBadge
+                status={paymentDisplay}
+                config={paymentDisplayStatusConfig}
+                namespace="paymentDisplayStatus"
+              />
             </div>
           </div>
 
@@ -156,7 +177,28 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
               </Link>
             ) : null}
 
-            {canCancel && id ? (
+            {canPay && id ? (
+              <Link
+                href={`/me/bookings/${id}/payment`}
+                className={buttonVariants({ size: "sm" })}
+              >
+                {t("payNow")}
+              </Link>
+            ) : null}
+
+            {canReview && id ? (
+              <WriteReviewDialog
+                bookingId={id}
+                apartmentName={title}
+                trigger={
+                  <Button type="button" size="sm">
+                    {t("writeReview")}
+                  </Button>
+                }
+              />
+            ) : null}
+
+            {canCancelBooking && id ? (
               <CancelBookingDialog
                 bookingId={id}
                 apartmentName={title}
@@ -177,12 +219,4 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
       </div>
     </article>
   )
-}
-
-function formatDate(value: string, locale: string) {
-  return new Intl.DateTimeFormat(locale, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(value))
 }

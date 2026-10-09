@@ -1,3 +1,4 @@
+import { PaymentDisplayStatus } from "@/features/bookings/utils/payment-display-status"
 import { BookingStatus } from "../api/types/bookings"
 import { MaintenanceRequestStatus } from "../api/types/maintenance"
 import { PaymentStatus } from "../api/types/payments"
@@ -33,6 +34,16 @@ export const maintenanceStatusConfig: Record<
 
 export const paymentStatusConfig: Record<PaymentStatus, StatusConfig> = {
   Pending: { label: "pending", variant: "secondary", tone: "warning" },
+  Succeeded: { label: "succeeded", variant: "default", tone: "success" },
+  Failed: { label: "failed", variant: "destructive", tone: "destructive" },
+  Refunded: { label: "refunded", variant: "outline", tone: "info" },
+}
+
+export const paymentDisplayStatusConfig: Record<
+  PaymentDisplayStatus,
+  StatusConfig
+> = {
+  Unpaid: { label: "unpaid", variant: "secondary", tone: "warning" },
   Succeeded: { label: "succeeded", variant: "default", tone: "success" },
   Failed: { label: "failed", variant: "destructive", tone: "destructive" },
   Refunded: { label: "refunded", variant: "outline", tone: "info" },

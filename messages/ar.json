@@ -18,6 +18,12 @@
       "previous": "السابق",
       "next": "التالي",
       "status": "الصفحة {page} من {totalPages}"
+    },
+    "staySummary": {
+      "fallbackHostName": "مضيفك",
+      "hostedBy": "يستضيفك",
+      "readyToHelp": "مستعد للإجابة عن استفساراتك",
+      "messageHost": "مراسلة المضيف"
     }
   },
   "nav": {
@@ -301,6 +307,9 @@
     "errorTitle": "تعذّر تحميل حجوزاتك",
     "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
     "retry": "إعادة المحاولة",
+    "payNow": "ادفع الآن",
+    "writeReview": "اكتب تقييمًا",
+    "imageAlt": "{title} في {city}",
     "status": {
       "reserved": "بانتظار الموافقة",
       "confirmed": "مؤكد",
@@ -332,10 +341,94 @@
       "dismiss": "الإبقاء على الحجز"
     },
     "detail": {
+      "pageTitle": "تفاصيل الحجز",
+      "meta": "تم الحجز في {date}",
       "fallbackTitle": "الحجز",
-      "metaDescription": "عرض تفاصيل حجزك وتواريخه وحالته.",
+      "metaDescription": "عرض تفاصيل حجزك وتواريخه وعنوانه وحالة الدفع.",
+      "breadcrumbBookings": "حجوزاتي",
+      "yourStay": "إقامتك",
+      "checkIn": "تاريخ الوصول",
+      "checkOut": "تاريخ المغادرة",
+      "propertyAddress": "عنوان العقار",
+      "copyAddress": "نسخ العنوان",
+      "addressCopied": "تم نسخ العنوان",
+      "openDirections": "فتح الاتجاهات",
+      "totalAmountDue": "إجمالي المبلغ المستحق",
+      "nightsRow": "{price} × {count, plural, one {ليلة واحدة} two {ليلتان} few {# ليالٍ} many {# ليلة} other {# ليلة}}",
+      "cleaningFee": "رسوم التنظيف والتجهيز",
+      "amenitiesFee": "رسوم المرافق والخدمات",
+      "totalBalance": "الإجمالي المستحق",
+      "payNow": "ادفع الآن — {amount}",
+      "cancelBooking": "إلغاء الحجز",
+      "guarantee": "يشمل ضمان حماية المشتري من StayHub.",
       "notFoundTitle": "الحجز غير موجود",
-      "notFoundDescription": "هذا الحجز غير موجود أو غير متاح لك."
+      "notFoundDescription": "هذا الحجز غير موجود أو غير متاح لك.",
+      "writeReview": "اكتب تقييمًا"
+    }
+  },
+  "payment": {
+    "pageTitle": "الدفع",
+    "pageDescription": "أكمل الدفع لتأكيد هذا الحجز.",
+    "metaDescription": "ادفع بأمان مقابل حجزك على StayHub عبر Stripe.",
+    "fallbackTitle": "الحجز",
+    "breadcrumbBookings": "حجوزاتي",
+    "breadcrumbPayment": "الدفع",
+    "totalDue": "الإجمالي المستحق",
+    "initiateErrorToast": "تعذّر بدء عملية الدفع. حاول مرة أخرى.",
+    "initiateErrorTitle": "تعذّر بدء الدفع",
+    "initiateErrorDescription": "حدث خطأ أثناء إعداد عملية الدفع. حاول مرة أخرى، أو تواصل مع الدعم إذا استمرت المشكلة.",
+    "form": {
+      "pay": "ادفع {amount}",
+      "processing": "جارٍ المعالجة…",
+      "genericError": "تعذّر معالجة بطاقتك. تحقق من البيانات وحاول مرة أخرى.",
+      "disclosure": "بتأكيد الدفع، فإنك تفوّض StayHub بخصم المبلغ من بطاقتك وفقًا للشروط.",
+      "loadErrorTitle": "تعذّر تحميل نموذج الدفع",
+      "loadErrorDescription": "حدث خطأ أثناء تحميل نموذج الدفع الآمن. يُرجى تحديث الصفحة أو المحاولة مرة أخرى بعد قليل."
+    },
+    "pending": {
+      "srStatus": "جارٍ تأكيد الدفع مع بنكك",
+      "title": "جارٍ معالجة دفعتك…",
+      "description": "عادةً ما يستغرق هذا بضع ثوانٍ فقط. يُرجى البقاء في هذه الصفحة — لا تقم بالتحديث أو الرجوع."
+    },
+    "success": {
+      "title": "كل شيء جاهز — تم حجز إقامتك!",
+      "description": "تم إرسال إيصال وتفاصيل تسجيل الوصول إلى بريدك الإلكتروني.",
+      "amountPaid": "المبلغ المدفوع",
+      "viewBooking": "عرض تفاصيل الحجز"
+    },
+    "failed": {
+      "title": "تعذّر خصم المبلغ من بطاقتك",
+      "description": "رفض بنكك هذه العملية. حجزك لا يزال محجوزًا — لم يتم خصم أي مبلغ، ويمكنك المحاولة مرة أخرى فورًا.",
+      "retry": "جرّب بطاقة أخرى"
+    }
+  },
+  "paymentDisplayStatus": {
+    "unpaid": "غير مدفوع",
+    "succeeded": "مدفوع",
+    "failed": "فشل الدفع",
+    "refunded": "تم الاسترداد"
+  },
+  "reviews": {
+    "dialogTitle": "اكتب تقييمًا",
+    "dialogDescription": "شاركنا تجربتك في إقامتك في {name}.",
+    "commentLabel": "تقييمك",
+    "commentPlaceholder": "ما الذي أعجبك في إقامتك؟",
+    "commentCount": "{count} / {max}",
+    "submittedToast": "شكرًا على تقييمك!",
+    "submitError": "تعذّر إرسال تقييمك. حاول مرة أخرى.",
+    "cancel": "إلغاء",
+    "submit": "إرسال التقييم",
+    "submitting": "جارٍ الإرسال…",
+    "rating": {
+      "label": "التقييم",
+      "starLabel": "{count, plural, one {نجمة واحدة} two {نجمتان} few {# نجوم} many {# نجمة} other {# نجمة}}",
+      "selectedLabel": "{count, plural, one {تم اختيار نجمة واحدة} two {تم اختيار نجمتين} few {تم اختيار # نجوم} many {تم اختيار # نجمة} other {تم اختيار # نجمة}}",
+      "noneSelected": "لم يتم اختيار تقييم"
+    },
+    "errors": {
+      "ratingRequired": "يُرجى اختيار تقييم.",
+      "commentRequired": "يُرجى كتابة بضع كلمات عن إقامتك.",
+      "commentTooLong": "يمكن أن يصل التقييم إلى 2000 حرف."
     }
   }
 }

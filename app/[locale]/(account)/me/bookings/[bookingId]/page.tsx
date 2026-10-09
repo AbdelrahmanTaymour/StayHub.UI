@@ -2,10 +2,9 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { PageHeader } from "@/components/common/PageHeader"
+import { PageBreadcrumb } from "@/components/common/PageBreadcrumb"
+import { BookingDetailView } from "@/features/bookings/components/BookingDetailView"
 import { getBookingServer } from "@/features/bookings/api/bookings.server"
-import { StatusBadge } from "@/components/common/StatusBadge"
-import { bookingStatusConfig } from "@/lib/status/status-config"
 
 interface BookingDetailPageProps {
   params: Promise<{ locale: string; bookingId: string }>
@@ -30,26 +29,21 @@ export default async function BookingDetailPage({
   const { bookingId } = await params
 
   const booking = await getBookingServer(bookingId)
-
   if (!booking) notFound()
 
   const t = await getTranslations("bookings.detail")
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-6 sm:px-6 md:py-8 lg:px-8">
-      <PageHeader
-        title={booking.apartmentName ?? t("fallbackTitle")}
-        actions={
-          booking.status ? (
-            <StatusBadge
-              status={booking.status}
-              config={bookingStatusConfig}
-              namespace="bookings.status"
-            />
-          ) : null
-        }
-      />
-      {/* TODO: dates, price breakdown, payment status/Pay action, cancel, review CTA — next pass */}
-    </div>
+    <>
+      <div className="mx-auto w-full max-w-7xl px-6 pt-6">
+        <PageBreadcrumb
+          items={[
+            { label: t("breadcrumbBookings"), href: "/me/bookings" },
+            { label: booking.apartmentName ?? t("fallbackTitle") },
+          ]}
+        />
+      </div>
+      <BookingDetailView booking={booking} />
+    </>
   )
 }

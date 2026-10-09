@@ -3814,6 +3814,7 @@ export interface components {
             guestFullName?: string | null;
             guestAvatarUrl?: string | null;
             status?: components["schemas"]["StayHub.Domain.Bookings.BookingStatus"];
+            paymentStatus?: components["schemas"]["StayHub.Domain.Payments.PaymentStatus"];
             /** Format: date */
             durationStart?: string;
             /** Format: date */
@@ -3840,7 +3841,9 @@ export interface components {
             /** Format: uuid */
             id?: string;
             status?: components["schemas"]["StayHub.Domain.Bookings.BookingStatus"];
+            paymentStatus?: components["schemas"]["StayHub.Domain.Payments.PaymentStatus"];
             canCancel?: boolean;
+            hasReview?: boolean;
             /** Format: date-time */
             createdOnUtc?: string;
             /** Format: date-time */
@@ -3877,6 +3880,7 @@ export interface components {
             /** Format: uuid */
             apartmentId?: string;
             status?: components["schemas"]["StayHub.Domain.Bookings.BookingStatus"];
+            paymentStatus?: components["schemas"]["StayHub.Domain.Payments.PaymentStatus"];
             /** Format: double */
             totalPriceAmount?: number;
             totalPriceCurrency?: string | null;
@@ -3889,6 +3893,7 @@ export interface components {
             /** Format: uuid */
             bookingId?: string;
             status?: components["schemas"]["StayHub.Domain.Bookings.BookingStatus"];
+            paymentStatus?: components["schemas"]["StayHub.Domain.Payments.PaymentStatus"];
             /** Format: uuid */
             apartmentId?: string;
             apartmentName?: string | null;
@@ -3918,6 +3923,8 @@ export interface components {
             apartmentCity?: string | null;
             primaryImageUrl?: string | null;
             status?: components["schemas"]["StayHub.Domain.Bookings.BookingStatus"];
+            paymentStatus?: components["schemas"]["StayHub.Domain.Payments.PaymentStatus"];
+            hasReview?: boolean;
             /** Format: double */
             pricePerNight?: number;
             /** Format: double */
