@@ -4,7 +4,6 @@ import { cache } from "react"
 
 import { apiClient } from "@/lib/api/client"
 import { ApiError, unwrap } from "@/lib/errors/api-error"
-import { OwnerApartmentsResponse } from "@/lib/api/types/apartments"
 import { QueryParameters } from "@/lib/api/type-utils"
 
 /**
@@ -50,15 +49,3 @@ export const getOwnerApartmentsServer = cache(
     }
   }
 )
-
-// export const getOwnerApartmentsServer = cache(
-//   async (ownerId: string, query?: OwnerApartmentsQuery) => {
-//     try{
-//       const owner = await unwrap(
-//       await apiClient.GET("/api/v1/apartments/by-owner/{ownerId}", {
-//         params: { path: { ownerId }, query },
-//       })
-//     )
-//     }
-//   }
-// )

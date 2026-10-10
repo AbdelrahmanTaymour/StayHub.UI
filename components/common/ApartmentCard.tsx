@@ -24,14 +24,15 @@ export interface ApartmentCardData {
 
 interface ApartmentCardProps {
   apartment: ApartmentCardData
-  /** Rendered in the top-right corner of the image. Pass the page's FavoriteButton. */
   favoriteButton?: ReactNode
+  priority?: boolean
   className?: string
 }
 
 export function ApartmentCard({
   apartment,
   favoriteButton,
+  priority = false,
   className,
 }: ApartmentCardProps) {
   const t = useTranslations("apartmentCard")
@@ -66,6 +67,7 @@ export function ApartmentCard({
             src={primaryImageUrl}
             alt={imageAlt}
             fill
+            priority={priority}
             sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />

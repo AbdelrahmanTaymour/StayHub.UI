@@ -15,7 +15,7 @@ import { ApartmentLocation } from "./ApartmentLocation"
 import { ApartmentReviews } from "./ApartmentReviews"
 import { SaveApartmentButton } from "./SaveApartmentButton"
 import { ShareButton } from "../../../components/common/ShareButton"
-import { formatCityCountry } from "@/lib/utils/format-address"
+import { formatCityCountry } from "@/lib/utils/formatAddress"
 
 interface ApartmentDetailsViewProps {
   apartmentId: string

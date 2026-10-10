@@ -10,16 +10,22 @@ const SKELETON_COUNT = 8
 
 interface ApartmentGridProps {
   apartments: ApartmentCardData[]
+  priorityCount?: number
   className?: string
 }
 
-export function ApartmentGrid({ apartments, className }: ApartmentGridProps) {
+export function ApartmentGrid({
+  apartments,
+  priorityCount = 0,
+  className,
+}: ApartmentGridProps) {
   return (
     <ul className={cn("grid gap-6 sm:grid-cols-2 xl:grid-cols-4", className)}>
-      {apartments.map((apartment) => (
+      {apartments.map((apartment, index) => (
         <li key={apartment.id}>
           <ApartmentCard
             apartment={apartment}
+            priority={index < priorityCount}
             favoriteButton={
               apartment.id ? (
                 <FavoriteButton

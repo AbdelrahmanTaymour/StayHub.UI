@@ -99,7 +99,7 @@ export function ApartmentResults() {
         />
       ) : (
         <>
-          <ApartmentGrid apartments={items} />
+          <ApartmentGrid apartments={items} priorityCount={8} />
 
           {totalPages > 1 ? (
             <Pagination page={page} totalPages={totalPages} />

@@ -15,7 +15,7 @@ import { getBookingActions } from "@/features/bookings/utils/booking-actions"
 
 import { Link } from "@/i18n/navigation"
 import { BookingResponse } from "@/lib/api/types/bookings"
-import { formatAddress, formatCityCountry } from "@/lib/utils/format-address"
+import { formatAddress, formatCityCountry } from "@/lib/utils/formatAddress"
 import { CopyAddressButton } from "./CopyAddressButton"
 import { formatPrice } from "@/lib/utils/formatPrice"
 import { formatDate } from "@/features/apartments/utils/format-date"

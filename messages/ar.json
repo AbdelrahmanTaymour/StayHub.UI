@@ -97,6 +97,9 @@
     "total": "الإجمالي {amount}"
   },
   "favorites": {
+    "pageTitle": "المفضلة",
+    "pageDescription": "إقاماتك المحفوظة، كلها في مكان واحد.",
+    "listHeading": "الإقامات المحفوظة",
     "label": "المفضلة",
     "loginMessage": "سجّل الدخول لحفظ الإقامات المفضلة لديك.",
     "save": "حفظ",
@@ -104,7 +107,11 @@
     "remove": "إزالة من المفضلة",
     "addedToast": "تمت الإضافة إلى المفضلة",
     "removedToast": "تمت الإزالة من المفضلة",
-    "updateErrorToast": "تعذر تحديث المفضلة، حاول مرة أخرى."
+    "updateErrorToast": "تعذر تحديث المفضلة، حاول مرة أخرى.",
+
+    "emptyTitle": "لا توجد عناصر مفضلة بعد",
+    "emptyDescription": "اضغط على أيقونة القلب في أي إقامة لحفظها هنا.",
+    "browseApartments": "تصفح الشقق"
   },
   "auth": {
     "loginTitle": "مرحبًا بك مجددًا",

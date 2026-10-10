@@ -97,6 +97,9 @@
     "total": "{amount} total"
   },
   "favorites": {
+    "pageTitle": "Favorites",
+    "pageDescription": "Your saved stays, all in one place.",
+    "listHeading": "Saved stays",
     "label": "Favorite",
     "loginMessage": "Log in to save your favorite stays.",
     "save": "Save",
@@ -104,7 +107,10 @@
     "remove": "Remove from favorites",
     "addedToast": "Added to favorites",
     "removedToast": "Removed from favorites",
-    "updateErrorToast": "Couldn't update favorites. Please try again."
+    "updateErrorToast": "Couldn't update favorites. Please try again.",
+    "emptyTitle": "No favorites yet",
+    "emptyDescription": "Tap the heart on any stay to save it here.",
+    "browseApartments": "Browse apartments"
   },
   "auth": {
     "loginTitle": "Welcome back",

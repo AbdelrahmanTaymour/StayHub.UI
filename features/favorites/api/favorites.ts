@@ -1,8 +1,6 @@
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
+import { GetFavoritesQuery } from "@/lib/api/types/favorites"
 import { unwrap } from "@/lib/errors/api-error"
-import type { QueryParameters } from "@/lib/api/type-utils"
-
-type GetFavoritesQuery = QueryParameters<"/api/v1/favorites", "get">
 
 export async function getFavorites(query?: GetFavoritesQuery) {
   return unwrap(await apiClient.GET("/api/v1/favorites", { params: { query } }))

@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server"
 
 import { ApartmentDetailsView } from "@/features/apartments/components/ApartmentDetailsView"
 import { getApartmentDetailsServer } from "@/features/apartments/api/apartments.server"
-import { formatCityCountry } from "@/lib/utils/format-address"
+import { formatCityCountry } from "@/lib/utils/formatAddress"
 
 interface ApartmentDetailsPageProps {
   params: Promise<{ locale: string; apartmentId: string }>

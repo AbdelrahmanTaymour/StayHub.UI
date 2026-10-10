@@ -3973,6 +3973,7 @@ export interface components {
             apartmentId?: string;
             name?: string | null;
             city?: string | null;
+            country?: string | null;
             /** Format: double */
             pricePerNight?: number;
             currency?: string | null;
