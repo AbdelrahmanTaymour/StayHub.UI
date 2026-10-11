@@ -39,17 +39,13 @@ export function ApartmentResults() {
   const previousPage = useRef(page)
 
   useEffect(() => {
-    // Skip the first render and any unchanged page, so loading doesn't jump the scroll.
-    if (previousPage.current === page) return
-    previousPage.current = page
-
-    // Wait until the new results are rendered, not the skeleton from the previous page.
-    if (isPlaceholderData || isPending) return
-
-    sectionRef.current?.scrollIntoView({
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-      block: "start",
-    })
+    if (previousPage.current !== page && !isPlaceholderData && !isPending) {
+      previousPage.current = page
+      sectionRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+        block: "start",
+      })
+    }
   }, [page, isPlaceholderData, isPending])
 
   return (

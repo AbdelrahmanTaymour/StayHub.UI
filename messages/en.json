@@ -182,8 +182,7 @@
       "title": "Hosted by <owner>{name}</owner>",
       "fallbackName": "Your host",
       "readyToHelp": "Ready to answer your questions",
-      "messageHost": "Message host",
-      "loginToMessage": "Log in to message the host."
+      "messageHost": "Message host"
     },
     "description": {
       "title": "About this stay"
@@ -284,7 +283,7 @@
     "listingsEmpty": "This host has no listings yet.",
 
     "propertiesHeading": "Properties by {name}",
-    "contactHost": "Contact host",
+    "messageHost": "Contact host",
     "contactLoginMessage": "Log in to contact this host.",
     "sortLabel": "Sort by",
     "sort": {
@@ -433,6 +432,62 @@
       "ratingRequired": "Please select a rating.",
       "commentRequired": "Please write a few words about your stay.",
       "commentTooLong": "Reviews can be up to 2000 characters."
+    }
+  },
+  "chats": {
+    "pageTitle": "Messages",
+    "metaDescription": "View and send messages with hosts and guests about your StayHub stays.",
+    "conversationsListLabel": "Conversations",
+    "inboxEmptyTitle": "No conversations yet",
+    "inboxEmptyDescription": "Message a host from an apartment page to start one.",
+    "unknownParticipant": "Unknown",
+    "noMessagesPreview": "No messages yet",
+    "selectConversationTitle": "Select a conversation",
+    "selectConversationDescription": "Choose a conversation from the list to see your messages.",
+    "backToConversations": "Back to conversations",
+    "backToConversation": "Back to conversation",
+    "reservationDetails": "Reservation details",
+    "noBioPreview": "This host hasn't added a bio yet.",
+    "threadEmptyTitle": "No messages in this conversation yet",
+    "threadEmptyDescription": "Send a note to get started — ask about check-in timing, special requests, or anything else.",
+    "composerPlaceholder": "Write a message...",
+    "composerPlaceholderWithName": "Write a message to {name}...",
+    "composerLabel": "Message",
+    "sendHint": "Press Shift + Enter for a new line",
+    "send": "Send",
+    "read": "Read",
+    "delivered": "Delivered",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "noBookingTitle": "No reservation for this conversation",
+    "noBookingDescription": "This chat isn't linked to a booking yet.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "duration": "Duration",
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "totalCost": "Total cost",
+    "bookingStatus": {
+      "Reserved": "Pending confirmation",
+      "Confirmed": "Confirmed",
+      "Rejected": "Declined",
+      "Cancelled": "Cancelled",
+      "Completed": "Completed"
+    },
+    "threadNotFoundTitle": "Conversation not found",
+    "threadNotFoundDescription": "This conversation doesn't exist or isn't yours.",
+    "newChatIntro": "You're starting a new conversation with {name}. Say hello!",
+    "sendErrorToast": "Couldn't send your message. Please try again.",
+    "startErrorToast": "Couldn't start the conversation. Please try again.",
+    "searchPlaceholder": "Search contacts...",
+    "attachFile": "Attach file",
+    "loadingMessages": "Loading messages…",
+    "loadingMore": "Loading…",
+    "loadEarlier": "Load earlier messages",
+    "primaryHost": "Primary Host",
+    "viewFullBooking": "View full booking",
+    "ownerPreview": {
+      "title": "Host profile",
+      "fallbackName": "Host"
     }
   }
 }

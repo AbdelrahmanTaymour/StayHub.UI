@@ -1,20 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener("scroll", onStoreChange, { passive: true })
+  return () => window.removeEventListener("scroll", onStoreChange)
+}
 
 /**
  * Tracks whether the page has been scrolled past `threshold` pixels.
- * Uses a passive listener so it never blocks the main thread / scrolling.
+ * Uses useSyncExternalStore for highly optimized performance.
  */
 export function useScrolled(threshold = 24) {
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > threshold)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [threshold])
-
-  return scrolled
+  return useSyncExternalStore(
+    subscribe,
+    () => window.scrollY > threshold,
+    () => false
+  )
 }

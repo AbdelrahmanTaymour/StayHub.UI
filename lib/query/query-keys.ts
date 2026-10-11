@@ -32,4 +32,17 @@ export const queryKeys = {
     byBooking: (bookingId: string) =>
       [...queryKeys.payments.all, "byBooking", bookingId] as const,
   },
+  users: {
+    all: ["users"] as const,
+    ownerProfile: (id: string) =>
+      [...queryKeys.users.all, "ownerProfile", id] as const,
+  },
+  chats: {
+    all: ["chats"] as const,
+    conversations: () => [...queryKeys.chats.all, "conversations"] as const,
+    messages: (conversationId: string) =>
+      [...queryKeys.chats.all, "messages", conversationId] as const,
+    bookingDetails: (conversationId: string) =>
+      [...queryKeys.chats.all, "bookingDetails", conversationId] as const,
+  },
 } as const

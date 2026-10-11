@@ -1,4 +1,9 @@
-import { ArrowRight, Navigation, ShieldCheck } from "lucide-react"
+import {
+  ArrowRight,
+  MessageCircle,
+  Navigation,
+  ShieldCheck,
+} from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -95,6 +100,22 @@ export function BookingDetailView({ booking }: BookingDetailViewProps) {
               </>
             }
             host={booking.host}
+            messageHostAction={
+              <Link
+                href={
+                  booking.conversationId
+                    ? `/me/chats/${booking.conversationId}`
+                    : `/me/chats/new?apartmentId=${booking.apartmentId}&bookingId=${booking.id}`
+                }
+                className={buttonVariants({
+                  variant: "secondary",
+                  className: "gap-2",
+                })}
+              >
+                <MessageCircle aria-hidden="true" className="size-4" />
+                {t("messageHost")}
+              </Link>
+            }
           />
 
           <SummaryActionCard

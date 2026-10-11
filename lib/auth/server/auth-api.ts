@@ -52,7 +52,7 @@ export const {
             me.role === "Admin" || me.role === "Guest" ? me.role : "Guest"
 
           return {
-            id: payload.sub,
+            id: me.id,
             email: payload.email,
             role,
             fullName: `${me.firstName} ${me.lastName}`,
@@ -84,6 +84,7 @@ export const {
       if (user) {
         return {
           ...token,
+          id: user.id, // ✅ Save the database id into the token
           role: user.role,
           avatarUrl: user.avatarUrl,
           accessToken: user.accessToken,
@@ -101,10 +102,10 @@ export const {
     },
 
     async session({ session, token }) {
-      // accessToken is intentionally not copied. The session is serialized to the browser.
       session.error = token.error
       if (session.user) {
-        session.user.id = token.sub as string
+        // ✅ Use token.id (which is your database id) instead of token.sub
+        session.user.id = (token.id as string) || (token.sub as string)
         session.user.role = token.role
         session.user.avatarUrl = token.avatarUrl
       }

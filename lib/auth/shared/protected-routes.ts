@@ -10,7 +10,7 @@ export const PROTECTED_PREFIXES: readonly string[] = [
   // TODO: Add the real URL prefixes here.
   "/me/bookings",
   "/me/favorites",
-  "/me/messages",
+  "/me/chats",
   "/me/apartments",
   "/me/notifications",
 ]

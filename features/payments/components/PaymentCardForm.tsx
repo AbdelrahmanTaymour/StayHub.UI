@@ -2,7 +2,7 @@
 
 import { Lock } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useState, type FormEvent } from "react"
+import { useState } from "react"
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 
 import { Button } from "@/components/ui/button"
@@ -25,7 +25,7 @@ export function PaymentCardForm({
   // Separate from errorMessage: a load failure means there's no usable form at all.
   const [loadFailed, setLoadFailed] = useState(false)
 
-  async function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!stripe || !elements) return
 

@@ -48,7 +48,7 @@ export function SiteHeader() {
     {
       key: "messages",
       label: t("messages"),
-      href: "/me/messages",
+      href: "/me/chats",
     },
     {
       key: "myApartments",

@@ -60,7 +60,7 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
       : null
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md lg:grid lg:grid-cols-12">
+    <article className="flex flex-col overflow-hidden rounded-2xl bg-card shadow-sm lg:grid lg:grid-cols-12">
       <div className="relative aspect-video overflow-hidden bg-muted lg:col-span-4 lg:aspect-auto">
         {primaryImageUrl ? (
           <Image

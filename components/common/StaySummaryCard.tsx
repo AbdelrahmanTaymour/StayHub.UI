@@ -1,12 +1,12 @@
-import { MessageCircle, User } from "lucide-react"
+import { User } from "lucide-react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Link } from "@/i18n/navigation"
+import { ContactHostButton } from "@/components/common/ContactHostButton"
 
 export interface StaySummaryHost {
   id?: string
@@ -93,17 +93,7 @@ export function StaySummaryCard({
             </div>
           </div>
 
-          {messageHostAction ?? (
-            <Button
-              type="button"
-              variant="secondary"
-              disabled
-              className="gap-2"
-            >
-              <MessageCircle aria-hidden="true" className="size-4" />
-              {t("messageHost")}
-            </Button>
-          )}
+          {messageHostAction ?? <ContactHostButton text={t("messageHost")} />}
         </div>
       ) : null}
     </Card>
