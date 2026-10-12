@@ -22,8 +22,11 @@
     "staySummary": {
       "fallbackHostName": "مضيفك",
       "hostedBy": "يستضيفك",
-      "readyToHelp": "مستعد للإجابة عن استفساراتك",
-      "messageHost": "مراسلة المضيف"
+      "readyToHelp": "مستعد للإجابة عن استفساراتك"
+    },
+    "chat": {
+      "messageHost": "تواصل مع المضيف",
+      "loginToMessage": "سجّل الدخول لمراسلة المضيف."
     }
   },
   "nav": {
@@ -182,9 +185,7 @@
     "host": {
       "title": "يستضيفك <owner>{name}</owner>",
       "fallbackName": "مضيفك",
-      "readyToHelp": "مستعد للإجابة عن استفساراتك",
-      "messageHost": "مراسلة المضيف",
-      "loginToMessage": "سجّل الدخول لمراسلة المضيف."
+      "readyToHelp": "مستعد للإجابة عن استفساراتك"
     },
     "description": {
       "title": "عن هذه الإقامة"
@@ -287,8 +288,6 @@
     "listingsCount": "{count, plural, =0 {لا توجد إعلانات} one {إعلان واحد} two {إعلانان} few {# إعلانات} many {# إعلانًا} other {# إعلان}}",
     "listingsEmpty": "لا توجد إعلانات لهذا المضيف بعد.",
     "propertiesHeading": "عقارات {name}",
-    "messageHost": "تواصل مع المضيف",
-    "contactLoginMessage": "سجّل الدخول للتواصل مع هذا المضيف.",
     "sortLabel": "ترتيب حسب",
     "sort": {
       "price-asc": "السعر: من الأقل إلى الأعلى",
@@ -358,7 +357,6 @@
       "checkOut": "تاريخ المغادرة",
       "propertyAddress": "عنوان العقار",
       "copyAddress": "نسخ العنوان",
-      "messageHost": "مراسلة المضيف",
       "addressCopied": "تم نسخ العنوان",
       "openDirections": "فتح الاتجاهات",
       "totalAmountDue": "إجمالي المبلغ المستحق",

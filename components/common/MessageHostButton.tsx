@@ -26,7 +26,7 @@ export function ContactHostButton({
   conversationId,
   className,
 }: ContactHostButtonProps) {
-  const t = useTranslations("owner")
+  const t = useTranslations("common.chat")
   const router = useRouter()
   const { status } = useAuth()
   const isAuthenticated = status === "authenticated"
@@ -59,7 +59,7 @@ export function ContactHostButton({
   if (isAuthenticated) return button
 
   return (
-    <LoginPromptPopover message={t("contactLoginMessage")}>
+    <LoginPromptPopover message={t("loginToMessage")}>
       {button}
     </LoginPromptPopover>
   )

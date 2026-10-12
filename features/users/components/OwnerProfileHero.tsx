@@ -7,7 +7,7 @@ import { ShareButton } from "@/components/common/ShareButton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card } from "@/components/ui/card"
 import type { OwnerProfile } from "@/features/users/types/owner-profile"
-import { ContactHostButton } from "@/components/common/ContactHostButton"
+import { ContactHostButton } from "@/components/common/MessageHostButton"
 
 interface OwnerProfileHeroProps {
   owner: OwnerProfile

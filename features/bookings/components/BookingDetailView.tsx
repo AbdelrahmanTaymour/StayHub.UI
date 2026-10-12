@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/common/PageHeader"
 import { StaySummaryCard } from "@/components/common/StaySummaryCard"
 import { SummaryActionCard } from "@/components/common/SummaryActionCard"
 import { StatusBadge } from "@/components/common/StatusBadge"
-import { ContactHostButton } from "@/components/common/ContactHostButton"
+import { ContactHostButton } from "@/components/common/MessageHostButton"
 import { CancelBookingDialog } from "./CancelBookingDialog"
 import {
   bookingStatusConfig,

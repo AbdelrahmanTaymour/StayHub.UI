@@ -6,7 +6,7 @@ import type { ReactNode } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card } from "@/components/ui/card"
 import { Link } from "@/i18n/navigation"
-import { ContactHostButton } from "@/components/common/ContactHostButton"
+import { ContactHostButton } from "@/components/common/MessageHostButton"
 
 export interface StaySummaryHost {
   id?: string

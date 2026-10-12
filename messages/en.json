@@ -22,8 +22,11 @@
     "staySummary": {
       "fallbackHostName": "Your host",
       "hostedBy": "Hosted by",
-      "readyToHelp": "Ready to answer your questions",
-      "messageHost": "Message host"
+      "readyToHelp": "Ready to answer your questions"
+    },
+    "chat": {
+      "messageHost": "Message host",
+      "loginToMessage": "سجّل الدخول للتواصل مع هذا المضيف."
     }
   },
   "nav": {
@@ -181,8 +184,7 @@
     "host": {
       "title": "Hosted by <owner>{name}</owner>",
       "fallbackName": "Your host",
-      "readyToHelp": "Ready to answer your questions",
-      "messageHost": "Message host"
+      "readyToHelp": "Ready to answer your questions"
     },
     "description": {
       "title": "About this stay"
@@ -283,8 +285,6 @@
     "listingsEmpty": "This host has no listings yet.",
 
     "propertiesHeading": "Properties by {name}",
-    "messageHost": "Contact host",
-    "contactLoginMessage": "Log in to contact this host.",
     "sortLabel": "Sort by",
     "sort": {
       "price-asc": "Price: low to high",
@@ -354,7 +354,6 @@
       "checkOut": "Check-out",
       "propertyAddress": "Property Address",
       "copyAddress": "Copy address",
-      "messageHost": "Message host",
       "addressCopied": "Address copied",
       "openDirections": "Open directions",
       "totalAmountDue": "Total Amount Due",
