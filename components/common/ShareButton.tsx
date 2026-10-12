@@ -46,12 +46,7 @@ export function ShareButton({ url, className }: ShareButtonProps) {
   const Icon = status === "copied" ? Check : Share2
 
   return (
-    <Button
-      type="button"
-      variant="outline"
-      onClick={handleShare}
-      className={cn("h-10 flex-1 gap-2 sm:flex-initial", className)}
-    >
+    <Button type="button" variant="outline" onClick={handleShare}>
       <Icon aria-hidden="true" className="size-4" />
       <span aria-live="polite">{label}</span>
     </Button>

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Link } from "@/i18n/navigation"
 import type { ApartmentDetails } from "@/features/apartments/types/apartment-details"
-import { MessageHostButton } from "./MessageHostButton"
+import { ContactHostButton } from "@/components/common/ContactHostButton"
 
 interface ApartmentHostCardProps {
   host: ApartmentDetails["host"]
@@ -52,7 +52,7 @@ export function ApartmentHostCard({ host }: ApartmentHostCardProps) {
         </div>
       </div>
 
-      <MessageHostButton />
+      {host.id ? <ContactHostButton recipientId={host.id} /> : null}
     </section>
   )
 }

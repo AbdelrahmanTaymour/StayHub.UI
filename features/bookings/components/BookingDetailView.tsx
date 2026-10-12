@@ -1,9 +1,4 @@
-import {
-  ArrowRight,
-  MessageCircle,
-  Navigation,
-  ShieldCheck,
-} from "lucide-react"
+import { ArrowRight, Navigation, ShieldCheck } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -11,6 +6,7 @@ import { PageHeader } from "@/components/common/PageHeader"
 import { StaySummaryCard } from "@/components/common/StaySummaryCard"
 import { SummaryActionCard } from "@/components/common/SummaryActionCard"
 import { StatusBadge } from "@/components/common/StatusBadge"
+import { ContactHostButton } from "@/components/common/ContactHostButton"
 import { CancelBookingDialog } from "./CancelBookingDialog"
 import {
   bookingStatusConfig,
@@ -101,20 +97,14 @@ export function BookingDetailView({ booking }: BookingDetailViewProps) {
             }
             host={booking.host}
             messageHostAction={
-              <Link
-                href={
-                  booking.conversationId
-                    ? `/me/chats/${booking.conversationId}`
-                    : `/me/chats/new?apartmentId=${booking.apartmentId}&bookingId=${booking.id}`
-                }
-                className={buttonVariants({
-                  variant: "secondary",
-                  className: "gap-2",
-                })}
-              >
-                <MessageCircle aria-hidden="true" className="size-4" />
-                {t("messageHost")}
-              </Link>
+              booking.host?.id ? (
+                <ContactHostButton
+                  recipientId={booking.host.id}
+                  apartmentId={booking.apartmentId}
+                  bookingId={booking.id}
+                  conversationId={booking.conversationId ?? undefined}
+                />
+              ) : undefined
             }
           />
 

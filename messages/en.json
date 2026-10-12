@@ -354,6 +354,7 @@
       "checkOut": "Check-out",
       "propertyAddress": "Property Address",
       "copyAddress": "Copy address",
+      "messageHost": "Message host",
       "addressCopied": "Address copied",
       "openDirections": "Open directions",
       "totalAmountDue": "Total Amount Due",

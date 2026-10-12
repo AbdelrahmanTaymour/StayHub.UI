@@ -358,6 +358,7 @@
       "checkOut": "تاريخ المغادرة",
       "propertyAddress": "عنوان العقار",
       "copyAddress": "نسخ العنوان",
+      "messageHost": "مراسلة المضيف",
       "addressCopied": "تم نسخ العنوان",
       "openDirections": "فتح الاتجاهات",
       "totalAmountDue": "إجمالي المبلغ المستحق",

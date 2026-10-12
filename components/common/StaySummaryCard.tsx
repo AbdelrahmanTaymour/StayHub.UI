@@ -17,10 +17,8 @@ export interface StaySummaryHost {
 interface StaySummaryCardProps {
   imageUrl?: string | null
   imageAlt: string
-  /** Rendered as an overlay on the image, bottom-start (apartment name/location, etc). Omit to move that content elsewhere, e.g. a separate stay-details card. */
   overlay?: ReactNode
   host?: StaySummaryHost
-  /** Overrides the default disabled-message-host button, e.g. a working link once conversations exist. */
   messageHostAction?: ReactNode
 }
 
@@ -93,7 +91,13 @@ export function StaySummaryCard({
             </div>
           </div>
 
-          {messageHostAction ?? <ContactHostButton text={t("messageHost")} />}
+          {messageHostAction ??
+            (host.id ? (
+              <ContactHostButton
+                text={t("messageHost")}
+                recipientId={host.id}
+              />
+            ) : null)}
         </div>
       ) : null}
     </Card>

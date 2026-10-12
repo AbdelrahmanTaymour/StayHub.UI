@@ -7,6 +7,7 @@ import { ShareButton } from "@/components/common/ShareButton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card } from "@/components/ui/card"
 import type { OwnerProfile } from "@/features/users/types/owner-profile"
+import { ContactHostButton } from "@/components/common/ContactHostButton"
 
 interface OwnerProfileHeroProps {
   owner: OwnerProfile
@@ -47,7 +48,7 @@ export function OwnerProfileHero({ owner }: OwnerProfileHeroProps) {
         </div>
 
         <div className="flex w-full items-center gap-2 lg:w-auto">
-          {/* <ContactHostButton /> */}
+          {owner.id ? <ContactHostButton recipientId={owner.id} /> : null}
           <ShareButton />
         </div>
       </div>
