@@ -19,6 +19,7 @@
     "@stripe/react-stripe-js": "^7.0.0",
     "@stripe/stripe-js": "^10.0.0",
     "@tanstack/react-query": "^5.104.0",
+    "@tanstack/react-table": "^9.2.8",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.4.0",
     "date-fns": "^4.4.0",

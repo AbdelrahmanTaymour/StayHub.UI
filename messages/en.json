@@ -489,5 +489,88 @@
       "title": "Host profile",
       "fallbackName": "Host"
     }
+  },
+  "myApartments": {
+    "pageTitle": "My Apartments",
+    "pageDescription": "Manage your apartments by updating pricing & availability, and overseeing sub-resource operations.",
+    "metaDescription": "Manage your StayHub apartment listings, pricing, and bookings.",
+    "exportReport": "Export Report",
+    "errorTitle": "Unable to load your apartments",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "retry": "Try again",
+    "searchPlaceholder": "Search your listings by name, district, or ID…",
+    "showingCount": "Showing {count} of {total} managed apartments",
+    "activatedToast": "Apartment activated",
+    "deactivatedToast": "Apartment deactivated",
+    "tabs": {
+      "All": "All Listings",
+      "Active": "Active",
+      "Inactive": "Inactive"
+    },
+    "dashboard": {
+      "totalProperties": "Total Properties",
+      "activeInactiveSplit": "{active} Active · {inactive} Inactive",
+      "occupancyRate": "Occupancy Rate",
+      "percent": "{value}%",
+      "vsLastMonth": "vs last month",
+      "monthToDateRevenue": "Month-to-Date Revenue",
+      "netPayoutTarget": "USD net payout target",
+      "pendingBookings": "Pending Incoming Bookings",
+      "review": "Review"
+    },
+    "table": {
+      "filterLabel": "Filter apartments",
+      "apartmentDetails": "Apartment Details",
+      "status": "Status",
+      "statusActive": "Active",
+      "statusInactive": "Inactive",
+      "nightlyRate": "Nightly Rate",
+      "perNight": "/ night",
+      "performance": "30-Day Performance",
+      "occupancyPercent": "{value}% occ",
+      "reviewsCount": "({count} rev)",
+      "subResources": "Sub-Resources",
+      "photosCount": "{count} photos",
+      "pendingCount": "{count} pending",
+      "operations": "Operations",
+      "manage": "Manage",
+      "manageComingSoon": "Apartment management page coming soon",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "editDetails": "Edit Details",
+      "managePhotos": "Manage Photos",
+      "manageAmenities": "Manage Amenities",
+      "availability": "Availability",
+      "staffAssignments": "Assign Staff",
+      "untitled": "Untitled apartment",
+      "empty": "No apartments match your filters."
+    },
+    "createSheet": {
+      "triggerLabel": "Add Apartment",
+      "title": "Add a new apartment",
+      "description": "Fill in the details below. You can add photos and amenities after it's created.",
+      "fields": {
+        "name": "Name",
+        "description": "Description",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "zipCode": "ZIP code",
+        "country": "Country",
+        "priceAmount": "Price per night",
+        "cleaningFeeAmount": "Cleaning fee",
+        "currency": "Currency"
+      },
+      "errors": {
+        "required": "This field is required.",
+        "mustBePositive": "Enter a value greater than zero.",
+        "mustBeNonNegative": "Value cannot be negative."
+      },
+      "cancel": "Cancel",
+      "create": "Create apartment",
+      "creating": "Creating…",
+      "createdToast": "Apartment created",
+      "submitError": "We couldn't create this apartment. Please check the form and try again."
+    }
   }
 }

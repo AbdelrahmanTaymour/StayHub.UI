@@ -493,5 +493,84 @@
       "title": "الملف الشخصي للمضيف",
       "fallbackName": "المضيف"
     }
+  },
+  "myApartments": {
+    "pageTitle": "شققي",
+    "pageDescription": "أدر شققك من خلال تحديث الأسعار والتوفر، والإشراف على العمليات الفرعية.",
+    "metaDescription": "أدر إعلانات شققك وأسعارها وحجوزاتها على StayHub.",
+    "exportReport": "تصدير التقرير",
+    "errorTitle": "تعذّر تحميل شققك",
+    "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+    "retry": "إعادة المحاولة",
+    "searchPlaceholder": "ابحث في إعلاناتك بالاسم أو الحي أو المعرّف…",
+    "showingCount": "عرض {count} من {total} شقة مُدارة",
+    "activatedToast": "تم تفعيل الشقة",
+    "deactivatedToast": "تم إلغاء تفعيل الشقة",
+    "tabs": { "All": "كل الإعلانات", "Active": "نشطة", "Inactive": "غير نشطة" },
+    "dashboard": {
+      "totalProperties": "إجمالي العقارات",
+      "activeInactiveSplit": "{active} نشطة · {inactive} غير نشطة",
+      "occupancyRate": "معدل الإشغال",
+      "percent": "{value}٪",
+      "vsLastMonth": "مقارنة بالشهر الماضي",
+      "monthToDateRevenue": "الإيرادات منذ بداية الشهر",
+      "netPayoutTarget": "صافي المستهدف بالدولار الأمريكي",
+      "pendingBookings": "الحجوزات الواردة المعلّقة",
+      "review": "مراجعة"
+    },
+    "table": {
+      "filterLabel": "تصفية الشقق",
+      "apartmentDetails": "تفاصيل الشقة",
+      "status": "الحالة",
+      "statusActive": "نشطة",
+      "statusInactive": "غير نشطة",
+      "nightlyRate": "السعر لليلة",
+      "perNight": "/ الليلة",
+      "performance": "أداء آخر 30 يومًا",
+      "occupancyPercent": "إشغال {value}٪",
+      "reviewsCount": "({count} تقييم)",
+      "subResources": "الموارد الفرعية",
+      "photosCount": "{count} صورة",
+      "pendingCount": "{count} معلّق",
+      "operations": "العمليات",
+      "manage": "إدارة",
+      "manageComingSoon": "صفحة إدارة الشقة قادمة قريبًا",
+      "activate": "تفعيل",
+      "deactivate": "إلغاء التفعيل",
+      "editDetails": "تعديل التفاصيل",
+      "managePhotos": "إدارة الصور",
+      "manageAmenities": "إدارة المرافق",
+      "availability": "التوفر",
+      "staffAssignments": "تعين موظف",
+      "untitled": "شقة بدون اسم",
+      "empty": "لا توجد شقق مطابقة لعوامل التصفية."
+    },
+    "createSheet": {
+      "triggerLabel": "إضافة شقة",
+      "title": "إضافة شقة جديدة",
+      "description": "أدخل التفاصيل أدناه. يمكنك إضافة الصور والمرافق بعد الإنشاء.",
+      "fields": {
+        "name": "الاسم",
+        "description": "الوصف",
+        "street": "الشارع",
+        "city": "المدينة",
+        "state": "المحافظة",
+        "zipCode": "الرمز البريدي",
+        "country": "الدولة",
+        "priceAmount": "السعر لليلة",
+        "cleaningFeeAmount": "رسوم التنظيف",
+        "currency": "العملة"
+      },
+      "errors": {
+        "required": "هذا الحقل مطلوب.",
+        "mustBePositive": "أدخل قيمة أكبر من صفر.",
+        "mustBeNonNegative": "لا يمكن أن تكون القيمة سالبة."
+      },
+      "cancel": "إلغاء",
+      "create": "إنشاء الشقة",
+      "creating": "جارٍ الإنشاء…",
+      "createdToast": "تم إنشاء الشقة",
+      "submitError": "تعذّر إنشاء هذه الشقة. راجع البيانات وحاول مرة أخرى."
+    }
   }
 }

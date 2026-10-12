@@ -16,6 +16,10 @@ export const queryKeys = {
     detail: (id: string) => ["apartments", "detail", id] as const,
     pricing: (id: string, startDate: string, endDate: string) =>
       ["apartments", "detail", "pricing", id, startDate, endDate] as const,
+    mine: (status?: string, search?: string, page?: number) =>
+      [...queryKeys.apartments.all, "mine", { status, search, page }] as const,
+    mineDashboard: () =>
+      [...queryKeys.apartments.all, "mineDashboard"] as const,
   },
   favorites: {
     all: ["favorites"] as const,
