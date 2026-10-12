@@ -4,7 +4,6 @@ import * as signalR from "@microsoft/signalr"
 
 import type { ChatRealtimeAdapter, ChatRealtimeHandlers } from "./types"
 
-// TODO: confirm this matches your actual API base URL env var.
 const HUB_URL = `${process.env.NEXT_PUBLIC_API_URL}/hubs/conversations`
 
 const INITIAL_CONNECT_RETRY_DELAYS_MS = [2_000, 5_000, 10_000, 30_000]
@@ -20,30 +19,12 @@ async function fetchAccessToken(): Promise<string> {
   return accessToken
 }
 
-/**
- * Real implementation of ChatRealtimeAdapter, backed by the ConversationHub
- * SignalR hub. Event names ("InboxUpdated", "ConversationUpdated") must
- * match SignalRConversationNotifier's SendAsync calls on the backend
- * exactly — they're plain strings on both sides, nothing enforces that at
- * compile time.
- *
- * KNOWN LIMITATION, not solved here: accessTokenFactory is called on
- * initial connect and on every automatic-reconnect attempt, but NOT
- * mid-connection — so if the access token expires while the WebSocket
- * stays open the whole time (no network blip to trigger a reconnect), the
- * Hub doesn't re-validate it (JWT bearer auth happens at the handshake,
- * not per message). Flagging rather than guessing you want a proactive
- * recycle timer by default.
- */
 export function createSignalRAdapter(): ChatRealtimeAdapter {
   let connection: signalR.HubConnection | null = null
   let disposed = false
   let retryTimer: ReturnType<typeof setTimeout> | null = null
   let retryAttempt = 0
-  // useJoinConversation's effect can fire before connect()'s `start()`
-  // promise resolves (connect() doesn't await it) — track requested joins
-  // here and flush them once actually connected, instead of silently
-  // dropping a join that arrived too early.
+
   const joinedConversations = new Set<string>()
 
   function build(handlers: ChatRealtimeHandlers) {
@@ -60,11 +41,9 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
       handlers.onConversationShouldRefresh(conversationId)
     })
 
-    // A reconnect can silently drop pushes sent during the gap (phone
-    // sleep, brief network loss) — refresh the inbox once to catch up.
     conn.onreconnected(() => {
       handlers.onInboxShouldRefresh()
-      retryAttempt = 0 // a successful reconnect resets the initial-connect backoff too
+      retryAttempt = 0
       void flushJoins()
     })
 
@@ -78,12 +57,6 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
     }
   }
 
-  // withAutomaticReconnect() only covers a connection that succeeded at
-  // least once — a failed *initial* negotiation (e.g. the token endpoint
-  // blipped, or the backend wasn't up yet) just rejects start() and stops
-  // there on its own. Without this, that single failure permanently kills
-  // realtime for the session (no fallback, no retry) until a manual page
-  // refresh — which is exactly the "must refresh to see updates" symptom.
   function startWithRetry(handlers: ChatRealtimeHandlers) {
     if (disposed || !connection) return
 
@@ -105,8 +78,6 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
 
         retryTimer = setTimeout(() => {
           if (disposed) return
-          // A fresh HubConnection is required after a failed start() — the
-          // old one is unusable, rebuild rather than retry the same instance.
           connection = build(handlers)
           startWithRetry(handlers)
         }, delay)
