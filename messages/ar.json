@@ -654,6 +654,13 @@
         "mustBePositive": "أدخل قيمة أكبر من صفر.",
         "mustBeNonNegative": "لا يمكن أن تكون القيمة سالبة."
       }
+    },
+    "amenities": {
+      "pageTitle": "إدارة المرافق",
+      "pageDescription": "حدّد المرافق القياسية المتوفرة في عقارك.",
+      "updateErrorToast": "تعذّر تحديث المرافق. حاول مرة أخرى.",
+      "AddedToast": "تمت إضافة {amenity}",
+      "RemovedToast": "تمت إزالة {amenity}"
     }
   }
 }

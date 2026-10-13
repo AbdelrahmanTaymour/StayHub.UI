@@ -13,9 +13,6 @@ export type GetConversationMessagesQuery = QueryParameters<
 export type MyConversationResponse =
   Schemas["StayHub.Application.Conversations.GetMyConversations.MyConversationResponse"]
 
-export type ConversationRole =
-  Schemas["StayHub.Application.Conversations.GetMyConversations.ConversationRole"]
-
 export type ConversationMessagesResponse =
   Schemas["StayHub.Application.Conversations.GetConversationMessages.ConversationMessagesResponse"]
 

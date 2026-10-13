@@ -16,7 +16,7 @@ export function useActivateApartment(apartmentId?: string) {
   return useApiMutation({
     mutationFn: activateApartment,
     successMessage: t("activatedToast"),
-    onMutate: async (id) => {
+    onMutate: async () => {
       if (!apartmentId) return
       await queryClient.cancelQueries({
         queryKey: queryKeys.apartments.forEdit(apartmentId),

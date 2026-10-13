@@ -655,6 +655,13 @@
         "mustBePositive": "Enter a value greater than zero.",
         "mustBeNonNegative": "Value cannot be negative."
       }
+    },
+    "amenities": {
+      "pageTitle": "Amenities Manager",
+      "pageDescription": "Configure the standard amenities offered at your property.",
+      "updateErrorToast": "Couldn't update amenities. Please try again.",
+      "AddedToast": "Added {amenity} successfully",
+      "RemovedToast": "Removed {amenity} successfully"
     }
   }
 }

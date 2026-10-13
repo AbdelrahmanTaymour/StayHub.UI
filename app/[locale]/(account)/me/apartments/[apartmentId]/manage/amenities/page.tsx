@@ -1,18 +1,36 @@
-import { ComingSoonPanel } from "@/components/common/ComingSoonPanel"
 import type { Metadata } from "next"
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { getTranslations } from "next-intl/server"
 
+import { ApartmentAmenitiesManager } from "@/features/apartments/components/ApartmentAmenitiesManager"
+import { getQueryClient } from "@/lib/query/get-query-client"
+import { queryKeys } from "@/lib/query/query-keys"
+import { getApartmentAmenitiesServer } from "@/features/apartments/api/apartment-amenities.server"
+
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("apartmentManage.tabs")
-  return { title: t("amenities") }
+  const t = await getTranslations("apartmentManage.amenities")
+  return { title: t("pageTitle"), description: t("pageDescription") }
 }
 
-export default async function ApartmentAmenitiesTabPage() {
-  const t = await getTranslations("apartmentManage.comingSoon")
+interface AmenitiesTabPageProps {
+  params: Promise<{ locale: string; apartmentId: string }>
+}
+
+export default async function ApartmentAmenitiesTabPage({
+  params,
+}: AmenitiesTabPageProps) {
+  const { apartmentId } = await params
+
+  const queryClient = getQueryClient()
+
+  await queryClient.query({
+    queryKey: queryKeys.apartments.amenity(apartmentId),
+    queryFn: () => getApartmentAmenitiesServer(apartmentId),
+  })
+
   return (
-    <ComingSoonPanel
-      title={t("amenities.title")}
-      description={t("amenities.description")}
-    />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ApartmentAmenitiesManager apartmentId={apartmentId} />
+    </HydrationBoundary>
   )
 }
