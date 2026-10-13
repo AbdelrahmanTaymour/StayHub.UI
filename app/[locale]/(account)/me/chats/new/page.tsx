@@ -14,22 +14,32 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 interface NewChatPageProps {
-  searchParams: Promise<{ apartmentId?: string; bookingId?: string }>
+  searchParams: Promise<{
+    recipientId?: string
+    apartmentId?: string
+    bookingId?: string
+  }>
 }
 
 export default async function NewChatPage({ searchParams }: NewChatPageProps) {
-  const { apartmentId, bookingId } = await searchParams
+  const { recipientId, apartmentId, bookingId } = await searchParams
 
-  if (!apartmentId) return null
+  if (!recipientId) return null
 
   const conversations = await getMyConversationsServer()
   const match = conversations.find(
-    (conversation) => conversation.apartmentId === apartmentId
+    (conversation) => conversation.otherPartyId === recipientId
   )
 
   if (match?.id) {
     redirect(`/me/chats/${match.id}`)
   }
 
-  return <NewChatComposer apartmentId={apartmentId} bookingId={bookingId} />
+  return (
+    <NewChatComposer
+      recipientId={recipientId}
+      apartmentId={apartmentId}
+      bookingId={bookingId}
+    />
+  )
 }

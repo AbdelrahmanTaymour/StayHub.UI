@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useAuth } from "@/providers/AuthContext"
 import { ChatMessageBubble } from "./ChatMessageBubble"
 import { useChatThread } from "../hooks/useChatThread"
+import { useMarkConversationReadOnActivity } from "../hooks/useMarkConversationReadOnActivity"
 import {
   groupMessagesByDayAndSender,
   isSameUtcDay,
@@ -40,8 +41,9 @@ export function ChatMessageList({
   const previousLastId = useRef(lastMessageId)
   const isInitialLoad = useRef(true)
 
+  useMarkConversationReadOnActivity(conversationId, lastMessageId)
+
   useEffect(() => {
-    // Initial Load Anchor: Instantly snap down when the chat history first mounts
     if (isInitialLoad.current && messages.length > 0) {
       bottomRef.current?.scrollIntoView({ block: "end" })
       isInitialLoad.current = false
@@ -49,8 +51,6 @@ export function ChatMessageList({
       return
     }
 
-    // 2. Real-time Append Guard: Only scroll downward smoothly if a new message arrives at the end
-    // Loading older historic pages modifies array lengths, but won't alter this true chronological tail.
     if (lastMessageId !== previousLastId.current) {
       bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
       previousLastId.current = lastMessageId

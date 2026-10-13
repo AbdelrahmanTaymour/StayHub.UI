@@ -21,29 +21,30 @@ async function fetchAccessToken(): Promise<string> {
 
 export function createSignalRAdapter(): ChatRealtimeAdapter {
   let connection: signalR.HubConnection | null = null
-  let disposed = false
+  let startPromise: Promise<void> | null = null
+  let generation = 0
   let retryTimer: ReturnType<typeof setTimeout> | null = null
-  let retryAttempt = 0
-
   const joinedConversations = new Set<string>()
 
-  function build(handlers: ChatRealtimeHandlers) {
+  function build(handlers: ChatRealtimeHandlers, myGeneration: number) {
     const conn = new signalR.HubConnectionBuilder()
       .withUrl(HUB_URL, { accessTokenFactory: fetchAccessToken })
       .withAutomaticReconnect()
       .build()
 
     conn.on("InboxUpdated", () => {
+      if (myGeneration !== generation) return
       handlers.onInboxShouldRefresh()
     })
 
     conn.on("ConversationUpdated", (conversationId: string) => {
+      if (myGeneration !== generation) return
       handlers.onConversationShouldRefresh(conversationId)
     })
 
     conn.onreconnected(() => {
+      if (myGeneration !== generation) return
       handlers.onInboxShouldRefresh()
-      retryAttempt = 0
       void flushJoins()
     })
 
@@ -57,29 +58,36 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
     }
   }
 
-  function startWithRetry(handlers: ChatRealtimeHandlers) {
-    if (disposed || !connection) return
+  function startWithRetry(
+    handlers: ChatRealtimeHandlers,
+    myGeneration: number,
+    attempt = 0
+  ) {
+    if (myGeneration !== generation || !connection) return
 
-    connection.start().then(
+    const conn = connection
+    const pending = conn.start()
+    startPromise = pending
+
+    pending.then(
       () => {
-        retryAttempt = 0
+        if (myGeneration !== generation) return
         void flushJoins()
       },
       (error: unknown) => {
-        if (disposed) return
+        if (myGeneration !== generation) return // superseded by a newer connect()/disconnect() — not a real failure to act on
 
         console.error("[signalr] initial connect failed, will retry", error)
 
         const delay =
           INITIAL_CONNECT_RETRY_DELAYS_MS[
-            Math.min(retryAttempt, INITIAL_CONNECT_RETRY_DELAYS_MS.length - 1)
+            Math.min(attempt, INITIAL_CONNECT_RETRY_DELAYS_MS.length - 1)
           ]
-        retryAttempt += 1
 
         retryTimer = setTimeout(() => {
-          if (disposed) return
-          connection = build(handlers)
-          startWithRetry(handlers)
+          if (myGeneration !== generation) return
+          connection = build(handlers, myGeneration)
+          startWithRetry(handlers, myGeneration, attempt + 1)
         }, delay)
       }
     )
@@ -87,18 +95,30 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
 
   return {
     connect(handlers) {
-      disposed = false
-      retryAttempt = 0
-      connection = build(handlers)
-      startWithRetry(handlers)
+      generation += 1
+      const myGeneration = generation
+      connection = build(handlers, myGeneration)
+      startWithRetry(handlers, myGeneration)
     },
 
     disconnect() {
-      disposed = true
+      generation += 1
       if (retryTimer) clearTimeout(retryTimer)
-      void connection?.stop()
+      retryTimer = null
+
+      const conn = connection
+      const pending = startPromise
       connection = null
+      startPromise = null
       joinedConversations.clear()
+
+      if (!conn) return
+
+      if (pending) {
+        pending.catch(() => {}).finally(() => void conn.stop())
+      } else {
+        void conn.stop()
+      }
     },
 
     joinConversation(conversationId) {
@@ -106,7 +126,6 @@ export function createSignalRAdapter(): ChatRealtimeAdapter {
       if (connection?.state === signalR.HubConnectionState.Connected) {
         void connection.invoke("JoinConversation", conversationId)
       }
-      // else: the next successful connect/reconnect's flushJoins picks it up.
     },
 
     leaveConversation(conversationId) {

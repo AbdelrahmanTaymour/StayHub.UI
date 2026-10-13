@@ -5,11 +5,13 @@ import { useStartConversation } from "@/features/chats/hooks/useStartConversatio
 import { DraftChatComposer } from "@/features/chats/components/DraftChatComposer"
 
 interface NewChatComposerProps {
-  apartmentId: string
+  recipientId: string
+  apartmentId?: string
   bookingId?: string
 }
 
 export function NewChatComposer({
+  recipientId,
   apartmentId,
   bookingId,
 }: NewChatComposerProps) {
@@ -18,7 +20,7 @@ export function NewChatComposer({
 
   function handleFirstMessage(body: string) {
     start(
-      { apartmentId, bookingId, initialMessage: body },
+      { recipientId, apartmentId, bookingId, initialMessage: body },
       { onSuccess: (newId) => router.replace(`/me/chats/${newId}`) }
     )
   }

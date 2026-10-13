@@ -2,13 +2,12 @@
 
 import { ArrowLeft, Info, User } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet"
 import { useRouter } from "@/i18n/navigation"
-import { useMarkConversationRead } from "@/features/chats/hooks/useMarkConversationRead"
 import { useMyConversations } from "@/features/chats/hooks/useMyConversations"
 import { useChatDetails } from "@/features/chats/providers/ChatDetailsProvider"
 import { ChatComposer } from "./ChatComposer"
@@ -23,7 +22,6 @@ export function ChatThreadView({ conversationId }: { conversationId: string }) {
   const router = useRouter()
   const isDesktop = useMediaQuery("(min-width: 1024px)")
   const { data } = useMyConversations()
-  const { mutate: markRead } = useMarkConversationRead()
   const {
     isOpen: isDetailsOpen,
     toggle: toggleDetails,
@@ -32,10 +30,6 @@ export function ChatThreadView({ conversationId }: { conversationId: string }) {
   const [isOwnerPreviewOpen, setIsOwnerPreviewOpen] = useState(false)
 
   const conversation = data?.find((item) => item.id === conversationId)
-
-  useEffect(() => {
-    markRead(conversationId)
-  }, [conversationId, markRead])
 
   const header = (
     <header className="flex shrink-0 items-center justify-between gap-3 border-b border-border px-4 py-3">
