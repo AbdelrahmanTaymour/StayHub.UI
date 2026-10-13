@@ -3510,7 +3510,9 @@ export interface components {
         };
         "StayHub.Api.Endpoints.Conversations.StartConversationRequest": {
             /** Format: uuid */
-            apartmentId?: string;
+            recipientId?: string;
+            /** Format: uuid */
+            apartmentId?: string | null;
             /** Format: uuid */
             bookingId?: string | null;
             initialMessage?: string | null;
@@ -3949,19 +3951,16 @@ export interface components {
             /** Format: date-time */
             readOnUtc?: string | null;
         };
-        /** @enum {string} */
-        "StayHub.Application.Conversations.GetMyConversations.ConversationRole": "Host" | "Guest";
         "StayHub.Application.Conversations.GetMyConversations.MyConversationResponse": {
             /** Format: uuid */
             id?: string;
             /** Format: uuid */
-            apartmentId?: string;
+            apartmentId?: string | null;
             apartmentName?: string | null;
             /** Format: uuid */
             otherPartyId?: string;
             otherPartyName?: string | null;
             otherPartyAvatarUrl?: string | null;
-            otherPartyRole?: components["schemas"]["StayHub.Application.Conversations.GetMyConversations.ConversationRole"];
             lastMessagePreview?: string | null;
             /** Format: date-time */
             lastMessageOnUtc?: string | null;

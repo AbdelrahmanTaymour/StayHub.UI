@@ -16,6 +16,7 @@ import { useActivateApartment } from "../hooks/useActivateApartment"
 import { MyApartmentsResponse } from "@/lib/api/types/apartments"
 import { useDeactivateApartment } from "../hooks/useDeactivateApartment"
 import { MoreVertical } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 
 export function ApartmentRowActions({
   apartment,
@@ -33,16 +34,12 @@ export function ApartmentRowActions({
     <div className="flex items-center justify-end gap-1">
       {apartment.id ? (
         apartment.isActive ? (
-          <span
-            title={t("manageComingSoon")}
-            className={buttonVariants({
-              variant: "outline",
-              size: "sm",
-              className: "pointer-events-none opacity-60",
-            })}
+          <Link
+            href={`/me/apartments/${apartment.id}/manage/details`}
+            className={buttonVariants({ variant: "outline", size: "sm" })}
           >
             {t("manage")}
-          </span>
+          </Link>
         ) : (
           <Button
             type="button"

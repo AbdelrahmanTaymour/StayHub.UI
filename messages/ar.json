@@ -27,6 +27,12 @@
     "chat": {
       "messageHost": "تواصل مع المضيف",
       "loginToMessage": "سجّل الدخول لمراسلة المضيف."
+    },
+    "unsavedChanges": {
+      "message": "لديك تغييرات غير محفوظة.",
+      "reset": "إعادة تعيين",
+      "save": "حفظ التغييرات",
+      "saving": "جارٍ الحفظ…"
     }
   },
   "nav": {
@@ -570,6 +576,84 @@
       "creating": "جارٍ الإنشاء…",
       "createdToast": "تم إنشاء الشقة",
       "submitError": "تعذّر إنشاء هذه الشقة. راجع البيانات وحاول مرة أخرى."
+    }
+  },
+  "apartmentManage": {
+    "pageTitle": "تعديل الشقة",
+    "pageDescription": "حدّث تفاصيل العقار والأسعار.",
+    "breadcrumbApartments": "شققي",
+    "fallbackTitle": "الشقة",
+    "statusActiveLabel": "الشقة نشطة",
+    "statusInactiveLabel": "الشقة غير نشطة",
+    "toggleStatusAria": "تبديل حالة تفعيل الإعلان",
+    "savedToast": "تم حفظ التغييرات",
+    "tabs": {
+      "navLabel": "أقسام الشقة",
+      "details": "التفاصيل",
+      "images": "الصور",
+      "amenities": "المرافق",
+      "availability": "التوفر",
+      "staff": "الموظفون",
+      "bookings": "الحجوزات",
+      "reviews": "التقييمات",
+      "maintenance": "الصيانة"
+    },
+    "comingSoon": {
+      "images": {
+        "title": "إدارة الصور قادمة قريبًا",
+        "description": "ستتمكن من رفع الصور وإعادة ترتيبها وتحديد الصورة الرئيسية هنا."
+      },
+      "amenities": {
+        "title": "إدارة المرافق قادمة قريبًا",
+        "description": "ستتمكن من إضافة أو إزالة مرافق هذه الشقة هنا."
+      },
+      "availability": {
+        "title": "إدارة التوفر قادمة قريبًا",
+        "description": "ستتمكن من حجب تواريخ للصيانة أو الاستخدام الشخصي هنا."
+      },
+      "staff": {
+        "title": "تعيينات الموظفين قادمة قريبًا",
+        "description": "ستتمكن من تعيين مديرين ومنظفين وموظفي صيانة هنا."
+      },
+      "bookings": {
+        "title": "الحجوزات الواردة قادمة قريبًا",
+        "description": "ستتمكن من تأكيد أو رفض حجوزات الضيوف هنا."
+      },
+      "reviews": {
+        "title": "التقييمات المستلمة قادمة قريبًا",
+        "description": "ستتمكن من قراءة تقييمات الضيوف والرد عليها هنا."
+      },
+      "maintenance": {
+        "title": "طلبات الصيانة قادمة قريبًا",
+        "description": "ستتمكن من متابعة وحل طلبات الصيانة هنا."
+      }
+    },
+    "details": {
+      "pageTitle": "تفاصيل الشقة",
+      "basicInfo": "المعلومات الأساسية",
+      "titleLabel": "عنوان الشقة",
+      "descriptionLabel": "وصف العقار",
+      "pricing": "الأسعار والعملة",
+      "nightlyRateLabel": "السعر الأساسي لليلة",
+      "cleaningFeeLabel": "رسوم التنظيف",
+      "address": "العنوان",
+      "addressLockedTitle": "العنوان مقفل",
+      "addressLockedDescription": "لا يمكن تغيير تفاصيل العنوان بعد إنشاء الشقة.",
+      "street": "الشارع",
+      "city": "المدينة",
+      "zipCode": "الرمز البريدي",
+      "country": "الدولة",
+      "currencyLabel": "العملة",
+      "mapDisabledAria": "معاينة الخريطة، غير متاحة بعد",
+      "mapComingSoon": "الخريطة قادمة قريبًا",
+      "submitError": "تعذّر حفظ التغييرات. راجع البيانات وحاول مرة أخرى.",
+      "errors": {
+        "required": "هذا الحقل مطلوب.",
+        "titleTooLong": "يمكن أن يصل العنوان إلى 200 حرف.",
+        "descriptionTooLong": "يمكن أن يصل الوصف إلى 2000 حرف.",
+        "mustBePositive": "أدخل قيمة أكبر من صفر.",
+        "mustBeNonNegative": "لا يمكن أن تكون القيمة سالبة."
+      }
     }
   }
 }

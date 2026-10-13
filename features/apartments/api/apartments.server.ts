@@ -59,3 +59,16 @@ export const getMyApartmentsServer = cache(async (query?: MyApartmentsQuery) =>
 export const getMyApartmentsDashboardServer = cache(async () =>
   unwrap(await apiClient.GET("/api/v1/apartments/mine/dashboard"))
 )
+
+export const getApartmentForEditServer = cache(async (apartmentId: string) => {
+  try {
+    return await unwrap(
+      await apiClient.GET("/api/v1/apartments/{apartmentId}/edit", {
+        params: { path: { apartmentId } },
+      })
+    )
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 404) return null
+    throw error
+  }
+})

@@ -27,6 +27,12 @@
     "chat": {
       "messageHost": "Message host",
       "loginToMessage": "سجّل الدخول للتواصل مع هذا المضيف."
+    },
+    "unsavedChanges": {
+      "message": "You have unsaved changes.",
+      "reset": "Reset",
+      "save": "Save Changes",
+      "saving": "Saving…"
     }
   },
   "nav": {
@@ -571,6 +577,84 @@
       "creating": "Creating…",
       "createdToast": "Apartment created",
       "submitError": "We couldn't create this apartment. Please check the form and try again."
+    }
+  },
+  "apartmentManage": {
+    "pageTitle": "Edit Apartment",
+    "pageDescription": "Update property details and pricing.",
+    "breadcrumbApartments": "My Apartments",
+    "fallbackTitle": "Apartment",
+    "statusActiveLabel": "Apartment is active",
+    "statusInactiveLabel": "Apartment is inactive",
+    "toggleStatusAria": "Toggle listing active status",
+    "savedToast": "Changes saved",
+    "tabs": {
+      "navLabel": "Apartment sections",
+      "details": "Details",
+      "images": "Photos",
+      "amenities": "Amenities",
+      "availability": "Availability",
+      "staff": "Staff",
+      "bookings": "Bookings",
+      "reviews": "Reviews",
+      "maintenance": "Maintenance"
+    },
+    "comingSoon": {
+      "images": {
+        "title": "Photo management is coming soon",
+        "description": "You'll be able to upload, reorder, and set a primary photo here."
+      },
+      "amenities": {
+        "title": "Amenities management is coming soon",
+        "description": "You'll be able to add or remove amenities for this apartment here."
+      },
+      "availability": {
+        "title": "Availability management is coming soon",
+        "description": "You'll be able to block dates for maintenance or personal use here."
+      },
+      "staff": {
+        "title": "Staff assignments are coming soon",
+        "description": "You'll be able to assign managers, cleaners, and maintenance staff here."
+      },
+      "bookings": {
+        "title": "Incoming bookings are coming soon",
+        "description": "You'll be able to confirm or reject guest bookings here."
+      },
+      "reviews": {
+        "title": "Reviews received are coming soon",
+        "description": "You'll be able to read and respond to guest reviews here."
+      },
+      "maintenance": {
+        "title": "Maintenance requests are coming soon",
+        "description": "You'll be able to track and resolve maintenance tickets here."
+      }
+    },
+    "details": {
+      "pageTitle": "Apartment Details",
+      "basicInfo": "Basic Information",
+      "titleLabel": "Apartment Title",
+      "descriptionLabel": "Property Description",
+      "pricing": "Pricing & Currency",
+      "nightlyRateLabel": "Nightly Base Rate",
+      "cleaningFeeLabel": "Cleaning Fee",
+      "address": "Address",
+      "addressLockedTitle": "Address is locked",
+      "addressLockedDescription": "Address details can't be changed after the apartment is created.",
+      "street": "Street Address",
+      "city": "City",
+      "zipCode": "Postal Code",
+      "country": "Country",
+      "currencyLabel": "Currency",
+      "mapDisabledAria": "Map preview, not yet available",
+      "mapComingSoon": "The map is coming soon",
+      "submitError": "We couldn't save your changes. Please check the form and try again.",
+      "errors": {
+        "required": "This field is required.",
+        "titleTooLong": "Title can be up to 200 characters.",
+        "descriptionTooLong": "Description can be up to 2000 characters.",
+        "mustBePositive": "Enter a value greater than zero.",
+        "mustBeNonNegative": "Value cannot be negative."
+      }
     }
   }
 }

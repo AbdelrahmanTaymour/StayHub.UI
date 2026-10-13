@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Controller, useForm } from "react-hook-form"
 
@@ -35,8 +35,7 @@ import {
 import { useCreateApartment } from "@/features/apartments/hooks/useCreateApartment"
 import { useQueryClient } from "@tanstack/react-query"
 import { queryKeys } from "@/lib/query/query-keys"
-
-const CURRENCIES = ["USD", "EUR", "EGP"] as const
+import { SUPPORTED_CURRENCIES } from "../utils/currencies"
 
 export function CreateApartmentSheet() {
   const t = useTranslations("myApartments.createSheet")
@@ -281,19 +280,20 @@ function CurrencyField({
   >["control"]
   label: string
 }) {
+  const labelId = useId()
   return (
     <div className="flex flex-col gap-1.5">
-      <Label>{label}</Label>
+      <Label id={labelId}>{label}</Label>
       <Controller
         control={control}
         name={name}
         render={({ field }) => (
           <Select value={field.value} onValueChange={field.onChange}>
-            <SelectTrigger className="w-24">
+            <SelectTrigger className="w-24" aria-labelledby={labelId}>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {CURRENCIES.map((code) => (
+              {SUPPORTED_CURRENCIES.map((code) => (
                 <SelectItem key={code} value={code}>
                   {code}
                 </SelectItem>

@@ -20,6 +20,8 @@ export const queryKeys = {
       [...queryKeys.apartments.all, "mine", { status, search, page }] as const,
     mineDashboard: () =>
       [...queryKeys.apartments.all, "mineDashboard"] as const,
+    forEdit: (id: string) =>
+      [...queryKeys.apartments.all, "forEdit", id] as const,
   },
   favorites: {
     all: ["favorites"] as const,
