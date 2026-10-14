@@ -1,9 +1,11 @@
 import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
-import {
-  AddApartmentImageRequest,
-  ReorderApartmentImagesRequest,
-} from "@/lib/api/types/apartments"
+import { ReorderApartmentImagesRequest } from "@/lib/api/types/apartments"
+
+export interface AddApartmentImageInput {
+  file: File
+  isPrimary?: boolean
+}
 
 export async function getApartmentImages(apartmentId: string) {
   return unwrap(
@@ -15,12 +17,14 @@ export async function getApartmentImages(apartmentId: string) {
 
 export async function addApartmentImage(
   id: string,
-  body: AddApartmentImageRequest
+  body: AddApartmentImageInput
 ) {
   return unwrap(
     await apiClient.POST("/api/v1/apartments/{id}/images", {
       params: { path: { id } },
-      body,
+      // Cast only at this one boundary: the generated type is wrong for a
+      // multipart field, but bodySerializer below sends the real File correctly.
+      body: body as unknown as { file?: string | null; isPrimary?: boolean },
       bodySerializer(body) {
         const fd = new FormData()
         Object.entries(body as Record<string, unknown>).forEach(

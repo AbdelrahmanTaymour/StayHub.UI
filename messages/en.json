@@ -662,6 +662,40 @@
       "updateErrorToast": "Couldn't update amenities. Please try again.",
       "AddedToast": "Added {amenity} successfully",
       "RemovedToast": "Removed {amenity} successfully"
+    },
+    "images": {
+      "pageTitle": "Image Manager",
+      "pageDescription": "Drag to reorder. First photo is the primary showcase.",
+      "photos": "Photos",
+      "addPhotos": "Add More Photography",
+      "uploading": "Uploading…",
+      "slotsRemaining": "{count, plural, one {# slot remaining} other {# slots remaining}}",
+      "limitReached": "Maximum of 6 photos reached",
+      "primaryCover": "Primary cover",
+      "primaryPhoto": "Primary Photo",
+      "setPrimary": "Set as Primary",
+      "dragToReorder": "Drag to reorder",
+      "moveEarlier": "Move earlier",
+      "moveLater": "Move later",
+      "viewFull": "View full photo",
+      "deletePhoto": "Delete photo",
+      "cannotDeleteLast": "At least one photo is required",
+      "previewAlt": "Apartment photo preview",
+      "uploadErrorToast": "Couldn't upload this photo. Please try again.",
+      "deleteErrorToast": "Couldn't delete this photo. Please try again.",
+      "primaryErrorToast": "Couldn't set this as the primary photo. Please try again.",
+      "reorderErrorToast": "Couldn't save the new photo order. Please try again.",
+      "validation": {
+        "tooLarge": "Photos must be 1 MB or smaller.",
+        "wrongType": "Only JPEG, PNG, or WebP photos are allowed.",
+        "limitReached": "You can upload up to 6 photos."
+      },
+      "preview": {
+        "title": "Photo preview",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "resetZoom": "Reset zoom"
+      }
     }
   }
 }

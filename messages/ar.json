@@ -661,6 +661,40 @@
       "updateErrorToast": "تعذّر تحديث المرافق. حاول مرة أخرى.",
       "AddedToast": "تمت إضافة {amenity}",
       "RemovedToast": "تمت إزالة {amenity}"
+    },
+    "images": {
+      "pageTitle": "إدارة الصور",
+      "pageDescription": "اسحب لإعادة الترتيب. الصورة الأولى هي الصورة الرئيسية.",
+      "photos": "صورة",
+      "addPhotos": "إضافة المزيد من الصور",
+      "uploading": "جارٍ الرفع…",
+      "slotsRemaining": "{count, plural, one {متبقٍ مكان واحد} two {متبقٍ مكانان} few {متبقٍ # أماكن} many {متبقٍ # مكانًا} other {متبقٍ # مكان}}",
+      "limitReached": "تم الوصول إلى الحد الأقصى (6 صور)",
+      "primaryCover": "الصورة الرئيسية",
+      "primaryPhoto": "الصورة الرئيسية",
+      "setPrimary": "تعيين كصورة رئيسية",
+      "dragToReorder": "اسحب لإعادة الترتيب",
+      "moveEarlier": "نقل للأمام",
+      "moveLater": "نقل للخلف",
+      "viewFull": "عرض الصورة بالحجم الكامل",
+      "deletePhoto": "حذف الصورة",
+      "cannotDeleteLast": "يجب أن تبقى صورة واحدة على الأقل",
+      "previewAlt": "معاينة صورة الشقة",
+      "uploadErrorToast": "تعذّر رفع هذه الصورة. حاول مرة أخرى.",
+      "deleteErrorToast": "تعذّر حذف هذه الصورة. حاول مرة أخرى.",
+      "primaryErrorToast": "تعذّر تعيين هذه الصورة كرئيسية. حاول مرة أخرى.",
+      "reorderErrorToast": "تعذّر حفظ الترتيب الجديد. حاول مرة أخرى.",
+      "validation": {
+        "tooLarge": "يجب ألا يتجاوز حجم الصورة 1 ميجابايت.",
+        "wrongType": "يُسمح فقط بصيغ JPEG أو PNG أو WebP.",
+        "limitReached": "يمكنك رفع ما يصل إلى 6 صور."
+      },
+      "preview": {
+        "title": "معاينة الصورة",
+        "zoomIn": "تكبير",
+        "zoomOut": "تصغير",
+        "resetZoom": "إعادة تعيين التكبير"
+      }
     }
   }
 }

@@ -11,6 +11,6 @@ export function useStartConversation() {
   return useApiMutation({
     mutationFn: startConversation,
     invalidate: [queryKeys.chats.all],
-    errorMessage: t("startError"),
+    errorMessage: t("startErrorToast"),
   })
 }
