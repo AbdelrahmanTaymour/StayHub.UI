@@ -695,6 +695,52 @@
         "zoomOut": "تصغير",
         "resetZoom": "إعادة تعيين التكبير"
       }
+    },
+    "availability": {
+      "pageTitle": "فترات عدم التوفر",
+      "pageDescription": "أدر نطاقات التواريخ المحجوبة يدويًا للصيانة أو الاستخدام الشخصي.",
+      "previousMonth": "الشهر السابق",
+      "nextMonth": "الشهر التالي",
+      "today": "اليوم",
+      "calendarLabel": "تقويم التوفر",
+      "hintPickStart": "اختر تاريخ البداية ثم تاريخ النهاية لإنشاء حجب جديد.",
+      "hintPickEnd": "اختر الآن تاريخ النهاية لإتمام النطاق.",
+      "statusPast": "تاريخ ماضٍ",
+      "statusBooked": "محجوز من قِبل ضيف",
+      "statusMaintenance": "قيد الصيانة",
+      "statusOwnerBlocked": "محجوب من قِبلك",
+      "tagBooked": "محجوز",
+      "tagMaintenance": "صيانة",
+      "tagBlocked": "محجوب",
+      "legendAvailable": "متاح",
+      "legendBooked": "محجوز (ضيف)",
+      "legendBlocked": "محجوب من المالك",
+      "legendPast": "تاريخ ماضٍ",
+      "legendSelected": "النطاق المحدد",
+      "activeBlocksTitle": "الحجوبات النشطة",
+      "recordsCount": "{count, plural, one {سجل واحد} two {سجلان} few {# سجلات} many {# سجلًا} other {# سجل}}",
+      "noBlocksTitle": "لا توجد تواريخ محجوبة بعد",
+      "noBlocksDescription": "اختر نطاقًا على التقويم لإضافة واحد.",
+      "nights": "{count, plural, one {ليلة واحدة} two {ليلتان} few {# ليالٍ} many {# ليلة} other {# ليلة}}",
+      "reasonLabel": "سبب الحجب",
+      "reason": {
+        "UnderMaintenance": "قيد الصيانة",
+        "OwnerBlocked": "حجب من المالك"
+      },
+      "createDialogTitle": "حجب هذه التواريخ؟",
+      "createDialogDescription": "{start} – {end} · {nights, plural, one {ليلة واحدة} two {ليلتان} few {# ليالٍ} many {# ليلة} other {# ليلة}}",
+      "cancel": "إلغاء",
+      "confirmCreate": "إضافة الحجب",
+      "creating": "جارٍ الإضافة…",
+      "blockCreatedToast": "تم إنشاء فترة الحجب",
+      "createErrorToast": "تعذّر إنشاء هذا الحجب. حاول مرة أخرى.",
+      "removeDialogTitle": "إزالة هذا الحجب؟",
+      "removeDialogDescription": "{start} – {end} · {reason}. ستصبح هذه التواريخ متاحة للضيوف للحجز مرة أخرى.",
+      "keepBlocked": "الإبقاء على الحجب",
+      "confirmRemove": "إتاحة التواريخ",
+      "removing": "جارٍ الإزالة…",
+      "blockRemovedToast": "تمت إزالة فترة الحجب",
+      "deleteErrorToast": "تعذّر إزالة هذا الحجب. حاول مرة أخرى."
     }
   }
 }

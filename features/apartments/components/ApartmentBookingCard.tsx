@@ -16,7 +16,7 @@ import { useApartmentPricing } from "@/features/apartments/hooks/useApartmentPri
 import { formatPrice } from "@/lib/utils/formatPrice"
 import {
   getStayRangeError,
-  toDateOnly,
+  toDateOnlyFromDate,
   type StayRange,
 } from "@/features/apartments/utils/stay-range"
 import { useReserveBooking } from "@/features/bookings/hooks/useReserveBooking"
@@ -45,14 +45,14 @@ export function ApartmentBookingCard({
   const stay = useMemo<StayRange | null>(() => {
     if (!dates?.from || !dates?.to) return null
     return {
-      startDate: toDateOnly(dates.from),
-      endDate: toDateOnly(dates.to),
+      startDate: toDateOnlyFromDate(dates.from),
+      endDate: toDateOnlyFromDate(dates.to),
     }
   }, [dates])
 
   const rangeError = useMemo(() => {
     if (!stay) return dates?.from ? ("required" as const) : null
-    return getStayRangeError(stay, toDateOnly(new Date()))
+    return getStayRangeError(stay, toDateOnlyFromDate(new Date()))
   }, [stay, dates])
 
   const quoteStay = stay && rangeError === null ? stay : null

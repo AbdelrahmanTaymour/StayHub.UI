@@ -2,7 +2,7 @@ import type { QueryParameters } from "@/lib/api/type-utils"
 import type { ApartmentSearchFormValues } from "@/features/apartments/schemas/apartment-search-schema"
 import {
   fromDateOnly,
-  toDateOnly,
+  toDateOnlyFromDate,
 } from "@/features/apartments/utils/stay-range"
 import { DateRangeValue } from "@/components/common/DateRangePicker"
 
@@ -77,8 +77,8 @@ export function formValuesToFilters(
     city: values.city || undefined,
     minPrice: values.minPrice,
     maxPrice: values.maxPrice,
-    start: values.stay?.from ? toDateOnly(values.stay.from) : undefined,
-    end: values.stay?.to ? toDateOnly(values.stay.to) : undefined,
+    start: values.stay?.from ? toDateOnlyFromDate(values.stay.from) : undefined,
+    end: values.stay?.to ? toDateOnlyFromDate(values.stay.to) : undefined,
   }
 }
 

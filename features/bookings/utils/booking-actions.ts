@@ -15,15 +15,5 @@ export function getBookingActions(ctx: BookingActionContext) {
   const canCancelBooking = Boolean(canCancel)
   const canReview = status === "Completed" && !hasReview
 
-  console.log(
-    "BookingStatus: ",
-    status,
-    "CAN PAY:",
-    "paymentStatus: ",
-    paymentStatus,
-    "Can pay: ",
-    canPay
-  )
-
   return { canPay, canCancelBooking, canReview }
 }

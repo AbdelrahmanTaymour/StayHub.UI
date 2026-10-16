@@ -696,6 +696,52 @@
         "zoomOut": "Zoom out",
         "resetZoom": "Reset zoom"
       }
+    },
+    "availability": {
+      "pageTitle": "Availability Blocks",
+      "pageDescription": "Manage custom blocked date ranges for maintenance or personal use.",
+      "previousMonth": "Previous month",
+      "nextMonth": "Next month",
+      "today": "Today",
+      "calendarLabel": "Availability calendar",
+      "hintPickStart": "Select a start date, then an end date to create a new block.",
+      "hintPickEnd": "Now pick an end date to complete the range.",
+      "statusPast": "Past date",
+      "statusBooked": "Booked by a guest",
+      "statusMaintenance": "Under maintenance",
+      "statusOwnerBlocked": "Blocked by you",
+      "tagBooked": "Booked",
+      "tagMaintenance": "Maintenance",
+      "tagBlocked": "Blocked",
+      "legendAvailable": "Available",
+      "legendBooked": "Booked (guest)",
+      "legendBlocked": "Owner blocked",
+      "legendPast": "Past date",
+      "legendSelected": "Selected range",
+      "activeBlocksTitle": "Active Blocks",
+      "recordsCount": "{count, plural, one {# record} other {# records}}",
+      "noBlocksTitle": "No blocked dates yet",
+      "noBlocksDescription": "Select a range on the calendar to add one.",
+      "nights": "{count, plural, one {# night} other {# nights}}",
+      "reasonLabel": "Block Reason",
+      "reason": {
+        "UnderMaintenance": "Under Maintenance",
+        "OwnerBlocked": "Owner Blocked"
+      },
+      "createDialogTitle": "Block these dates?",
+      "createDialogDescription": "{start} – {end} · {nights, plural, one {# night} other {# nights}}",
+      "cancel": "Cancel",
+      "confirmCreate": "Add Block",
+      "creating": "Adding…",
+      "blockCreatedToast": "Availability block created",
+      "createErrorToast": "Couldn't create this block. Please try again.",
+      "removeDialogTitle": "Remove this block?",
+      "removeDialogDescription": "{start} – {end} · {reason}. These dates will become available for guests to book again.",
+      "keepBlocked": "Keep Blocked",
+      "confirmRemove": "Make Available",
+      "removing": "Removing…",
+      "blockRemovedToast": "Availability block removed",
+      "deleteErrorToast": "Couldn't remove this block. Please try again."
     }
   }
 }

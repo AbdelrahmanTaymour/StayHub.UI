@@ -16,7 +16,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import {
   fromDateOnly,
-  toDateOnly,
+  toDateOnlyFromDate,
   type StayRange,
 } from "@/features/apartments/utils/stay-range"
 
@@ -62,8 +62,8 @@ export function StayDateRangePicker({
 
   function handleSelect(next: DateRange | undefined) {
     onChange({
-      startDate: next?.from ? toDateOnly(next.from) : "",
-      endDate: next?.to ? toDateOnly(next.to) : "",
+      startDate: next?.from ? toDateOnlyFromDate(next.from) : "",
+      endDate: next?.to ? toDateOnlyFromDate(next.to) : "",
     })
 
     if (next?.from && next?.to) setOpen(false)

@@ -26,6 +26,11 @@ export const queryKeys = {
       [...queryKeys.apartments.all, "images", apartmentId] as const,
     amenity: (id: string) =>
       [...queryKeys.apartments.all, "amenity", id] as const,
+    staff: (apartmentId: string) =>
+      [...queryKeys.apartments.all, "staff", apartmentId] as const,
+
+    availability: (apartmentId: string) =>
+      [...queryKeys.apartments.all, "availability", apartmentId] as const,
   },
   favorites: {
     all: ["favorites"] as const,

@@ -6,14 +6,14 @@ export interface StayRange {
 export type StayRangeError = "required" | "pastDate" | "invalidRange"
 
 /** Local calendar date as YYYY-MM-DD. Avoids the UTC shift from toISOString. */
-export function toDateOnly(date: Date): string {
+export function toDateOnlyFromDate(date: Date): string {
   const month = String(date.getMonth() + 1).padStart(2, "0")
   const day = String(date.getDate()).padStart(2, "0")
   return `${date.getFullYear()}-${month}-${day}`
 }
 
 export function getTodayDateOnly(): string {
-  return toDateOnly(new Date())
+  return toDateOnlyFromDate(new Date())
 }
 
 export function fromDateOnly(value: string): Date | undefined {
