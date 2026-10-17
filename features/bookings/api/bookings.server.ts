@@ -8,6 +8,11 @@ import type { QueryParameters } from "@/lib/api/type-utils"
 
 type MyBookingsQuery = QueryParameters<"/api/v1/bookings/mine", "get">
 
+type ApartmentBookingsQuery = QueryParameters<
+  "/api/v1/bookings/{apartmentId}/bookings",
+  "get"
+>
+
 /** Server-rendered first page of the signed-in user's own bookings. */
 export const getMyBookingsServer = cache(async (query?: MyBookingsQuery) =>
   unwrap(
@@ -36,3 +41,12 @@ export const getBookingServer = cache(async (id: string) => {
     throw error
   }
 })
+
+export const getApartmentBookingsServer = cache(
+  async (apartmentId: string, query?: ApartmentBookingsQuery) =>
+    unwrap(
+      await apiClient.GET("/api/v1/bookings/{apartmentId}/bookings", {
+        params: { path: { apartmentId }, query },
+      })
+    )
+)

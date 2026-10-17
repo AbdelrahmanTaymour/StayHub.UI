@@ -106,6 +106,9 @@ export type ApartmentUnavailabilityReason =
   Schemas["StayHub.Domain.Apartments.ApartmentUnavailabilityReason"]
 
 // APARTMENT STAFF
+export type ChangeApartmentStaffRoleRequest =
+  Schemas["StayHub.Api.Endpoints.Apartments.ChangeApartmentStaffRoleRequest"]
+
 export type ApartmentStaffRole =
   Schemas["StayHub.Domain.Apartments.ApartmentStaffRole"]
 

@@ -210,6 +210,7 @@ type ApartmentBookingResponse = {
     guestFullName?: string | null;
     guestAvatarUrl?: string | null;
     status?: BookingStatus;
+    paymentStatus?: PaymentStatus;
     durationStart?: string; // date
     durationEnd?: string; // date
     nights?: number; // int32

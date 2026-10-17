@@ -41,6 +41,20 @@ export const queryKeys = {
     mine: (filter?: string, page?: number) =>
       [...queryKeys.bookings.all, "mine", { filter, page }] as const,
     detail: (id: string) => [...queryKeys.bookings.all, "detail", id] as const,
+    byApartment: (
+      apartmentId: string,
+      filter?: string,
+      sort?: string,
+      page?: number
+    ) =>
+      [
+        ...queryKeys.bookings.all,
+        "byApartment",
+        apartmentId,
+        { filter, sort, page },
+      ] as const,
+    byApartmentAll: (apartmentId: string) =>
+      [...queryKeys.bookings.all, "byApartmentAll", apartmentId] as const,
   },
   payments: {
     all: ["payments"] as const,

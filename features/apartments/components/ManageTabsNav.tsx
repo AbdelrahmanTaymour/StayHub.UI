@@ -31,11 +31,14 @@ export function ManageTabsNav({ apartmentId }: { apartmentId: string }) {
   const pathname = usePathname()
 
   return (
-    <nav aria-label={t("navLabel")} className="lg:w-56 lg:shrink-0">
+    <nav
+      aria-label={t("navLabel")}
+      className="sticky top-16 z-10 -mx-4 border-b border-border bg-card/95 px-4 backdrop-blur sm:-mx-6 sm:px-6 lg:mx-0 lg:rounded-xl lg:border lg:px-2"
+    >
       <div
         role="tablist"
-        aria-orientation="vertical"
-        className="flex gap-1 overflow-x-auto rounded-xl bg-muted p-1.5 lg:flex-col lg:overflow-visible"
+        aria-orientation="horizontal"
+        className="flex gap-1 overflow-x-auto py-2"
       >
         {TABS.map(({ segment, icon: Icon }) => {
           const href = `/me/apartments/${apartmentId}/manage/${segment}`
@@ -48,10 +51,10 @@ export function ManageTabsNav({ apartmentId }: { apartmentId: string }) {
               role="tab"
               aria-selected={isActive}
               className={cn(
-                "flex shrink-0 items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium whitespace-nowrap transition-colors lg:shrink",
+                "flex shrink-0 items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors",
                 isActive
-                  ? "bg-card text-tertiary shadow-sm"
-                  : "text-foreground hover:text-tertiary"
+                  ? "bg-muted text-tertiary"
+                  : "text-foreground/70 hover:bg-muted/60 hover:text-foreground"
               )}
             >
               <Icon aria-hidden="true" className="size-4 shrink-0" />

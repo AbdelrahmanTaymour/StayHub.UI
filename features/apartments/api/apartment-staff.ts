@@ -2,6 +2,7 @@ import { unwrap } from "@/lib/errors/api-error"
 import { apiClientBrowser as apiClient } from "@/lib/api/client-browser"
 import {
   AssignApartmentStaffRequest,
+  ChangeApartmentStaffRoleRequest,
   InviteStaffRequest,
 } from "@/lib/api/types/apartments"
 
@@ -33,6 +34,18 @@ export async function removeApartmentStaff(assignmentId: string) {
   )
 }
 
+export async function changeApartmentStaffRole(
+  assignmentId: string,
+  body: ChangeApartmentStaffRoleRequest
+) {
+  return unwrap(
+    await apiClient.PATCH("/api/v1/apartments/staff/{assignmentId}/role", {
+      params: { path: { assignmentId } },
+      body,
+    })
+  )
+}
+
 export async function searchStaffCandidate(apartmentId: string, email: string) {
   return unwrap(
     await apiClient.GET("/api/v1/apartments/{apartmentId}/staff/search", {
@@ -53,6 +66,10 @@ export async function inviteStaff(id: string, body: InviteStaffRequest) {
 /*
 type AssignApartmentStaffRequest = {
     staffUserId?: string; // uuid
+    role?: ApartmentStaffRole;
+}
+
+type ChangeApartmentStaffRoleRequest = {
     role?: ApartmentStaffRole;
 }
 
@@ -80,6 +97,8 @@ type ApartmentStaffResponse = {
 }
 
 type AssignApartmentStaffResponse = string // new assignment id (uuid)
+
+type ChangeApartmentStaffRoleResponse = void // 204 No Content
 
 type RemoveApartmentStaffResponse = void // 204 No Content
 
