@@ -1,4 +1,5 @@
 import type { components, operations, paths } from "../generated/api"
+import { QueryParameters } from "../type-utils"
 
 export type Schemas = components["schemas"]
 export type Operations = operations
@@ -24,3 +25,8 @@ export type CreateReviewRequest =
 
 export type CreateReviewResponseRequest =
   Schemas["StayHub.Api.Endpoints.Reviews.CreateReviewResponseRequest"]
+
+export type ApartmentReviewsQuery = QueryParameters<
+  "/api/v1/reviews/by-apartment/{apartmentId}",
+  "get"
+>

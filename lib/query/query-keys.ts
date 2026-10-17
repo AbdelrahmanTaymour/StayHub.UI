@@ -74,4 +74,20 @@ export const queryKeys = {
     bookingDetails: (conversationId: string) =>
       [...queryKeys.chats.all, "bookingDetails", conversationId] as const,
   },
+  reviews: {
+    all: ["reviews"] as const,
+    byApartment: (
+      apartmentId: string,
+      responseStatus?: string,
+      rating?: string,
+      sortOrder?: string,
+      page?: number
+    ) =>
+      [
+        ...queryKeys.reviews.all,
+        "byApartment",
+        apartmentId,
+        { responseStatus, rating, sortOrder, page },
+      ] as const,
+  },
 } as const

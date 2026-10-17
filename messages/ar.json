@@ -844,6 +844,49 @@
       "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
       "retry": "إعادة المحاولة",
       "showingCount": "عرض {count} من {total} حجز"
+    },
+    "reviews": {
+      "pageTitle": "التقييمات المستلمة",
+      "pageDescription": "اطّلع على تقييمات الضيوف وانشر ردود المضيف الرسمية.",
+      "filterLabel": "تصفية التقييمات",
+      "ratingFilterLabel": "تصفية حسب التقييم",
+      "sortLabel": "ترتيب التقييمات",
+      "tabs": {
+        "All": "كل التقييمات",
+        "NeedsResponse": "بحاجة إلى رد",
+        "Responded": "تم الرد"
+      },
+      "ratingFilters": {
+        "All": "كل التقييمات",
+        "FiveStars": "5 نجوم",
+        "FourStars": "4 نجوم",
+        "ThreeStarsOrLess": "3 نجوم أو أقل"
+      },
+      "sorts": {
+        "Recent": "الأحدث",
+        "Oldest": "الأقدم",
+        "RatingDesc": "الأعلى تقييمًا",
+        "RatingAsc": "الأقل تقييمًا"
+      },
+      "unknownReviewer": "ضيف",
+      "verifiedStay": "إقامة موثقة",
+      "stayedNights": "{count, plural, one {أقام ليلة واحدة} two {أقام ليلتين} few {أقام # ليالٍ} many {أقام # ليلة} other {أقام # ليلة}}",
+      "hostLabel": "المضيف",
+      "respondedOn": "تم الرد في {date}",
+      "respond": "الرد",
+      "responseLabel": "ردك (مرئي لجميع الضيوف)",
+      "responsePlaceholder": "اشكر الضيف وتناول ما ذكره…",
+      "cancel": "إلغاء",
+      "postResponse": "نشر الرد",
+      "submitting": "جارٍ النشر…",
+      "responseSubmittedToast": "تم نشر الرد",
+      "responseErrorToast": "تعذّر نشر ردك. حاول مرة أخرى.",
+      "emptyTitle": "لا توجد تقييمات مطابقة لهذا الفلتر",
+      "emptyDescription": "جرّب تبويبًا أو تصفية تقييم مختلفة.",
+      "errorTitle": "تعذّر تحميل التقييمات",
+      "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+      "retry": "إعادة المحاولة",
+      "showingCount": "عرض {count} من {total} تقييم"
     }
   }
 }

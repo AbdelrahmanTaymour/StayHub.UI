@@ -845,6 +845,49 @@
       "errorDescription": "An unexpected error occurred. Please try again.",
       "retry": "Try again",
       "showingCount": "Showing {count} of {total} bookings"
+    },
+    "reviews": {
+      "pageTitle": "Reviews Received",
+      "pageDescription": "Read guest reviews and publish official host responses.",
+      "filterLabel": "Filter reviews",
+      "ratingFilterLabel": "Filter by rating",
+      "sortLabel": "Sort reviews",
+      "tabs": {
+        "All": "All Reviews",
+        "NeedsResponse": "Needs Response",
+        "Responded": "Responded"
+      },
+      "ratingFilters": {
+        "All": "All Ratings",
+        "FiveStars": "5 Stars",
+        "FourStars": "4 Stars",
+        "ThreeStarsOrLess": "≤ 3 Stars"
+      },
+      "sorts": {
+        "Recent": "Most Recent",
+        "Oldest": "Oldest First",
+        "RatingDesc": "Highest Rated",
+        "RatingAsc": "Lowest Rated"
+      },
+      "unknownReviewer": "Guest",
+      "verifiedStay": "Verified Stay",
+      "stayedNights": "{count, plural, one {Stayed # night} other {Stayed # nights}}",
+      "hostLabel": "Host",
+      "respondedOn": "Responded on {date}",
+      "respond": "Respond",
+      "responseLabel": "Your response (visible to all guests)",
+      "responsePlaceholder": "Thank the guest and address anything they mentioned…",
+      "cancel": "Cancel",
+      "postResponse": "Post Response",
+      "submitting": "Posting…",
+      "responseSubmittedToast": "Response posted",
+      "responseErrorToast": "Couldn't post your response. Please try again.",
+      "emptyTitle": "No reviews match this filter",
+      "emptyDescription": "Try a different tab or rating filter.",
+      "errorTitle": "Unable to load reviews",
+      "errorDescription": "An unexpected error occurred. Please try again.",
+      "retry": "Try again",
+      "showingCount": "Showing {count} of {total} reviews"
     }
   }
 }
