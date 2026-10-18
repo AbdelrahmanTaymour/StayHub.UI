@@ -37,6 +37,6 @@ export function useDeactivateApartment(apartmentId?: string) {
           previous
         )
     },
-    invalidate: [queryKeys.apartments.all],
+    invalidate: [queryKeys.apartments.mine()],
   })
 }

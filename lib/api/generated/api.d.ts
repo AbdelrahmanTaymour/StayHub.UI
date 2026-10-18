@@ -1975,7 +1975,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["StayHub.Application.Maintenance.GetApartmentMaintenanceRequests.MaintenanceRequestsResponse"][];
+                        "application/json": components["schemas"]["PagedResponseOfStayHub.Application.Maintenance.GetApartmentMaintenanceRequests.MaintenanceRequestsResponse"];
                     };
                 };
                 /** @description Forbidden */
@@ -3480,6 +3480,17 @@ export interface components {
         };
         "PagedResponseOfStayHub.Application.Favorites.GetFavoriteApartments.FavoriteApartmentResponse": {
             items: components["schemas"]["StayHub.Application.Favorites.GetFavoriteApartments.FavoriteApartmentResponse"][] | null;
+            /** Format: int32 */
+            page?: number;
+            /** Format: int32 */
+            pageSize?: number;
+            /** Format: int32 */
+            totalCount?: number;
+            /** Format: int32 */
+            totalPages?: number;
+        };
+        "PagedResponseOfStayHub.Application.Maintenance.GetApartmentMaintenanceRequests.MaintenanceRequestsResponse": {
+            items: components["schemas"]["StayHub.Application.Maintenance.GetApartmentMaintenanceRequests.MaintenanceRequestsResponse"][] | null;
             /** Format: int32 */
             page?: number;
             /** Format: int32 */

@@ -11,6 +11,6 @@ export function useCreateApartment() {
   return useApiMutation({
     mutationFn: createApartment,
     successMessage: t("createdToast"),
-    invalidate: [queryKeys.apartments.all],
+    invalidate: [queryKeys.apartments.mine()],
   })
 }

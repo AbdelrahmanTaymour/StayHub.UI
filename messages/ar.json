@@ -35,6 +35,12 @@
       "saving": "جارٍ الحفظ…"
     }
   },
+  "maintenanceStatus": {
+    "open": "مفتوحة",
+    "inProgress": "قيد التنفيذ",
+    "resolved": "تم الحل",
+    "closed": "مغلقة"
+  },
   "nav": {
     "brand": "StayHub",
     "primaryNavLabel": "القائمة الرئيسية",
@@ -887,6 +893,59 @@
       "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
       "retry": "إعادة المحاولة",
       "showingCount": "عرض {count} من {total} تقييم"
+    },
+    "maintenance": {
+      "pageTitle": "طلبات الصيانة",
+      "pageDescription": "فرز طلبات الصيانة وتعيينها ومتابعتها.",
+      "filterLabel": "تصفية التذاكر",
+      "searchPlaceholder": "ابحث في التذاكر أو المُبلّغ…",
+      "tabs": {
+        "All": "كل التذاكر",
+        "Open": "مفتوحة",
+        "InProgress": "قيد التنفيذ",
+        "Resolved": "تم الحل",
+        "Closed": "مغلقة"
+      },
+      "colTitle": "العنوان",
+      "colStatus": "الحالة",
+      "colCreated": "تاريخ الإنشاء",
+      "colReporter": "المُبلّغ",
+      "colAction": "الإجراء",
+      "untitledTicket": "تذكرة بدون عنوان",
+      "unknownReporter": "غير معروف",
+      "reportedByOwner": "أبلغ عنها المالك",
+      "reportedByGuest": "أبلغ عنها ضيف",
+      "manageTicket": "إدارة التذكرة",
+      "today": "اليوم",
+      "yesterday": "أمس",
+      "daysAgo": "{count, plural, one {منذ يوم واحد} two {منذ يومين} few {منذ # أيام} many {منذ # يومًا} other {منذ # يوم}}",
+      "emptyTitle": "لا توجد طلبات صيانة",
+      "errorTitle": "تعذّر تحميل طلبات الصيانة",
+      "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+      "retry": "إعادة المحاولة",
+      "showingCount": "عرض {count} من {total} تذكرة",
+      "createdToast": "تم إنشاء تذكرة الصيانة",
+      "createErrorToast": "تعذّر إنشاء هذه التذكرة. حاول مرة أخرى.",
+      "createSheet": {
+        "triggerLabel": "تذكرة صيانة جديدة",
+        "title": "إنشاء تذكرة صيانة",
+        "description": "أبلغ عن مشكلة ليقوم الفريق بفرزها وحلها.",
+        "fields": {
+          "title": "عنوان التذكرة",
+          "titlePlaceholder": "مثال: إعادة معايرة مستشعر تدفق المياه في الحمام الرئيسي",
+          "description": "وصف المشكلة",
+          "descriptionPlaceholder": "اذكر الموقع الدقيق والأعراض وتأثيرها على الضيوف وأي قطع غيار مطلوبة…"
+        },
+        "errors": {
+          "required": "هذا الحقل مطلوب.",
+          "titleTooLong": "يمكن أن يصل العنوان إلى 200 حرف.",
+          "descriptionTooLong": "يمكن أن يصل الوصف إلى 2000 حرف."
+        },
+        "cancel": "إلغاء",
+        "create": "إنشاء التذكرة",
+        "creating": "جارٍ الإنشاء…",
+        "submitError": "تعذّر إنشاء هذه التذكرة. راجع البيانات وحاول مرة أخرى."
+      }
     }
   }
 }

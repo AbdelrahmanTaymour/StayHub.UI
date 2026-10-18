@@ -11,7 +11,7 @@ export function useApartmentReviews(
   query: ApartmentReviewsQuery
 ) {
   return useQuery({
-    queryKey: queryKeys.reviews.byApartment(
+    queryKey: queryKeys.reviews.byApartmentList(
       apartmentId,
       query.responseStatus,
       query.rating,

@@ -16,7 +16,7 @@ export function useApartmentBookings(
   query: ApartmentBookingsQuery
 ) {
   return useQuery({
-    queryKey: queryKeys.bookings.byApartment(
+    queryKey: queryKeys.bookings.byApartmentList(
       apartmentId,
       query.status,
       query.sort,

@@ -35,6 +35,12 @@
       "saving": "Saving…"
     }
   },
+  "maintenanceStatus": {
+    "open": "Open",
+    "inProgress": "In Progress",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
   "nav": {
     "brand": "StayHub",
     "primaryNavLabel": "Primary menu",
@@ -888,6 +894,59 @@
       "errorDescription": "An unexpected error occurred. Please try again.",
       "retry": "Try again",
       "showingCount": "Showing {count} of {total} reviews"
+    },
+    "maintenance": {
+      "pageTitle": "Maintenance Requests",
+      "pageDescription": "Triage, assign, and track physical maintenance.",
+      "filterLabel": "Filter tickets",
+      "searchPlaceholder": "Search tickets, reporter…",
+      "tabs": {
+        "All": "All Tickets",
+        "Open": "Open",
+        "InProgress": "In Progress",
+        "Resolved": "Resolved",
+        "Closed": "Closed"
+      },
+      "colTitle": "Title",
+      "colStatus": "Status",
+      "colCreated": "Created Date",
+      "colReporter": "Reporter",
+      "colAction": "Action",
+      "untitledTicket": "Untitled ticket",
+      "unknownReporter": "Unknown",
+      "reportedByOwner": "Owner Reported",
+      "reportedByGuest": "Guest Reporter",
+      "manageTicket": "Manage Ticket",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
+      "emptyTitle": "No maintenance requests found",
+      "errorTitle": "Unable to load maintenance requests",
+      "errorDescription": "An unexpected error occurred. Please try again.",
+      "retry": "Try again",
+      "showingCount": "Showing {count} of {total} tickets",
+      "createdToast": "Maintenance ticket created",
+      "createErrorToast": "Couldn't create this ticket. Please try again.",
+      "createSheet": {
+        "triggerLabel": "New Maintenance Ticket",
+        "title": "Create Maintenance Ticket",
+        "description": "Report an issue for staff to triage and resolve.",
+        "fields": {
+          "title": "Ticket Title",
+          "titlePlaceholder": "e.g. Master Bath Water Flow Sensor Recalibration",
+          "description": "Issue Description",
+          "descriptionPlaceholder": "Provide exact location, symptoms, guest impact, and required replacement parts…"
+        },
+        "errors": {
+          "required": "This field is required.",
+          "titleTooLong": "Title can be up to 200 characters.",
+          "descriptionTooLong": "Description can be up to 2000 characters."
+        },
+        "cancel": "Cancel",
+        "create": "Create Ticket",
+        "creating": "Creating…",
+        "submitError": "We couldn't create this ticket. Please check the form and try again."
+      }
     }
   }
 }

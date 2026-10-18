@@ -10,7 +10,11 @@ type MyApartmentsQuery = QueryParameters<"/api/v1/apartments/mine", "get">
 
 export function useMyApartments(query: MyApartmentsQuery) {
   return useQuery({
-    queryKey: queryKeys.apartments.mine(query.status, query.search, query.page),
+    queryKey: queryKeys.apartments.mineList(
+      query.status,
+      query.search,
+      query.page
+    ),
     queryFn: () => getMyApartments(query),
     placeholderData: keepPreviousData,
   })
