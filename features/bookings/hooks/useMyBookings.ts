@@ -10,7 +10,7 @@ type MyBookingsQuery = QueryParameters<"/api/v1/bookings/mine", "get">
 
 export function useMyBookings(query: MyBookingsQuery) {
   return useQuery({
-    queryKey: queryKeys.bookings.mine(query.filter, query.page),
+    queryKey: queryKeys.bookings.mineList(query.filter, query.page),
     queryFn: () => getMyBookings(query),
     placeholderData: keepPreviousData,
   })

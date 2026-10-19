@@ -111,5 +111,7 @@ export const queryKeys = {
         ...queryKeys.maintenance.byApartment(apartmentId),
         { status, search, page },
       ] as const,
+    detail: (requestId: string) =>
+      [...queryKeys.maintenance.all, "detail", requestId] as const,
   },
 } as const

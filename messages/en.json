@@ -947,6 +947,82 @@
         "creating": "Creating…",
         "submitError": "We couldn't create this ticket. Please check the form and try again."
       }
+    },
+    "maintenanceDetail": {
+      "ticketLabel": "Ticket #{id}",
+      "untitledTicket": "Untitled ticket",
+      "unknownReporter": "Unknown reporter",
+      "description": "Description",
+      "noDescription": "No description was provided.",
+      "timelineTitle": "State Transition Timeline",
+      "actionsTitle": "Actions",
+      "currentAssignee": "Current Assignee",
+      "startedToast": "Work started",
+      "startErrorToast": "Couldn't start this ticket. Please try again.",
+      "resolvedToast": "Ticket marked resolved",
+      "resolveErrorToast": "Couldn't resolve this ticket. Please try again.",
+      "closedToast": "Ticket closed",
+      "closeErrorToast": "Couldn't close this ticket. Please try again.",
+      "assignedToast": "Staff reassigned",
+      "assignErrorToast": "Couldn't reassign this ticket. Please try again.",
+      "actions": {
+        "startProgress": "Start Progress",
+        "markResolved": "Mark as Resolved",
+        "closeTicket": "Close Ticket (Final Archive)",
+        "closedLabel": "Closed",
+        "closedOn": "Closed on {date}",
+        "reassign": "Reassign Staff"
+      },
+      "reassignDialog": {
+        "title": "Reassign ticket",
+        "noStaff": "No staff assigned to this apartment yet.",
+        "current": "Current",
+        "role": {
+          "Manager": "Manager",
+          "Cleaner": "Cleaner",
+          "MaintenanceStaff": "Maintenance Staff"
+        }
+      },
+      "reporter": {
+        "confidential": "Internal Confidential",
+        "title": "Reporter Dossier",
+        "name": "Reporter Name",
+        "phone": "Direct Mobile",
+        "email": "Email"
+      },
+      "timeline": {
+        "currentStage": "Current Stage",
+        "upcoming": "Upcoming",
+        "inProgress": "In progress",
+        "unassigned": "an assigned team member",
+        "stage": {
+          "Open": "Ticket Opened",
+          "InProgress": "In Progress",
+          "Resolved": "Resolved",
+          "Closed": "Closed"
+        },
+        "description": {
+          "Open": {
+            "current": "Reported by {reporter} and awaiting assignment. Nothing has been actioned yet.",
+            "done": "Reported by {reporter}."
+          },
+          "InProgress": {
+            "current": "{assignee} is actively working this ticket. It will move to Resolved once the fix is confirmed.",
+            "done": "Work was carried out by {assignee}.",
+            "upcoming": "Starts once the ticket is assigned and work begins."
+          },
+          "Resolved": {
+            "current": "The reported issue has been fixed. It stays here until the owner formally closes the ticket.",
+            "done": "The reported issue was fixed and confirmed.",
+            "upcoming": "Marked once the assigned work is completed and verified."
+          },
+          "Closed": {
+            "current": "This ticket is fully closed and archived. No further action is needed.",
+            "done": "Archived — no further action was needed.",
+            "upcoming": "The final step once the owner signs off after resolution."
+          }
+        }
+      }
     }
   }
 }

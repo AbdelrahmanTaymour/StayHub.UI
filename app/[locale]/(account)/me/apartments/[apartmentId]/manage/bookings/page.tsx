@@ -35,8 +35,8 @@ export default async function ApartmentBookingsTabPage({
   const page = Number(pageParam) || 1
 
   const queryClient = getQueryClient()
-  await queryClient.prefetchQuery({
-    queryKey: queryKeys.bookings.byApartment(
+  await queryClient.query({
+    queryKey: queryKeys.bookings.byApartmentList(
       apartmentId,
       resolvedFilter,
       resolvedSort,

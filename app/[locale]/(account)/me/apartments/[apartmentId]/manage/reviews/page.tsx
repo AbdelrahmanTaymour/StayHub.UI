@@ -44,7 +44,7 @@ export default async function ApartmentReviewsTabPage({
 
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.reviews.byApartment(
+    queryKey: queryKeys.reviews.byApartmentList(
       apartmentId,
       responseStatus,
       resolvedRating,

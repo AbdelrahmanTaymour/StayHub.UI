@@ -35,7 +35,7 @@ export default async function ApartmentMaintenanceTabPage({
 
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: queryKeys.maintenance.byApartment(
+    queryKey: queryKeys.maintenance.byApartmentList(
       apartmentId,
       resolvedStatus,
       q,

@@ -39,7 +39,7 @@ export default async function MyApartmentsPage({
 
   const queryClient = getQueryClient()
   await queryClient.query({
-    queryKey: queryKeys.apartments.mine(status, q, page),
+    queryKey: queryKeys.apartments.mineList(status, q, page),
     queryFn: () =>
       getMyApartmentsServer({
         status,
