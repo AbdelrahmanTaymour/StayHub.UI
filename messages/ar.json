@@ -586,7 +586,7 @@
   },
   "apartmentManage": {
     "pageTitle": "تعديل الشقة",
-    "pageDescription": "حدّث تفاصيل العقار والأسعار.",
+    "pageDescription": "حدّث تفاصيل العقار والأسعار، وادارة الححوزات القادمة، ومتابعة عمليات الصيانة.",
     "breadcrumbApartments": "شققي",
     "fallbackTitle": "الشقة",
     "statusActiveLabel": "الشقة نشطة",
@@ -636,6 +636,7 @@
     },
     "details": {
       "pageTitle": "تفاصيل الشقة",
+      "pageDescription": "حدّث تفاصيل العقار والأسعار.",
       "basicInfo": "المعلومات الأساسية",
       "titleLabel": "عنوان الشقة",
       "descriptionLabel": "وصف العقار",

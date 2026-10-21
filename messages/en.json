@@ -587,7 +587,7 @@
   },
   "apartmentManage": {
     "pageTitle": "Edit Apartment",
-    "pageDescription": "Update property details and pricing.",
+    "pageDescription": "Update property details manage impcomming bookings, and maintenance tickets.",
     "breadcrumbApartments": "My Apartments",
     "fallbackTitle": "Apartment",
     "statusActiveLabel": "Apartment is active",
@@ -637,6 +637,7 @@
     },
     "details": {
       "pageTitle": "Apartment Details",
+      "pageDescription": "Update property details and pricing.",
       "basicInfo": "Basic Information",
       "titleLabel": "Apartment Title",
       "descriptionLabel": "Property Description",

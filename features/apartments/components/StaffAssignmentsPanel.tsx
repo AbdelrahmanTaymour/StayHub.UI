@@ -1,8 +1,5 @@
 "use client"
 
-import { Users } from "lucide-react"
-import { useTranslations } from "next-intl"
-
 import { AssignStaffCard } from "./AssignStaffCard"
 import { ActiveStaffRoster } from "./ActiveStaffRoster"
 import { useApartmentStaff } from "../hooks/useApartmentStaff"
@@ -17,25 +14,10 @@ export function StaffAssignmentsPanel({
   apartmentId,
   initialStaff,
 }: StaffAssignmentsPanelProps) {
-  const t = useTranslations("apartmentManage.staff")
   const { data: staff } = useApartmentStaff(apartmentId, initialStaff)
-  const count = staff?.length ?? 0
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2 rounded-xl border border-border bg-card p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between md:p-6">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-lg font-semibold tracking-tight text-foreground">
-            {t("pageTitle")}
-          </h2>
-          <p className="text-sm text-foreground/70">{t("pageDescription")}</p>
-        </div>
-        <span className="inline-flex w-fit items-center gap-1.5 rounded-xl bg-surface-container-low px-3 py-2 text-sm font-semibold text-foreground">
-          <Users aria-hidden="true" className="size-4 text-primary" />
-          {t("staffCount", { count })}
-        </span>
-      </div>
-
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <AssignStaffCard apartmentId={apartmentId} staff={staff} />

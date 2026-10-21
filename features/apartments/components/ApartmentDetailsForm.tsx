@@ -29,6 +29,7 @@ import {
   type EditApartmentFormValues,
 } from "@/features/apartments/schemas/edit-apartment-schema"
 import type { ApartmentForEditResponse } from "@/lib/api/types/apartments"
+import { ApartmentStatusToggle } from "./ApartmentStatusToggle"
 
 const DEFAULT_FORM_VALUES: EditApartmentFormInput = {
   title: "",
@@ -116,8 +117,6 @@ export function ApartmentDetailsForm({ apartmentId }: { apartmentId: string }) {
       },
       {
         onSuccess: () => {
-          // Establish the successfully submitted values as the new baseline.
-          // A plain reset() afterwards will restore these values.
           reset(toFormInput(values))
         },
         onError: (err) => {
@@ -145,201 +144,209 @@ export function ApartmentDetailsForm({ apartmentId }: { apartmentId: string }) {
   if (!apartment) return null
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      className="flex flex-col gap-6"
-    >
-      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
-        {/* Basic information */}
-        <section
-          aria-labelledby="basic-info-heading"
-          className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm"
-        >
-          <h2
-            id="basic-info-heading"
-            className="text-lg font-semibold text-foreground"
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col sm:flex-row">
+        <ApartmentStatusToggle
+          apartmentId={apartmentId}
+          isActive={apartment.isActive ?? false}
+        />
+      </header>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        className="flex flex-col gap-6"
+      >
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+          {/* Basic information */}
+          <section
+            aria-labelledby="basic-info-heading"
+            className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm"
           >
-            {t("basicInfo")}
-          </h2>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="apartment-title">{t("titleLabel")}</Label>
-            <Input
-              id="apartment-title"
-              {...register("title")}
-              aria-invalid={Boolean(errors.title)}
-            />
-            {errors.title?.message ? (
-              <p role="alert" className="text-sm text-destructive">
-                {t(`errors.${errors.title.message}`)}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="apartment-description">
-              {t("descriptionLabel")}
-            </Label>
-            <Textarea
-              id="apartment-description"
-              rows={8}
-              {...register("description")}
-              aria-invalid={Boolean(errors.description)}
-            />
-            {errors.description?.message ? (
-              <p role="alert" className="text-sm text-destructive">
-                {t(`errors.${errors.description.message}`)}
-              </p>
-            ) : null}
-          </div>
-        </section>
-
-        {/* Pricing */}
-        <section
-          aria-labelledby="pricing-heading"
-          className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-3">
             <h2
-              id="pricing-heading"
+              id="basic-info-heading"
               className="text-lg font-semibold text-foreground"
             >
-              {t("pricing")}
+              {t("basicInfo")}
             </h2>
 
-            <Controller
-              control={control}
-              name="currency"
-              render={({ field }) => (
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger
-                    className="w-24"
-                    aria-label={t("currencyLabel")}
-                    aria-invalid={Boolean(errors.currency)}
-                  >
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {SUPPORTED_CURRENCIES.map((code) => (
-                      <SelectItem key={code} value={code}>
-                        {code}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
-
-          {errors.currency?.message ? (
-            <p role="alert" className="text-sm text-destructive">
-              {t(`errors.${errors.currency.message}`)}
-            </p>
-          ) : null}
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="apartment-nightly-rate">
-              {t("nightlyRateLabel")}
-            </Label>
-            <Input
-              id="apartment-nightly-rate"
-              type="number"
-              step="0.01"
-              min={0}
-              {...register("nightlyRate")}
-              aria-invalid={Boolean(errors.nightlyRate)}
-            />
-            {errors.nightlyRate?.message ? (
-              <p role="alert" className="text-sm text-destructive">
-                {t(`errors.${errors.nightlyRate.message}`)}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="apartment-cleaning-fee">
-              {t("cleaningFeeLabel")}
-            </Label>
-            <Input
-              id="apartment-cleaning-fee"
-              type="number"
-              step="0.01"
-              min={0}
-              {...register("cleaningFee")}
-              aria-invalid={Boolean(errors.cleaningFee)}
-            />
-            {errors.cleaningFee?.message ? (
-              <p role="alert" className="text-sm text-destructive">
-                {t(`errors.${errors.cleaningFee.message}`)}
-              </p>
-            ) : null}
-          </div>
-        </section>
-
-        {/* Address — read-only */}
-        <section
-          aria-labelledby="address-heading"
-          className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm lg:col-span-2"
-        >
-          <h2
-            id="address-heading"
-            className="text-lg font-semibold text-foreground"
-          >
-            {t("address")}
-          </h2>
-
-          <div className="flex items-start gap-3 rounded-xl bg-muted p-4">
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-card text-destructive shadow-sm">
-              <Lock aria-hidden="true" className="size-4" />
-            </span>
-            <div>
-              <h3 className="font-semibold text-foreground">
-                {t("addressLockedTitle")}
-              </h3>
-              <p className="mt-1 text-sm text-foreground/70">
-                {t("addressLockedDescription")}
-              </p>
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="apartment-title">{t("titleLabel")}</Label>
+              <Input
+                id="apartment-title"
+                {...register("title")}
+                aria-invalid={Boolean(errors.title)}
+              />
+              {errors.title?.message ? (
+                <p role="alert" className="text-sm text-destructive">
+                  {t(`errors.${errors.title.message}`)}
+                </p>
+              ) : null}
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <AddressField
-              label={t("street")}
-              value={apartment.address.street}
-            />
-            <AddressField label={t("city")} value={apartment.address.city} />
-            <AddressField
-              label={t("zipCode")}
-              value={apartment.address.zipCode}
-            />
-            <AddressField
-              label={t("country")}
-              value={apartment.address.country}
-            />
-          </div>
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="apartment-description">
+                {t("descriptionLabel")}
+              </Label>
+              <Textarea
+                id="apartment-description"
+                rows={8}
+                {...register("description")}
+                aria-invalid={Boolean(errors.description)}
+              />
+              {errors.description?.message ? (
+                <p role="alert" className="text-sm text-destructive">
+                  {t(`errors.${errors.description.message}`)}
+                </p>
+              ) : null}
+            </div>
+          </section>
 
-          {/* Map placeholder */}
-          <div
-            role="img"
-            aria-label={t("mapDisabledAria")}
-            className="flex h-44 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted text-sm text-foreground/70"
+          {/* Pricing */}
+          <section
+            aria-labelledby="pricing-heading"
+            className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm"
           >
-            <MapPin aria-hidden="true" className="size-6" />
-            <span>{t("mapComingSoon")}</span>
-          </div>
-        </section>
-      </div>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2
+                id="pricing-heading"
+                className="text-lg font-semibold text-foreground"
+              >
+                {t("pricing")}
+              </h2>
 
-      {saveError ? <ValidationErrorList errors={[t("submitError")]} /> : null}
+              <Controller
+                control={control}
+                name="currency"
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger
+                      className="w-24"
+                      aria-label={t("currencyLabel")}
+                      aria-invalid={Boolean(errors.currency)}
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SUPPORTED_CURRENCIES.map((code) => (
+                        <SelectItem key={code} value={code}>
+                          {code}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
 
-      <UnsavedChangesBar
-        isVisible={isDirty}
-        isSaving={isSaving}
-        onSave={handleSubmit(onSubmit)}
-        onReset={() => reset()}
-      />
-    </form>
+            {errors.currency?.message ? (
+              <p role="alert" className="text-sm text-destructive">
+                {t(`errors.${errors.currency.message}`)}
+              </p>
+            ) : null}
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="apartment-nightly-rate">
+                {t("nightlyRateLabel")}
+              </Label>
+              <Input
+                id="apartment-nightly-rate"
+                type="number"
+                step="0.01"
+                min={0}
+                {...register("nightlyRate")}
+                aria-invalid={Boolean(errors.nightlyRate)}
+              />
+              {errors.nightlyRate?.message ? (
+                <p role="alert" className="text-sm text-destructive">
+                  {t(`errors.${errors.nightlyRate.message}`)}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="apartment-cleaning-fee">
+                {t("cleaningFeeLabel")}
+              </Label>
+              <Input
+                id="apartment-cleaning-fee"
+                type="number"
+                step="0.01"
+                min={0}
+                {...register("cleaningFee")}
+                aria-invalid={Boolean(errors.cleaningFee)}
+              />
+              {errors.cleaningFee?.message ? (
+                <p role="alert" className="text-sm text-destructive">
+                  {t(`errors.${errors.cleaningFee.message}`)}
+                </p>
+              ) : null}
+            </div>
+          </section>
+
+          {/* Address — read-only */}
+          <section
+            aria-labelledby="address-heading"
+            className="flex flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-sm lg:col-span-2"
+          >
+            <h2
+              id="address-heading"
+              className="text-lg font-semibold text-foreground"
+            >
+              {t("address")}
+            </h2>
+
+            <div className="flex items-start gap-3 rounded-xl bg-muted p-4">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-card text-destructive shadow-sm">
+                <Lock aria-hidden="true" className="size-4" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-foreground">
+                  {t("addressLockedTitle")}
+                </h3>
+                <p className="mt-1 text-sm text-foreground/70">
+                  {t("addressLockedDescription")}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <AddressField
+                label={t("street")}
+                value={apartment.address.street}
+              />
+              <AddressField label={t("city")} value={apartment.address.city} />
+              <AddressField
+                label={t("zipCode")}
+                value={apartment.address.zipCode}
+              />
+              <AddressField
+                label={t("country")}
+                value={apartment.address.country}
+              />
+            </div>
+
+            {/* Map placeholder */}
+            <div
+              role="img"
+              aria-label={t("mapDisabledAria")}
+              className="flex h-44 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted text-sm text-foreground/70"
+            >
+              <MapPin aria-hidden="true" className="size-6" />
+              <span>{t("mapComingSoon")}</span>
+            </div>
+          </section>
+        </div>
+
+        {saveError ? <ValidationErrorList errors={[t("submitError")]} /> : null}
+
+        <UnsavedChangesBar
+          isVisible={isDirty}
+          isSaving={isSaving}
+          onSave={handleSubmit(onSubmit)}
+          onReset={() => reset()}
+        />
+      </form>
+    </div>
   )
 }
 

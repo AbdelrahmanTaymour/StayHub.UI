@@ -21,7 +21,7 @@ export function ActiveStaffRoster({
   const members = staff ?? []
 
   return (
-    <Card className="gap-0 overflow-hidden p-0">
+    <Card className="overflow-hidden p-0">
       <div className="flex flex-col gap-1 border-b border-border p-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-lg font-semibold text-foreground">

@@ -55,13 +55,6 @@ export function ApartmentReviewsManager({
 
   return (
     <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-1 rounded-xl border border-border bg-card p-4">
-        <h1 className="text-lg font-semibold text-foreground">
-          {t("pageTitle")}
-        </h1>
-        <p className="text-sm text-foreground/70">{t("pageDescription")}</p>
-      </header>
-
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <FilterTabs
           ariaLabel={t("filterLabel")}

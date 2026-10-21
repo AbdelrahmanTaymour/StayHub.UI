@@ -136,24 +136,7 @@ export function ApartmentImageManager({
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-lg font-semibold text-foreground">
-            {t("pageTitle")}
-          </h1>
-          <p className="mt-1 text-sm text-foreground/70">
-            {t("pageDescription")}
-          </p>
-        </div>
-        <div className="flex items-center gap-2 rounded-lg bg-muted px-3 py-2 text-sm">
-          <span className="font-bold text-foreground">{order.length}</span>
-          <span className="text-foreground/70">
-            / {MAX_APARTMENT_IMAGES} {t("photos")}
-          </span>
-        </div>
-      </header>
-
+    <>
       {uploadError ? (
         <p role="alert" className="text-sm text-destructive">
           {uploadError}
@@ -194,6 +177,6 @@ export function ApartmentImageManager({
         alt={t("previewAlt")}
         onClose={() => setPreviewUrl(null)}
       />
-    </div>
+    </>
   )
 }
