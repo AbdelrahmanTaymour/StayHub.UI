@@ -12,6 +12,10 @@ export async function getMyNotifications(query?: GetNotificationsQuery) {
   )
 }
 
+export async function getUnreadNotificationsCount() {
+  return unwrap(await apiClient.GET("/api/v1/notifications/count"))
+}
+
 export async function markNotificationRead(notificationId: string) {
   return unwrap(
     await apiClient.POST("/api/v1/notifications/{notificationId}/read", {
@@ -19,45 +23,3 @@ export async function markNotificationRead(notificationId: string) {
     })
   )
 }
-
-/*
-type GetNotificationsQuery = {
-    unreadOnly?: boolean; // when true, only return notifications not yet read
-    page?: number; // 1-based page number
-    pageSize?: number; // items per page
-}
-
-type NotificationType =
-    | "BookingConfirmed"
-    | "BookingRejected"
-    | "BookingCancelled"
-    | "NewMessage"
-    | "ReviewReceived"
-    | "ReviewResponseReceived"
-    | "MaintenanceRequestCreated"
-    | "MaintenanceRequestUpdate"
-    | "ApartmentStaffAssignmentCreated"
-// `type` tells you which event fired; `payload` (below) holds event-specific
-// data as a backend-serialized string (shape depends on `type` — not
-// strongly typed in the generated spec).
-
-// Responses
-
-type GetMyNotificationsResponse = PagedResponse<MyNotificationsResponse>
-type MyNotificationsResponse = {
-    id?: string; // uuid
-    type?: NotificationType;
-    payload?: string | null;
-    isRead?: boolean;
-    createdOnUtc?: string; // date-time
-}
-type PagedResponse<T> = {
-    items: T[] | null;
-    page?: number; // int32
-    pageSize?: number; // int32
-    totalCount?: number; // int32
-    totalPages?: number; // int32
-}
-
-type MarkNotificationReadResponse = void // 204 No Content
-*/

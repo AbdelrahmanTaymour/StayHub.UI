@@ -115,4 +115,11 @@ export const queryKeys = {
     detail: (requestId: string) =>
       [...queryKeys.maintenance.all, "detail", requestId] as const,
   },
+
+  notifications: {
+    all: ["notifications"] as const,
+    list: (unreadOnly?: boolean, page?: number) =>
+      [...queryKeys.notifications.all, "list", { unreadOnly, page }] as const,
+    unreadCount: () => [...queryKeys.notifications.all, "unreadCount"] as const,
+  },
 } as const

@@ -58,6 +58,7 @@
     "notifications": "الإشعارات",
     "accountMenu": "قائمة الحساب",
     "profile": "الملف الشخصي",
+    "notificationsWithCount": "الإشعارات ({count} غير مقروءة)",
     "settings": "الإعدادات",
     "signOut": "تسجيل الخروج",
     "signingOut": "جارٍ تسجيل الخروج…"
@@ -96,6 +97,24 @@
         "wrongType": "يُسمح فقط بصيغ JPEG أو PNG أو WebP."
       }
     }
+  },
+  "notifications": {
+    "pageTitle": "الإشعارات",
+    "pageDescription": "تحديثات حول حجوزاتك ورسائلك وإعلاناتك.",
+    "metaDescription": "عرض إشعاراتك على StayHub.",
+    "filterLabel": "تصفية الإشعارات",
+    "tabs": { "all": "الكل", "unread": "غير مقروءة" },
+    "unreadLabel": "غير مقروء",
+    "genericMessage": "لديك إشعار جديد.",
+    "justNow": "الآن",
+    "minutesAgo": "{count, plural, one {منذ دقيقة واحدة} two {منذ دقيقتين} few {منذ # دقائق} many {منذ # دقيقة} other {منذ # دقيقة}}",
+    "hoursAgo": "{count, plural, one {منذ ساعة واحدة} two {منذ ساعتين} few {منذ # ساعات} many {منذ # ساعة} other {منذ # ساعة}}",
+    "daysAgo": "{count, plural, one {منذ يوم واحد} two {منذ يومين} few {منذ # أيام} many {منذ # يومًا} other {منذ # يوم}}",
+    "emptyTitle": "لا توجد إشعارات",
+    "emptyDescription": "لا يوجد جديد.",
+    "errorTitle": "تعذّر تحميل الإشعارات",
+    "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+    "retry": "إعادة المحاولة"
   },
   "home": {
     "metaTitle": "StayHub — احجز إقامتك القادمة",

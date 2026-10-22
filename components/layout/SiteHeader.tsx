@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { Link, usePathname } from "@/i18n/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { buttonVariants, Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +18,7 @@ import { ThemeToggle } from "@/components/common/ThemeToggle"
 import { useLogout } from "@/features/auth/hooks/useLogout"
 import { cn } from "cn"
 import { useAuth } from "@/providers/AuthContext"
+import { useUnreadNotificationsCount } from "@/features/notifications/hooks/useUnreadNotificationsCount"
 
 interface NavItem {
   key: string
@@ -33,6 +34,8 @@ export function SiteHeader() {
   const { logout, isPending } = useLogout()
 
   const isAuthenticated = status === "authenticated"
+
+  const unreadCount = useUnreadNotificationsCount(isAuthenticated)
 
   const navItems: NavItem[] = [
     { key: "explore", label: t("explore"), href: "/" },
@@ -102,21 +105,28 @@ export function SiteHeader() {
 
           {isAuthenticated ? (
             <div className="flex items-center gap-3 border-s border-border ps-3">
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                aria-label={t("notifications")}
-                className="relative"
+              <Link
+                href="/notifications"
+                aria-label={
+                  unreadCount > 0
+                    ? t("notificationsWithCount", { count: unreadCount })
+                    : t("notifications")
+                }
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "relative"
+                )}
               >
                 <Bell className="h-5 w-5" aria-hidden="true" />
-                {/*
-                  No unread-count source yet (features/notifications/api
-                  doesn't expose a count endpoint in what I've seen) — once
-                  it does, swap this for a conditionally-rendered dot
-                  instead of always/never showing one.
-                */}
-              </Button>
+                {unreadCount > 0 ? (
+                  <span
+                    aria-hidden="true"
+                    className="text-destructive-foreground absolute -inset-e-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-semibold"
+                  >
+                    {unreadCount > 9 ? "9+" : unreadCount}
+                  </span>
+                ) : null}
+              </Link>
 
               <DropdownMenu>
                 <DropdownMenuTrigger

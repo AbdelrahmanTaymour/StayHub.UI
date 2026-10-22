@@ -58,6 +58,7 @@
     "notifications": "Notifications",
     "accountMenu": "Account menu",
     "profile": "Profile",
+    "notificationsWithCount": "Notifications ({count} unread)",
     "settings": "Settings",
     "signOut": "Sign out",
     "signingOut": "Signing out…"
@@ -96,6 +97,24 @@
         "wrongType": "Only JPEG, PNG, or WebP photos are allowed."
       }
     }
+  },
+  "notifications": {
+    "pageTitle": "Notifications",
+    "pageDescription": "Updates about your bookings, messages, and listings.",
+    "metaDescription": "View your StayHub notifications.",
+    "filterLabel": "Filter notifications",
+    "tabs": { "all": "All", "unread": "Unread" },
+    "unreadLabel": "Unread",
+    "genericMessage": "You have a new notification.",
+    "justNow": "Just now",
+    "minutesAgo": "{count, plural, one {# minute ago} other {# minutes ago}}",
+    "hoursAgo": "{count, plural, one {# hour ago} other {# hours ago}}",
+    "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
+    "emptyTitle": "No notifications",
+    "emptyDescription": "You're all caught up.",
+    "errorTitle": "Unable to load notifications",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "retry": "Try again"
   },
   "home": {
     "metaTitle": "StayHub — Book Your Next Stay",

@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 
@@ -53,14 +53,15 @@ export function ProfileForm() {
     defaultValues: { firstName: "", lastName: "", bio: "", phoneNumber: "" },
   })
 
-  // Reset exactly once per loaded user — same one-time pattern used for
-  // ApartmentDetailsForm, so background refetches (e.g. after the avatar
-  // mutation invalidates this same query) never clobber in-progress edits.
+  // Reset exactly once per loaded user — wrapped in useEffect to prevent
+  // accessing or mutating refs during render.
   const initializedUserIdRef = useRef<string | null>(null)
-  if (user && initializedUserIdRef.current !== user.id) {
-    reset(toFormValues(user))
-    initializedUserIdRef.current = user.id ?? null
-  }
+  useEffect(() => {
+    if (user && initializedUserIdRef.current !== user.id) {
+      reset(toFormValues(user))
+      initializedUserIdRef.current = user.id ?? null
+    }
+  }, [user, reset])
 
   function onSubmit(values: ProfileFormValues) {
     const knownFields = ["firstName", "lastName", "bio", "phoneNumber"] as const
