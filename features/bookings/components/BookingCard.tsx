@@ -1,4 +1,4 @@
-import { Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin, MoreVertical } from "lucide-react"
 import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
 
@@ -16,6 +16,13 @@ import { MyBookingsResponse } from "@/lib/api/types/bookings"
 import { formatDate } from "@/features/apartments/utils/format-date"
 import { formatPrice } from "@/lib/utils/formatPrice"
 import { WriteReviewDialog } from "@/features/reviews/components/WriteReviewDialog"
+import { useRef } from "react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 interface BookingCardProps {
   booking: MyBookingsResponse
@@ -53,6 +60,13 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
     paymentStatus,
     hasReview,
   })
+
+  const payTriggerRef = useRef<HTMLAnchorElement>(null)
+  const reviewTriggerRef = useRef<HTMLButtonElement>(null)
+  const cancelTriggerRef = useRef<HTMLButtonElement>(null)
+
+  const hasOverflowActions =
+    (canPay || canReview || canCancelBooking) && Boolean(id)
 
   const dateRange =
     durationStart && durationEnd
@@ -177,10 +191,54 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
               </Link>
             ) : null}
 
+            {hasOverflowActions ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon-sm"
+                      aria-label={t("moreActions")}
+                    />
+                  }
+                >
+                  <MoreVertical aria-hidden="true" className="size-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {canPay && id ? (
+                    <DropdownMenuItem
+                      onSelect={() => payTriggerRef.current?.click()}
+                    >
+                      {t("payNow")}
+                    </DropdownMenuItem>
+                  ) : null}
+                  {canReview && id ? (
+                    <DropdownMenuItem
+                      onSelect={() => reviewTriggerRef.current?.click()}
+                    >
+                      {t("writeReview")}
+                    </DropdownMenuItem>
+                  ) : null}
+                  {canCancelBooking && id ? (
+                    <DropdownMenuItem
+                      variant="destructive"
+                      onSelect={() => cancelTriggerRef.current?.click()}
+                    >
+                      {t("cancelBooking")}
+                    </DropdownMenuItem>
+                  ) : null}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : null}
+
             {canPay && id ? (
               <Link
+                ref={payTriggerRef}
                 href={`/me/bookings/${id}/payment`}
-                className={buttonVariants({ size: "sm" })}
+                className="sr-only"
+                tabIndex={-1}
+                aria-hidden="true"
               >
                 {t("payNow")}
               </Link>
@@ -191,9 +249,13 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
                 bookingId={id}
                 apartmentName={title}
                 trigger={
-                  <Button type="button" size="sm">
-                    {t("writeReview")}
-                  </Button>
+                  <button
+                    ref={reviewTriggerRef}
+                    type="button"
+                    className="sr-only"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  />
                 }
               />
             ) : null}
@@ -203,14 +265,13 @@ export function BookingCard({ booking, isPriority = false }: BookingCardProps) {
                 bookingId={id}
                 apartmentName={title}
                 trigger={
-                  <Button
+                  <button
+                    ref={cancelTriggerRef}
                     type="button"
-                    variant="outline"
-                    size="sm"
-                    className="text-destructive hover:text-destructive"
-                  >
-                    {t("cancelBooking")}
-                  </Button>
+                    className="sr-only"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  />
                 }
               />
             ) : null}

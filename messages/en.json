@@ -52,7 +52,7 @@
     "switchLanguage": "Switch language to {language}",
     "explore": "Explore",
     "myBookings": "My bookings",
-    "myApartments": "My properties",
+    "myApartments": "My apartments",
     "favorites": "Favorites",
     "messages": "Messages",
     "notifications": "Notifications",
@@ -67,6 +67,35 @@
     "legalNavLabel": "Legal & Terms",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy"
+  },
+  "profile": {
+    "pageTitle": "Profile",
+    "metaDescription": "Manage your StayHub account details.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "emailHint": "Your email can't be changed here.",
+    "phoneNumber": "Phone number",
+    "bio": "Bio",
+    "savedToast": "Profile updated",
+    "avatarUpdatedToast": "Profile photo updated",
+    "avatarErrorToast": "Couldn't update your photo. Please try again.",
+    "submitError": "We couldn't save your changes. Please check the form and try again.",
+    "errors": {
+      "required": "This field is required.",
+      "nameTooLong": "Can be up to 50 characters.",
+      "bioTooLong": "Bio can be up to 500 characters.",
+      "phoneTooLong": "Phone number is too long.",
+      "invalidPhone": "Enter a valid phone number."
+    },
+    "avatar": {
+      "changeAvatar": "Change {name}'s profile photo",
+      "hint": "JPEG, PNG or WebP, up to 2 MB.",
+      "validation": {
+        "tooLarge": "Photo must be 2 MB or smaller.",
+        "wrongType": "Only JPEG, PNG, or WebP photos are allowed."
+      }
+    }
   },
   "home": {
     "metaTitle": "StayHub — Book Your Next Stay",
@@ -325,6 +354,7 @@
     "payNow": "Pay Now",
     "writeReview": "Write a Review",
     "imageAlt": "{title} in {city}",
+    "moreActions": "More actions",
     "status": {
       "reserved": "Pending approval",
       "confirmed": "Confirmed",
@@ -526,9 +556,9 @@
       "percent": "{value}%",
       "vsLastMonth": "vs last month",
       "monthToDateRevenue": "Month-to-Date Revenue",
-      "netPayoutTarget": "USD net payout target",
+      "netPayoutTarget": "Net payout target",
       "pendingBookings": "Pending Incoming Bookings",
-      "review": "Review"
+      "review": "Waiting for your confirmation"
     },
     "table": {
       "filterLabel": "Filter apartments",

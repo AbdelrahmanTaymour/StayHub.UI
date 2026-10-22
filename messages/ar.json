@@ -68,6 +68,35 @@
     "terms": "الشروط والأحكام",
     "privacy": "سياسة الخصوصية"
   },
+  "profile": {
+    "pageTitle": "الملف الشخصي",
+    "metaDescription": "أدر تفاصيل حسابك في StayHub.",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "emailHint": "لا يمكن تغيير بريدك الإلكتروني من هنا.",
+    "phoneNumber": "رقم الهاتف",
+    "bio": "نبذة",
+    "savedToast": "تم تحديث الملف الشخصي",
+    "avatarUpdatedToast": "تم تحديث الصورة الشخصية",
+    "avatarErrorToast": "تعذّر تحديث صورتك. حاول مرة أخرى.",
+    "submitError": "تعذّر حفظ التغييرات. راجع البيانات وحاول مرة أخرى.",
+    "errors": {
+      "required": "هذا الحقل مطلوب.",
+      "nameTooLong": "يمكن أن يصل إلى 50 حرفًا.",
+      "bioTooLong": "يمكن أن تصل النبذة إلى 500 حرف.",
+      "phoneTooLong": "رقم الهاتف طويل جدًا.",
+      "invalidPhone": "أدخل رقم هاتف صالحًا."
+    },
+    "avatar": {
+      "changeAvatar": "تغيير الصورة الشخصية لـ {name}",
+      "hint": "JPEG أو PNG أو WebP، حتى 2 ميجابايت.",
+      "validation": {
+        "tooLarge": "يجب ألا يتجاوز حجم الصورة 2 ميجابايت.",
+        "wrongType": "يُسمح فقط بصيغ JPEG أو PNG أو WebP."
+      }
+    }
+  },
   "home": {
     "metaTitle": "StayHub — احجز إقامتك القادمة",
     "metaDescription": "كتشف شققًا مميزة وإقامات قصيرة مختارة بعناية مع أفضل المضيفين.",
@@ -328,6 +357,7 @@
     "payNow": "ادفع الآن",
     "writeReview": "اكتب تقييمًا",
     "imageAlt": "{title} في {city}",
+    "moreActions": "إجراءات إضافية",
     "status": {
       "reserved": "بانتظار الموافقة",
       "confirmed": "مؤكد",
@@ -525,9 +555,9 @@
       "percent": "{value}٪",
       "vsLastMonth": "مقارنة بالشهر الماضي",
       "monthToDateRevenue": "الإيرادات منذ بداية الشهر",
-      "netPayoutTarget": "صافي المستهدف بالدولار الأمريكي",
+      "netPayoutTarget": "صافي الارباح",
       "pendingBookings": "الحجوزات الواردة المعلّقة",
-      "review": "مراجعة"
+      "review": "بإنتظار موفقتك"
     },
     "table": {
       "filterLabel": "تصفية الشقق",

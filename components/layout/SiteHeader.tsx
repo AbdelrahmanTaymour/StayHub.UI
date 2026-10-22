@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher"
@@ -137,20 +138,40 @@ export function SiteHeader() {
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  {/*
-                    No profile/settings endpoints exist yet (per the
-                    product spec's own open-decisions list), so these are
-                    disabled placeholders rather than links to pages that
-                    don't exist.
-                  */}
-                  <DropdownMenuItem disabled>{t("profile")}</DropdownMenuItem>
+                  {/* Nav links — visible only on mobile/tablet; desktop already has the horizontal nav bar */}
+                  <div className="md:hidden">
+                    {navItems.map((item) => {
+                      const active = isActive(item.href)
+                      return (
+                        <DropdownMenuItem
+                          key={item.key}
+                          render={
+                            <Link
+                              href={item.href}
+                              aria-current={active ? "page" : undefined}
+                            />
+                          }
+                        >
+                          <span
+                            className={cn(
+                              active && "font-semibold text-tertiary"
+                            )}
+                          >
+                            {item.label}
+                          </span>
+                        </DropdownMenuItem>
+                      )
+                    })}
+                    <DropdownMenuSeparator />
+                  </div>
+
+                  <DropdownMenuItem render={<Link href="/profile" />}>
+                    {t("profile")}
+                  </DropdownMenuItem>
                   <DropdownMenuItem disabled>{t("settings")}</DropdownMenuItem>
                   <DropdownMenuItem
                     variant="destructive"
                     disabled={isPending}
-                    // onSelect={() => {
-                    //   void logout()
-                    // }}
                     onClick={(e) => {
                       e.preventDefault()
                       void logout()

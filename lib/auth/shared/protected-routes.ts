@@ -13,6 +13,7 @@ export const PROTECTED_PREFIXES: readonly string[] = [
   "/me/chats",
   "/me/apartments",
   "/me/notifications",
+  "/profile",
 ]
 
 const localePattern = new RegExp(`^/(${routing.locales.join("|")})(?=/|$)`)

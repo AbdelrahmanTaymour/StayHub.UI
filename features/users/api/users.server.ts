@@ -18,3 +18,7 @@ export const getOwnerProfileServer = cache(async (ownerId: string) => {
     throw error
   }
 })
+
+export const getLoggedInUserServer = cache(async () =>
+  unwrap(await apiClient.GET("/api/v1/users/me"))
+)

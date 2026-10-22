@@ -61,9 +61,7 @@ export function ForgotPasswordForm() {
         <h1 className="text-xl font-semibold tracking-tight">
           {t("checkEmailTitle")}
         </h1>
-        <p className="text-sm text-foreground">
-          {t("checkEmailDescription")}
-        </p>
+        <p className="text-sm text-foreground">{t("checkEmailDescription")}</p>
         <Link
           href="/login"
           className="text-sm font-medium text-primary underline-offset-4 hover:underline"

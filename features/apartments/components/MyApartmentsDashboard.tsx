@@ -8,7 +8,6 @@ import {
 } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
-import { Button } from "@/components/ui/button"
 import { formatPrice } from "@/lib/utils/formatPrice"
 import { MyApartmentsDashboardResponse } from "@/lib/api/types/apartments"
 import { MetricCard } from "./MetricCard"
@@ -98,16 +97,7 @@ export function MyApartmentsDashboard({
         iconClassName="bg-amber-50"
         label={t("pendingBookings")}
         value={dashboard.pendingBookingsCount ?? 0}
-        footnote={
-          <Button
-            type="button"
-            variant="link"
-            disabled
-            className="h-auto p-0 text-sm"
-          >
-            {t("review")}
-          </Button>
-        }
+        footnote={t("review")}
       />
     </div>
   )
