@@ -341,6 +341,36 @@
       }
     }
   },
+  "apartmentReviewsPage": {
+    "pageTitle": "Reviews for {name}",
+    "pageTitleFallback": "Apartment Reviews",
+    "metaTitle": "Reviews for {name}",
+    "metaDescription": "Read verified guest reviews for this StayHub listing.",
+    "breadcrumbReviews": "Reviews",
+    "anonymousGuest": "Guest",
+    "stayedNights": "{count, plural, one {Stayed # night} other {Stayed # nights}}",
+    "hostResponse": "Response from the host",
+    "ratingFilterLabel": "Filter by rating",
+    "sortLabel": "Sort reviews",
+    "ratingFilters": {
+      "All": "All Ratings",
+      "FiveStars": "5 Stars",
+      "FourStars": "4 Stars",
+      "ThreeStarsOrLess": "≤ 3 Stars"
+    },
+    "sorts": {
+      "Recent": "Most Recent",
+      "Oldest": "Oldest First",
+      "RatingDesc": "Highest Rated",
+      "RatingAsc": "Lowest Rated"
+    },
+    "emptyTitle": "No reviews match this filter",
+    "emptyDescription": "Try a different rating filter.",
+    "errorTitle": "Unable to load reviews",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "retry": "Try again",
+    "showingCount": "Showing {count} of {total} reviews"
+  },
   "ratings": {
     "ratedOutOf": "Rated {rating} out of 5",
     "reviewsCount": "{count, plural, =0 {No reviews yet} one {# review} other {# reviews}}"

@@ -31,6 +31,8 @@ export function ApartmentDetailsView({
   const location = formatCityCountry(apartment.address)
   const images = getGalleryImages(apartment.images)
 
+  if (apartment.id === undefined) return
+
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-6 md:py-8">
       <PageHeader
@@ -73,6 +75,7 @@ export function ApartmentDetailsView({
           <ApartmentDescription description={apartment.description} />
           <ApartmentAmenities amenities={apartment.amenities} />
           <ApartmentReviews
+            apartmentId={apartment.id}
             rating={apartment.rating}
             reviewCount={apartment.reviewCount}
             reviews={apartment.recentReviews ?? []}

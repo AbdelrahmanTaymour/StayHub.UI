@@ -345,6 +345,36 @@
       }
     }
   },
+  "apartmentReviewsPage": {
+    "pageTitle": "تقييمات {name}",
+    "pageTitleFallback": "تقييمات الشقة",
+    "metaTitle": "تقييمات {name}",
+    "metaDescription": "اطّلع على تقييمات الضيوف الموثقة لهذا الإعلان على StayHub.",
+    "breadcrumbReviews": "التقييمات",
+    "anonymousGuest": "ضيف",
+    "stayedNights": "{count, plural, one {أقام ليلة واحدة} two {أقام ليلتين} few {أقام # ليالٍ} many {أقام # ليلة} other {أقام # ليلة}}",
+    "hostResponse": "رد المضيف",
+    "ratingFilterLabel": "تصفية حسب التقييم",
+    "sortLabel": "ترتيب التقييمات",
+    "ratingFilters": {
+      "All": "كل التقييمات",
+      "FiveStars": "5 نجوم",
+      "FourStars": "4 نجوم",
+      "ThreeStarsOrLess": "3 نجوم أو أقل"
+    },
+    "sorts": {
+      "Recent": "الأحدث",
+      "Oldest": "الأقدم",
+      "RatingDesc": "الأعلى تقييمًا",
+      "RatingAsc": "الأقل تقييمًا"
+    },
+    "emptyTitle": "لا توجد تقييمات مطابقة لهذا الفلتر",
+    "emptyDescription": "جرّب تصفية تقييم مختلفة.",
+    "errorTitle": "تعذّر تحميل التقييمات",
+    "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+    "retry": "إعادة المحاولة",
+    "showingCount": "عرض {count} من {total} تقييم"
+  },
   "ratings": {
     "ratedOutOf": "التقييم {rating} من 5",
     "reviewsCount": "{count, plural, =0 {لا توجد تقييمات بعد} one {تقييم واحد} two {تقييمان} few {# تقييمات} many {# تقييمًا} other {# تقييم}}"

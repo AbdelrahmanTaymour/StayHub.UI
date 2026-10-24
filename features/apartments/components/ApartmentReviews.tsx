@@ -4,18 +4,21 @@ import { useLocale, useTranslations } from "next-intl"
 import { RatingSummary } from "@/components/common/RatingSummary"
 import { StarRating } from "@/components/common/StarRating"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import type { ApartmentReview } from "@/features/apartments/types/apartment-details"
 import { formatDate } from "@/features/apartments/utils/format-date"
+import { Link } from "@/i18n/navigation"
 
 interface ApartmentReviewsProps {
+  apartmentId: string
   rating?: number | null
   reviewCount?: number | null
   reviews: ApartmentReview[]
 }
 
 export function ApartmentReviews({
+  apartmentId,
   rating,
   reviewCount,
   reviews,
@@ -78,10 +81,17 @@ export function ApartmentReviews({
         </ul>
       )}
 
-      {/**  @todo: Disabled until the full reviews list endpoint is wired up. **/}
-      <Button type="button" variant="outline" disabled className="self-start">
-        {t("viewAll")}
-      </Button>
+      {reviews.length > 0 && apartmentId ? (
+        <Link
+          href={`/apartments/${apartmentId}/reviews`}
+          className={buttonVariants({
+            variant: "outline",
+            className: "self-start",
+          })}
+        >
+          {t("viewAll")}
+        </Link>
+      ) : null}
     </Card>
   )
 }

@@ -1,49 +1,42 @@
-import {
-  ReviewRatingFilter,
-  ReviewResponseStatusFilter,
-  ReviewSortOrder,
-} from "@/lib/api/types/reviews"
+import type { QueryParameters } from "@/lib/api/type-utils"
 
-export const REVIEW_RESPONSE_TABS = [
-  "All",
-  "NeedsResponse",
-  "Responded",
-] as const satisfies readonly ReviewResponseStatusFilter[]
-export const DEFAULT_REVIEW_RESPONSE_TAB: ReviewResponseStatusFilter = "All"
+type Query = QueryParameters<
+  "/api/v1/reviews/by-apartment/{apartmentId}",
+  "get"
+>
 
-export const REVIEW_RATING_FILTERS = [
+export type PublicReviewRatingFilter = NonNullable<Query["rating"]>
+export type PublicReviewSortOrder = NonNullable<Query["sortOrder"]>
+
+export const PUBLIC_REVIEW_RATING_FILTERS = [
   "All",
   "FiveStars",
   "FourStars",
   "ThreeStarsOrLess",
-] as const satisfies readonly ReviewRatingFilter[]
-export const DEFAULT_REVIEW_RATING_FILTER: ReviewRatingFilter = "All"
+] as const satisfies readonly PublicReviewRatingFilter[]
+export const DEFAULT_PUBLIC_REVIEW_RATING: PublicReviewRatingFilter = "All"
 
-export const REVIEW_SORT_ORDERS = [
+export const PUBLIC_REVIEW_SORT_ORDERS = [
   "Recent",
   "Oldest",
   "RatingDesc",
   "RatingAsc",
-] as const satisfies readonly ReviewSortOrder[]
-export const DEFAULT_REVIEW_SORT_ORDER: ReviewSortOrder = "Recent"
+] as const satisfies readonly PublicReviewSortOrder[]
+export const DEFAULT_PUBLIC_REVIEW_SORT: PublicReviewSortOrder = "Recent"
 
-export function getReviewResponseTab(
+export function getPublicReviewRating(
   value: string | undefined
-): ReviewResponseStatusFilter {
+): PublicReviewRatingFilter {
   return (
-    REVIEW_RESPONSE_TABS.find((v) => v === value) ?? DEFAULT_REVIEW_RESPONSE_TAB
+    PUBLIC_REVIEW_RATING_FILTERS.find((v) => v === value) ??
+    DEFAULT_PUBLIC_REVIEW_RATING
   )
 }
-export function getReviewRatingFilter(
+export function getPublicReviewSort(
   value: string | undefined
-): ReviewRatingFilter {
+): PublicReviewSortOrder {
   return (
-    REVIEW_RATING_FILTERS.find((v) => v === value) ??
-    DEFAULT_REVIEW_RATING_FILTER
-  )
-}
-export function getReviewSortOrder(value: string | undefined): ReviewSortOrder {
-  return (
-    REVIEW_SORT_ORDERS.find((v) => v === value) ?? DEFAULT_REVIEW_SORT_ORDER
+    PUBLIC_REVIEW_SORT_ORDERS.find((v) => v === value) ??
+    DEFAULT_PUBLIC_REVIEW_SORT
   )
 }
