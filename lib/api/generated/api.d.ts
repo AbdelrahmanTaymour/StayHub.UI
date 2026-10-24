@@ -1045,6 +1045,72 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/apartments/staff/{assignmentId}/role": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    assignmentId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["StayHub.Api.Endpoints.Apartments.ChangeApartmentStaffRoleRequest"];
+                };
+            };
+            responses: {
+                /** @description No Content */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+                /** @description Not Found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+                /** @description Conflict */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["Microsoft.AspNetCore.Mvc.ProblemDetails"];
+                    };
+                };
+            };
+        };
+        trace?: never;
+    };
     "/api/v1/apartments/{apartmentId}/staff/search": {
         parameters: {
             query?: never;
@@ -3504,6 +3570,9 @@ export interface components {
             staffUserId?: string;
             role?: components["schemas"]["StayHub.Domain.Apartments.ApartmentStaffRole"];
         };
+        "StayHub.Api.Endpoints.Apartments.ChangeApartmentStaffRoleRequest": {
+            role?: components["schemas"]["StayHub.Domain.Apartments.ApartmentStaffRole"];
+        };
         "StayHub.Api.Endpoints.Apartments.CreateApartmentAvailabilityBlockRequest": {
             /** Format: date */
             start?: string;
@@ -3556,7 +3625,9 @@ export interface components {
         };
         "StayHub.Api.Endpoints.Conversations.StartConversationRequest": {
             /** Format: uuid */
-            apartmentId?: string;
+            recipientId?: string;
+            /** Format: uuid */
+            apartmentId?: string | null;
             /** Format: uuid */
             bookingId?: string | null;
             initialMessage?: string | null;
@@ -3995,19 +4066,16 @@ export interface components {
             /** Format: date-time */
             readOnUtc?: string | null;
         };
-        /** @enum {string} */
-        "StayHub.Application.Conversations.GetMyConversations.ConversationRole": "Host" | "Guest";
         "StayHub.Application.Conversations.GetMyConversations.MyConversationResponse": {
             /** Format: uuid */
             id?: string;
             /** Format: uuid */
-            apartmentId?: string;
+            apartmentId?: string | null;
             apartmentName?: string | null;
             /** Format: uuid */
             otherPartyId?: string;
             otherPartyName?: string | null;
             otherPartyAvatarUrl?: string | null;
-            otherPartyRole?: components["schemas"]["StayHub.Application.Conversations.GetMyConversations.ConversationRole"];
             lastMessagePreview?: string | null;
             /** Format: date-time */
             lastMessageOnUtc?: string | null;
@@ -4213,7 +4281,7 @@ export interface components {
         /** @enum {string} */
         "StayHub.Domain.Maintenance.MaintenanceRequestStatus": "Open" | "InProgress" | "Resolved" | "Closed";
         /** @enum {string} */
-        "StayHub.Domain.Notifications.NotificationType": "BookingConfirmed" | "BookingRejected" | "BookingCancelled" | "NewMessage" | "ReviewReceived" | "ReviewResponseReceived" | "MaintenanceRequestCreated" | "MaintenanceRequestUpdate" | "ApartmentStaffAssignmentCreated";
+        "StayHub.Domain.Notifications.NotificationType": "BookingConfirmed" | "BookingRejected" | "BookingCancelled" | "NewMessage" | "ReviewReceived" | "ReviewResponseReceived" | "MaintenanceRequestCreated" | "MaintenanceRequestUpdate" | "ApartmentStaffAssignmentCreated" | "ApartmentStaffAssignmentRoleChanged";
         /** @enum {string} */
         "StayHub.Domain.Payments.PaymentStatus": "Pending" | "Succeeded" | "Failed" | "Refunded";
     };

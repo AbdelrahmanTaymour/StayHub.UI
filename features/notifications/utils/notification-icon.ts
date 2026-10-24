@@ -21,4 +21,5 @@ export const NOTIFICATION_ICONS: Record<NotificationType, LucideIcon> = {
   MaintenanceRequestCreated: Wrench,
   MaintenanceRequestUpdate: Wrench,
   ApartmentStaffAssignmentCreated: UserPlus,
+  ApartmentStaffAssignmentRoleChanged: UserPlus,
 }

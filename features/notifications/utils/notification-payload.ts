@@ -1,53 +1,3 @@
-import { z } from "zod"
-
-import type { NotificationType } from "@/lib/api/types/notifications"
-
-const base = { message: z.string() }
-
-const payloadSchemas = {
-  BookingConfirmed: z.object({ bookingId: z.string(), ...base }),
-  BookingRejected: z.object({ bookingId: z.string(), ...base }),
-  BookingCancelled: z.object({ bookingId: z.string(), ...base }),
-  NewMessage: z.object({ conversationId: z.string(), ...base }),
-  ReviewReceived: z.object({
-    reviewId: z.string(),
-    apartmentId: z.string(),
-    rating: z.number(),
-    ...base,
-  }),
-  ReviewResponseReceived: z.object({
-    reviewId: z.string(),
-    apartmentId: z.string(),
-    responseReviewId: z.string(),
-    ...base,
-  }),
-  MaintenanceRequestCreated: z.object({
-    maintenanceRequestId: z.string(),
-    apartmentId: z.string(),
-    ...base,
-  }),
-  MaintenanceRequestUpdate: z.object({
-    maintenanceRequestId: z.string(),
-    ...base,
-  }),
-  ApartmentStaffAssignmentCreated: z.object({
-    assignmentId: z.string(),
-    apartmentId: z.string(),
-    apartmentOwnerId: z.string(),
-    ...base,
-  }),
-} satisfies Record<NotificationType, z.ZodType>
-
-export type ParsedNotificationPayload<T extends NotificationType> = z.infer<
-  (typeof payloadSchemas)[T]
->
-
-/**
-- The backend serializes each payload with PascalCase .NET property names
-- (e.g. "BookingId", "Message") via System.Text.Json's default behavior.
-- This normalizes every key to camelCase before validating against the
-- Zod schema below, so the frontend types stay camelCase throughout.
- */
 function toCamelCaseKeys(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(toCamelCaseKeys)
   if (value !== null && typeof value === "object") {
@@ -61,24 +11,94 @@ function toCamelCaseKeys(value: unknown): unknown {
   return value
 }
 
-/**
-- Parses a notification's raw JSON payload string against the schema for
-- its type. Returns null on any parse/shape failure — callers fall back to
-- a generic, non-navigable row rather than throwing, since a malformed
-- payload shouldn't break the whole notifications list.
- */
-export function parseNotificationPayload<T extends NotificationType>(
-  type: T,
-  payload: string | null | undefined
-): ParsedNotificationPayload<T> | null {
-  if (!payload) return null
+function unwrapToStringArtifact(value: string): string {
+  let current = value.trim()
 
+  for (let i = 0; i < 5; i++) {
+    const match = current.match(
+      /^(?:[\w ]+:\s*)?[\w.]+\s*\{\s*\w+\s*=\s*([\s\S]*)\}$/
+    )
+    if (!match) break
+    const next = match[1].trim()
+    if (next === current) break
+    current = next
+  }
+
+  return current
+}
+
+function readString(
+  obj: Record<string, unknown>,
+  key: string
+): string | undefined {
+  const value = obj[key]
+  return typeof value === "string" ? unwrapToStringArtifact(value) : undefined
+}
+
+function readGuid(
+  obj: Record<string, unknown>,
+  key: string
+): string | undefined {
+  const value = obj[key]
+  if (typeof value === "string") return value
+  // Defensive: if a GUID also arrived wrapped the same way the message did.
+  if (typeof value === "object" && value !== null) {
+    const nested = Object.values(value as Record<string, unknown>).find(
+      (v) => typeof v === "string"
+    )
+    return typeof nested === "string" ? nested : undefined
+  }
+  return undefined
+}
+
+function readNumber(
+  obj: Record<string, unknown>,
+  key: string
+): number | undefined {
+  const value = obj[key]
+  if (typeof value === "number") return value
+  if (typeof value === "string" && !Number.isNaN(Number(value)))
+    return Number(value)
+  return undefined
+}
+
+export interface ParsedNotificationFields {
+  message?: string
+  bookingId?: string
+  conversationId?: string
+  reviewId?: string
+  responseReviewId?: string
+  apartmentId?: string
+  apartmentOwnerId?: string
+  maintenanceRequestId?: string
+  assignmentId?: string
+  rating?: number
+}
+
+export function parseNotificationPayload(
+  payload: string | null | undefined
+): ParsedNotificationFields {
+  if (!payload) return {}
+
+  let raw: Record<string, unknown>
   try {
-    const raw = toCamelCaseKeys(JSON.parse(payload))
-    const schema = payloadSchemas[type]
-    const result = schema.safeParse(raw)
-    return result.success ? (result.data as ParsedNotificationPayload<T>) : null
+    const parsed = toCamelCaseKeys(JSON.parse(payload))
+    if (typeof parsed !== "object" || parsed === null) return {}
+    raw = parsed as Record<string, unknown>
   } catch {
-    return null
+    return {}
+  }
+
+  return {
+    message: readString(raw, "message"),
+    bookingId: readGuid(raw, "bookingId"),
+    conversationId: readGuid(raw, "conversationId"),
+    reviewId: readGuid(raw, "reviewId"),
+    responseReviewId: readGuid(raw, "responseReviewId"),
+    apartmentId: readGuid(raw, "apartmentId"),
+    apartmentOwnerId: readGuid(raw, "apartmentOwnerId"),
+    maintenanceRequestId: readGuid(raw, "maintenanceRequestId"),
+    assignmentId: readGuid(raw, "assignmentId"),
+    rating: readNumber(raw, "rating"),
   }
 }

@@ -121,7 +121,7 @@ export function SiteHeader() {
                 {unreadCount > 0 ? (
                   <span
                     aria-hidden="true"
-                    className="text-destructive-foreground absolute -inset-e-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-semibold"
+                    className="text-destructive-foreground absolute -inset-e-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-semibold text-white"
                   >
                     {unreadCount > 9 ? "9+" : unreadCount}
                   </span>

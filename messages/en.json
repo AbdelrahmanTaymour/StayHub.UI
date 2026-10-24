@@ -114,7 +114,19 @@
     "emptyDescription": "You're all caught up.",
     "errorTitle": "Unable to load notifications",
     "errorDescription": "An unexpected error occurred. Please try again.",
-    "retry": "Try again"
+    "retry": "Try again",
+    "headers": {
+      "bookingConfirmed": "Booking Confirmed",
+      "bookingRejected": "Booking Rejected",
+      "bookingCancelled": "Booking Cancelled",
+      "newMessage": "New Message",
+      "reviewReceived": "New Review",
+      "reviewResponseReceived": "Review Response Posted",
+      "maintenanceRequestCreated": "New Maintenance Request",
+      "maintenanceRequestUpdate": "Maintenance Update",
+      "staffAssignmentCreated": "Staff Assigned",
+      "staffAssignmentRoleChanged": "Role Changed"
+    }
   },
   "home": {
     "metaTitle": "StayHub — Book Your Next Stay",
@@ -763,6 +775,7 @@
       "emailPlaceholder": "name@example.com",
       "searchButton": "Search",
       "searchErrorToast": "Couldn't search for that email. Please try again.",
+      "addStaffButton": "Add Staff",
       "roleLabel": "Role",
       "roleManager": "Manager",
       "roleCleaner": "Cleaner",
@@ -978,7 +991,7 @@
       "createdToast": "Maintenance ticket created",
       "createErrorToast": "Couldn't create this ticket. Please try again.",
       "createSheet": {
-        "triggerLabel": "New Maintenance Ticket",
+        "triggerLabel": "New Ticket",
         "title": "Create Maintenance Ticket",
         "description": "Report an issue for staff to triage and resolve.",
         "fields": {

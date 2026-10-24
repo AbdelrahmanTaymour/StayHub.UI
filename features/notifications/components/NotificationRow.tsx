@@ -11,6 +11,7 @@ import {
 } from "@/features/notifications/utils/notification-target"
 import { NOTIFICATION_ICONS } from "@/features/notifications/utils/notification-icon"
 import { MyNotificationsResponse } from "@/lib/api/types/notifications"
+import { NOTIFICATION_HEADER_KEYS } from "../utils/notification-labels"
 
 export function NotificationRow({
   notification,
@@ -26,11 +27,14 @@ export function NotificationRow({
 
   const Icon = NOTIFICATION_ICONS[notification.type]
   const message = getNotificationMessage(
-    notification.type,
     notification.payload,
     t("genericMessage")
   )
   const href = getNotificationHref(notification.type, notification.payload)
+  const headerKey = notification.type
+    ? NOTIFICATION_HEADER_KEYS[notification.type]
+    : undefined
+  const header = headerKey ? t(headerKey) : null
   const isUnread = !notification.isRead
   const timeLabel = notification.createdOnUtc
     ? formatRelative(notification.createdOnUtc, locale, t)
@@ -61,10 +65,22 @@ export function NotificationRow({
       </span>
 
       <div className="min-w-0 flex-1">
+        {header ? (
+          <p
+            className={cn(
+              "text-sm",
+              isUnread
+                ? "font-semibold text-foreground"
+                : "font-medium text-foreground/80"
+            )}
+          >
+            {header}
+          </p>
+        ) : null}
         <p
           className={cn(
             "text-sm leading-relaxed",
-            isUnread ? "font-medium text-foreground" : "text-foreground/80"
+            isUnread ? "text-foreground" : "text-foreground/70"
           )}
         >
           {message}

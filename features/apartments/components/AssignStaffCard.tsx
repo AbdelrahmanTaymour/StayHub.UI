@@ -19,13 +19,20 @@ import { useStaffCandidateSearch } from "../hooks/useStaffCandidateSearch"
 import { useAssignStaff } from "../hooks/useAssignStaff"
 import { useChangeStaffRole } from "../hooks/useChangeStaffRole"
 import { staffRoleLabel } from "../utils/staff-role"
+import { cn } from "cn"
 
 interface AssignStaffCardProps {
   apartmentId: string
   staff: ApartmentStaffResponse[]
+  /** True when rendered inside AssignStaffDialog — skips the outer Card chrome and header, since the dialog already provides both. */
+  embedded?: boolean
 }
 
-export function AssignStaffCard({ apartmentId, staff }: AssignStaffCardProps) {
+export function AssignStaffCard({
+  apartmentId,
+  staff,
+  embedded = false,
+}: AssignStaffCardProps) {
   const t = useTranslations("apartmentManage.staff")
   const [email, setEmail] = useState("")
   const [role, setRole] = useState<ApartmentStaffRole>("Manager")
@@ -50,6 +57,11 @@ export function AssignStaffCard({ apartmentId, staff }: AssignStaffCardProps) {
     candidate != null &&
     !candidate.isApartmentOwner &&
     (!candidate.isAlreadyAssigned || Boolean(existingAssignmentId))
+
+  const Wrapper = embedded ? "div" : Card
+  const wrapperProps = embedded
+    ? { className: "flex flex-col gap-0" }
+    : { className: "gap-0 overflow-hidden p-0" }
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -78,20 +90,25 @@ export function AssignStaffCard({ apartmentId, staff }: AssignStaffCardProps) {
   }
 
   return (
-    <Card className="gap-0 overflow-hidden p-0">
-      <div className="flex flex-col gap-1 border-b border-border p-6">
-        <div className="flex items-center gap-2">
-          <UserSearch aria-hidden="true" className="size-5 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground">
-            {t("assignCardTitle")}
-          </h2>
+    <Wrapper {...wrapperProps}>
+      {!embedded ? (
+        <div className="flex flex-col gap-1 border-b border-border p-6">
+          <div className="flex items-center gap-2">
+            <UserSearch aria-hidden="true" className="size-5 text-primary" />
+            <h2 className="text-lg font-semibold text-foreground">
+              {t("assignCardTitle")}
+            </h2>
+          </div>
+          <p className="text-sm text-foreground/70">
+            {t("assignCardDescription")}
+          </p>
         </div>
-        <p className="text-sm text-foreground/70">
-          {t("assignCardDescription")}
-        </p>
-      </div>
+      ) : null}
 
-      <form onSubmit={handleSearch} className="flex flex-col gap-1.5 p-6">
+      <form
+        onSubmit={handleSearch}
+        className={cn("flex flex-col gap-1.5", embedded ? "pt-2" : "p-6")}
+      >
         <Label htmlFor="staff-email-search">{t("emailLabel")}</Label>
         <div className="flex items-center gap-2">
           <div className="relative flex-1">
@@ -123,7 +140,12 @@ export function AssignStaffCard({ apartmentId, staff }: AssignStaffCardProps) {
       </form>
 
       {hasResult ? (
-        <div className="mx-6 mb-6 flex flex-col gap-4 rounded-xl border border-border bg-surface-container-low p-4">
+        <div
+          className={cn(
+            "flex flex-col gap-4 rounded-xl border border-border bg-surface-container-low p-4",
+            embedded ? "mt-2" : "mx-6 mb-6"
+          )}
+        >
           {found && candidate ? (
             <>
               <div className="flex items-center gap-3">
@@ -214,6 +236,6 @@ export function AssignStaffCard({ apartmentId, staff }: AssignStaffCardProps) {
         onOpenChange={setInviteOpen}
         defaultEmail={search.variables ?? email}
       />
-    </Card>
+    </Wrapper>
   )
 }

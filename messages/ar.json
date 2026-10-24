@@ -114,7 +114,19 @@
     "emptyDescription": "لا يوجد جديد.",
     "errorTitle": "تعذّر تحميل الإشعارات",
     "errorDescription": "حدث خطأ غير متوقع. حاول مرة أخرى.",
-    "retry": "إعادة المحاولة"
+    "retry": "إعادة المحاولة",
+    "headers": {
+      "bookingConfirmed": "تم تأكيد الحجز",
+      "bookingRejected": "تم رفض الحجز",
+      "bookingCancelled": "تم إلغاء الحجز",
+      "newMessage": "رسالة جديدة",
+      "reviewReceived": "تقييم جديد",
+      "reviewResponseReceived": "تم نشر الرد على التقييم",
+      "maintenanceRequestCreated": "طلب صيانة جديد",
+      "maintenanceRequestUpdate": "تحديث الصيانة",
+      "staffAssignmentCreated": "تم تعيين موظف",
+      "staffAssignmentRoleChanged": "تم تغير الوظيفة"
+    }
   },
   "home": {
     "metaTitle": "StayHub — احجز إقامتك القادمة",
@@ -762,6 +774,7 @@
       "emailPlaceholder": "name@example.com",
       "searchButton": "بحث",
       "searchErrorToast": "تعذر البحث عن هذا البريد الإلكتروني. يرجى المحاولة مرة أخرى.",
+      "addStaffButton": "إضافة موظف",
       "roleLabel": "الدور",
       "roleManager": "مدير",
       "roleCleaner": "عامل نظافة",
@@ -977,7 +990,7 @@
       "createdToast": "تم إنشاء تذكرة الصيانة",
       "createErrorToast": "تعذّر إنشاء هذه التذكرة. حاول مرة أخرى.",
       "createSheet": {
-        "triggerLabel": "تذكرة صيانة جديدة",
+        "triggerLabel": "تذكرة جديدة",
         "title": "إنشاء تذكرة صيانة",
         "description": "أبلغ عن مشكلة ليقوم الفريق بفرزها وحلها.",
         "fields": {
